@@ -46,31 +46,8 @@ function SignUP()
     //     } else {
     $db = connection();
     $User = new Users(array("CodeUser" => "code1", "Name" => "name1", "Firstname" => "first",  "BirthDate" => "0000-00-00",  "Mail" => "mail",  "Phone" => "phone",  "Username" => "user1",  "Password" => "pass",  "isAlive" => 0));
-    // $User = new Users(array("Firstname"=>'Firstname'));
     $UserManager = new UsersManager($db);
-    $UserManager->signUP($User);
+    if ($UserManager->signUP($User) == true) {
+        echo "Success";
+    }else echo "Fail" . $UserManager->signUP($User);
 }
-// $servername = "localhost";
-// $username = "root";
-// $password = "";
-// $dbname = "aumok";
-
-// // Create connection
-// $conn = new mysqli($servername, $username, $password, $dbname);
-// // Check connection
-// if ($conn->connect_error) {
-//   die("Connection failed: " . $conn->connect_error);
-// } 
-
-// $sql = "SELECT * FROM Users";
-// $result = $conn->query($sql);
-
-// if ($result->num_rows > 0) {
-//   // output data of each row
-//   while($row = $result->fetch_assoc()) {
-//     echo "name: " . $row["Name"]. " - FirstName: " . $row["FirstName"] . "<br>";
-//   }
-// } else {
-//   echo "0 results";
-// }
-// $conn->close();

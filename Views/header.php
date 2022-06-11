@@ -1,5 +1,8 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Fonctions.class.php");
+// $a = include("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Styles/styles.css");
+// echo "<style type='text/css'>" . $a . "</style>";
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +18,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Fonct
             display: block;
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Styles/styles.css" />
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
