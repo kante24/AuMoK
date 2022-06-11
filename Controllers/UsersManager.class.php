@@ -34,20 +34,33 @@ class UsersManager
     //E.G:  SignUP(new Users(array("Name"=>"Name", "Firstname"=>"Firstname", ... )) )
     public function signUP(Users $user)
     {
-        //Get informations from $user
-        $codeUser = $user->codeUser();
-        $name = $user->name();
-        $firstname =$user->firstname() ;
-        $birthdate = $user->birthdate();
-        $mail =$user->mail() ;
-        $phone = $user->phone();
-        $username = $user->username();
-        $password = $user->password();
+        //Get informations from $user to insert
+        $codeUser = $user->CodeUser();
+        $name = $user->Name();
+        $firstname =$user->Firstname() ;
+        $birthdate = $user->BirthDate();
+        $mail =$user->Mail() ;
+        $phone = $user->Phone();
+        $Username = $user->Username();
+        $password = $user->Password();
         $isAlive = $user->isAlive();
+        
 
-        $ins=$this->_db;
-        $query = $ins->prepare("INSERT into Users (CodeUser, Name, FirstName, BirthDate, Mail, Phone, Username, Password, isAlive) VALUES (:codeUser, :name, :firstname, :birthdate, :mail, :phone, :username, :password, :isAlive )");
-        $query->execute($user) or die("<center>Erreur dans la requête</center>");
+        $pdo=$this->_db;
+        $query = $pdo->prepare("INSERT into Users (CodeUser, Name, Firstname, BirthDate, Mail, Phone, Username, Password, isAlive)  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? )");
+        $query->bindValue(1, $codeUser);
+        $query->bindValue(2, $name);
+        $query->bindValue(3, $firstname);
+        $query->bindValue(4, $birthdate);
+        $query->bindValue(5, $mail);
+        $query->bindValue(6, $phone);
+        $query->bindValue(7, $Username);
+        $query->bindValue(8, $password);
+        $query->bindValue(9, $isAlive);
+        $query->execute();
+        // $publisher_id = $ins->lastInsertId();
+        // echo 'The publisher id ' . $publisher_id . ' was inserted';
+
     }
 
 }

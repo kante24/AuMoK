@@ -31,10 +31,24 @@ function afficher()
 {
     $db = connection();
     $UserManager = new UsersManager($db);
-    $results=$UserManager->Users();
-    foreach ($results as $key =>$value) {
-        echo $value->Name() . " jiiudf" . $value->firstname();
+    $results = $UserManager->Users();
+    foreach ($results as $key => $value) {
+        echo $value->name() . " jiiudf" . $value->firstname();
     }
+}
+
+//Sign UP Function
+function SignUP()
+{
+    // if (isset($_POST["Inscription"])) {
+    //     if (empty($_POST['nom']) or empty($_POST['prenom']) or empty($_POST['age']) or empty($_POST['login']) or empty($_POST['password'])) {
+    //         echo"<center>Veuillez remplir tous les champs SVP</center>";
+    //     } else {
+    $db = connection();
+    $User = new Users(array("CodeUser" => "code1", "Name" => "name1", "Firstname" => "first",  "BirthDate" => "0000-00-00",  "Mail" => "mail",  "Phone" => "phone",  "Username" => "user1",  "Password" => "pass",  "isAlive" => 0));
+    // $User = new Users(array("Firstname"=>'Firstname'));
+    $UserManager = new UsersManager($db);
+    $UserManager->signUP($User);
 }
 // $servername = "localhost";
 // $username = "root";

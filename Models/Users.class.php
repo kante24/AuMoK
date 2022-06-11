@@ -25,42 +25,42 @@ class Users
 
 //Getters
 
-    public function codeUser()
+    public function CodeUser()
     {
         return $this->_codeUser;
     }
 
-    public function name()
+    public function Name()
     {
         return $this->_name;
     }
 
-    public function firstname()
+    public function Firstname()
     {
         return $this->_firstname;
     }
 
-    public function birthdate()
+    public function BirthDate()
     {
         return $this->_birthdate;
     }
 
-    public function mail()
+    public function Mail()
     {
         return $this->_mail;
     }
 
-    public function phone()
+    public function Phone()
     {
         return $this->_phone;
     }
 
-    public function username()
+    public function Username()
     {
         return $this->_username;
     }
 
-    public function password()
+    public function Password()
     {
         return $this->_password;
     }
@@ -79,9 +79,9 @@ class Users
         $this->_codeUser = $codeUser;
     }
     
-    public function setNom($name)
+    public function setName($name)
     {
-        $this->_nom = $name;
+        $this->_name = $name;
     }
     
     public function setFirstname($firstname)
