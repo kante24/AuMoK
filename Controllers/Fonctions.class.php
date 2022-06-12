@@ -38,18 +38,14 @@ function afficher()
 }
 
 //Sign UP Function
-function SignUP()
+function SignUP(Users $User)
 {
-    // if (isset($_POST["Inscription"])) {
-    //     if (empty($_POST['nom']) or empty($_POST['prenom']) or empty($_POST['age']) or empty($_POST['login']) or empty($_POST['password'])) {
-    //         echo"<center>Veuillez remplir tous les champs SVP</center>";
-    //     } else {
     $db = connection();
-    $User = new Users(array("CodeUser" => "code1", "Name" => "name1", "Firstname" => "first",  "BirthDate" => "0000-00-00",  "eMail" => "email",  "Phone" => "phone",  "Username" => "user1",  "Password" => "pass",  "isAlive" => 0));
+    // $User = new Users(array("CodeUser" => "code1", "Name" => "name1", "Firstname" => "first",  "BirthDate" => "0000-00-00",  "eMail" => "email",  "Phone" => "phone",  "Username" => "user1",  "Password" => "pass",  "isAlive" => 0));
     $UserManager = new UsersManager($db);
     if ($UserManager->signUP($User) == true) {
         echo "Success";
-    }else echo "Fail" . $UserManager->signUP($User);
+    }else echo "Fail";
 }
 
 
@@ -79,9 +75,28 @@ function validatePhone($phone)
 function validateName($name)
 {
     if (preg_match ("/^[a-zA-z]*$/", $name) ) {  
-        return "true";
+        return true;
     } else {  
-        return "false"; 
+        return false; 
     }
 }
 
+
+//Validate passwords
+function validatePasswords($pwd1, $pwd2)
+{
+    if ($pwd1 == $pwd2) {  
+        return true;
+    } else {  
+        return false; 
+    }
+}
+
+
+//Return a random colour
+function color()
+{
+    $color = ["green","yellow","blue","black","red","blue","darkmagenta","purple","orange","pink","Gainsboro","gray","khaki","lime","tomato","purple","thistle","Salmon" ];
+    $rand = rand(0, (count($color)-1));
+    return $color[$rand];
+}
