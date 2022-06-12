@@ -8,7 +8,7 @@ class Users
     private $_name;
     private $_firstname;
     private $_birthdate;
-    private $_mail;
+    private $_email;
     private $_phone;
     private $_username;
     private $_password;
@@ -45,9 +45,9 @@ class Users
         return $this->_birthdate;
     }
 
-    public function Mail()
+    public function eMail()
     {
-        return $this->_mail;
+        return $this->_email;
     }
 
     public function Phone()
@@ -94,9 +94,9 @@ class Users
         $this->_birthdate = $birthdate;
     }
     
-    public function setMail($mail)
+    public function setEMail($email)
     {
-        $this->_mail = $mail;
+        $this->_email = $email;
     }
     
     public function setPhone($phone)

@@ -37,13 +37,13 @@ class UsersManager
     {
         try {
             $pdo = $this->_db;
-            $query = $pdo->prepare("INSERT into Users (CodeUser, Name, Firstname, BirthDate, Mail, Phone, Username, Password, isAlive) VALUES (:CodeUser, :Namee, :Firstname, :BirthDate, :Mail, :Phone, :Username, :Passwordd, :isAlive)");
+            $query = $pdo->prepare("INSERT into Users (CodeUser, Name, Firstname, BirthDate, eMail, Phone, Username, Password, isAlive) VALUES (:CodeUser, :Namee, :Firstname, :BirthDate, :eMail, :Phone, :Username, :Passwordd, :isAlive)");
             $result = $query->execute([
                 ":CodeUser" => $user->CodeUser(),
                 ":Namee" => $user->Name(),
                 ":Firstname" => $user->Firstname(),
                 ":BirthDate" => $user->BirthDate(),
-                ":Mail" => $user->Mail(),
+                ":eMail" => $user->eMail(),
                 ":Phone" => $user->Phone(),
                 ":Username" => $user->Username(),
                 ":Passwordd" => $user->Password(),

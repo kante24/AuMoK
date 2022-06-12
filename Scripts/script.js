@@ -1,8 +1,15 @@
 $(document).ready(function() {
-    $('#Name').keyup(function(event) {
-        newText = event.target.value;
-        $('#Firstname').val(newText);
-        // document.getElementById("p").innerHTML = newText;
+
+    $('#Password').keyup(function(event) {
+        pwd = event.target.value;
+
+        //Parse password value here for a match up after
+        $('#isSame').val(pwd);
     });
-    // document.getElementById("p").innerHTML = "Nene";
+
 })
+
+//Function Redirection to another page
+function Relocation(page) {
+    window.location.href = "/dashboard/AuMoK/" + page;
+}

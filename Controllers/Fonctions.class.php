@@ -45,9 +45,21 @@ function SignUP()
     //         echo"<center>Veuillez remplir tous les champs SVP</center>";
     //     } else {
     $db = connection();
-    $User = new Users(array("CodeUser" => "code1", "Name" => "name1", "Firstname" => "first",  "BirthDate" => "0000-00-00",  "Mail" => "mail",  "Phone" => "phone",  "Username" => "user1",  "Password" => "pass",  "isAlive" => 0));
+    $User = new Users(array("CodeUser" => "code1", "Name" => "name1", "Firstname" => "first",  "BirthDate" => "0000-00-00",  "eMail" => "email",  "Phone" => "phone",  "Username" => "user1",  "Password" => "pass",  "isAlive" => 0));
     $UserManager = new UsersManager($db);
     if ($UserManager->signUP($User) == true) {
         echo "Success";
     }else echo "Fail" . $UserManager->signUP($User);
 }
+
+
+//Validate eMail format
+function validateEmail($email)
+{
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+

@@ -1,5 +1,5 @@
 <?php
-require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/header.php");
+require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
 
 echo "manger nene LOG IN";
 ?>
