@@ -63,3 +63,25 @@ function validateEmail($email)
     }
 }
 
+
+//Validate phone format
+function validatePhone($phone)
+{
+    if (preg_match('/^[0-9]{10}+$/', $phone)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+//Validate phone format
+function validateName($name)
+{
+    if (preg_match ("/^[a-zA-z]*$/", $name) ) {  
+        return "true";
+    } else {  
+        return "false"; 
+    }
+}
+
