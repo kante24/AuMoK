@@ -61,9 +61,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
         <form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
             <!-- First row -->
-            <div class="row center">
-
-                <div class="col-3"></div>
+            <div class="row center justify-content-center">
 
                 <!--  Name -->
                 <div class="col-3 center m-2">
@@ -73,7 +71,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                         <label for="floatingInput" style="text-align:center">Last Name</label>
                     </div>
 
-                    <div class="row  justify-content-center error">
+                    <div class="row justify-content-center error">
                         <p id="errorName"></p>
                     </div>
                 </div>
@@ -89,30 +87,25 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                     </div>
                 </div>
 
-                <div class="col-3"></div>
             </div>
 
             <!-- Second row -->
-            <div class="row mt-5">
-
-                <div class="col-3"></div>
+            <div class="row mt-5 justify-content-center">
 
                 <!-- BirthDate -->
                 <div class="col-6">
                     <div class="row justify-content-center">
-                        <input id="birthDate" type="date" name="birthDate" value="" style="width:200px" required />
+                        <input id="birthDate" type="date" name="birthDate" value="" style="vertical-align:top; width: 200px;height:50px;text-align: center;"  required />
                     </div>
                     <div class="row error justify-content-center">
                         <p id="errorBirthDate"></p>
                     </div>
                 </div>
 
-                <div class="col-3"></div>
             </div>
 
             <!-- Thirth row -->
-            <div class="row mt-5" style="text-align:center">
-                <div class="col-3"></div>
+            <div class="row mt-5 justify-content-center">
 
                 <!-- Mail -->
                 <div class="col-3 m-2">
@@ -136,12 +129,10 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                     </div>
                 </div>
 
-                <div class="col-3"></div>
             </div>
 
             <!-- Fourth row -->
-            <div class="row mt-5">
-                <div class="col-3"></div>
+            <div class="row mt-5 justify-content-center">
 
                 <!-- Username -->
                 <div class="col-6">
@@ -154,13 +145,11 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                     </div>
                 </div>
 
-                <div class="col-3"></div>
             </div>
 
 
             <!-- Fith row -->
-            <div class="row mt-5" style="text-align:center">
-                <div class="col-3"></div>
+            <div class="row mt-5 justify-content-center">
 
                 <!-- Pwd -->
                 <div class="col-3 m-2">
@@ -178,26 +167,21 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                     </div>
                 </div>
 
-                <div class="col-3"></div>
             </div>
 
 
             <!-- Sixth row -->
-            <div class="row mt-2">
-
-                <div class="col-3"></div>
+            <div class="row mt-2 justify-content-center">
 
                 <!-- Erreur Pwd -->
                 <div class="col-6 error">
                     <p id="errorPassword"></p>
                 </div>
 
-                <div class="col-3"></div>
             </div>
 
             <!-- Seventh row -->
-            <div class="row mt-3">
-                <div class="col-3"></div>
+            <div class="row mt-3 justify-content-center">
 
                 <!-- Erreur Pwd -->
                 <div class="col-6">
@@ -206,13 +190,11 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                     <!-- <input type="hidden" id="isSame"/> -->
                 </div>
 
-                <div class="col-3"></div>
             </div>
 
             <!-- Eigth row -->
             <!-- Button group to confirm or reset informations -->
-            <div class="row mt-3" style="text-align:center">
-                <div class="col-3"></div>
+            <div class="row mt-3 justify-content-center">
 
                 <!-- Add -->
                 <div class="col-3">
@@ -228,10 +210,10 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                     </button>
                 </div>
 
-                <div class="col-3"></div>
             </div>
 
         </form>
+        
     </div>
 
 </body>
@@ -290,8 +272,10 @@ if (isset($_POST["addUser"])) {
         if (validateName($User->Name()) === true && validateName($User->Firstname()) === true && validateEmail($User->eMail()) === true && validatePhone($User->Phone()) === true && validatePasswords($User->Password(), $_POST["Password2"]) === true) {
             // var_dump(SignUP($User));
             if (SignUP($User) === true) {
-                $_SESSION['codeUser'] = $User->CodeUser();
-                $_SESSION['Login'] = $User->Username();
+                // $_SESSION['codeUser'] = $User->CodeUser();
+                // $_SESSION['Login'] = $User->Username();
+                $_SESSION['User'] = $User;
+
                 // echo  $_SESSION['codeUser'] . " " .  $_SESSION['Login'];
                 echo
                 "<script>

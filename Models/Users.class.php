@@ -13,9 +13,23 @@ class Users
     private $_username;
     private $_password;
     private $_isAlive;
+
+    // private $_codeUser = "n/a";
+    // private $_name = "n/a";
+    // private $_firstname = "n/a";
+    // private $_birthdate = "0000-00-00";
+    // private $_email = "n/a";
+    // private $_phone = "n/a";
+    // private $_username = "n/a";
+    // private $_password = "n/a";
+    // private $_isAlive = false;
 //
 
 //Constructors
+    // public function __construct()
+    // {
+
+    // }
     public function __construct(array $donnees)
     {
         $this->hydrate($donnees);
