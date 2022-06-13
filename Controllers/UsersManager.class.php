@@ -1,5 +1,6 @@
 <?php
 
+
 class UsersManager
 {
     private $_db;
@@ -57,10 +58,56 @@ class UsersManager
         }
     }
 
+    //Checks if the username, email address, phone or username already exists
+    public function existanceUsernameDB(Users $user)
+    {
+        $Username = $user->Username();
+        $req = $this->_db->query("SELECT * FROM Users WHERE Username= '$Username' ");
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        if ($data != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function existanceEMailDB(Users $user)
+    {
+        $eMail = $user->eMail();
+        $req = $this->_db->query("SELECT * FROM Users WHERE eMail= '$eMail' ");
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        if ($data != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function existancePhoneDB(Users $user)
+    {
+        $Phone = $user->Phone();
+        $req = $this->_db->query("SELECT * FROM Users WHERE Phone= '$Phone' ");
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        if ($data != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function existanceCodeUserDB(Users $user)
+    {
+        $codeUser = $user->CodeUser();
+        $req = $this->_db->query("SELECT * FROM Users WHERE Username= '$codeUser' ");
+        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        if ($data != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 
 
-
-    
 }

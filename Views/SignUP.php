@@ -1,8 +1,6 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
-
-//SignUP();
 ?>
 
 <!DOCTYPE html>
@@ -58,9 +56,8 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 
 <body>
 
-
-
     <div class="container backColorChange" style="border-radius: 50%;margin-top: 30px; text-align: center; width: 800px ; background-color: antiquewhite;">
+
         <form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
             <!-- First row -->
@@ -236,6 +233,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 
         </form>
     </div>
+
 </body>
 
 </html>
@@ -246,12 +244,14 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 if (isset($_POST["addUser"])) {
     $rand = rand(0, 99999999999);
     $codeUser = substr($_POST["Name"], 0, 3) .  substr($_POST["Firstname"], 0, 3) . $rand;
+
+    //Create user with informations
     $User = new Users(array("CodeUser" => $codeUser, "Name" => $_POST["Name"], "Firstname" => $_POST["Firstname"], "BirthDate" => $_POST["birthDate"], "eMail" => $_POST["eMail"], "Phone" => $_POST["Phone"], "Username" => $_POST["Username"], "Password" => $_POST["Password"], "isAlive" => true));
 
     //Tests for some formats
     //If any attribute is empty
-    if (!empty($User->Username()) && !empty($User->Name()) && !empty($User->Firstname()) && !empty($User->BirthDate()) && !empty($User->eMail()) && !empty($User->Phone()) && !empty($User->Username()) && !empty($User->Password()) && !empty($User->isAlive()) && !empty($_POST["Password2"]) ) {
-        
+    if (!empty($User->Username()) && !empty($User->Name()) && !empty($User->Firstname()) && !empty($User->BirthDate()) && !empty($User->eMail()) && !empty($User->Phone()) && !empty($User->Username()) && !empty($User->Password()) && !empty($User->isAlive()) && !empty($_POST["Password2"])) {
+
         if (validateName($User->Name()) === false) {
             echo
             '<script>
@@ -269,7 +269,7 @@ if (isset($_POST["addUser"])) {
         if (validateEmail($User->eMail()) === false) {
             echo
             '<script>
-                document.getElementById("errorEMail").innerHTML = "Invalid Address eMail"
+                document.getElementById("errorEMail").innerHTML = "Invalid Address eMail format"
              </script>';
         }
 
@@ -280,19 +280,30 @@ if (isset($_POST["addUser"])) {
              </script>';
         }
 
-        if(validatePasswords($User->Password(), $_POST["Password2"]) === false)
-        {
+        if (validatePasswords($User->Password(), $_POST["Password2"]) === false) {
             echo
             '<script>
                 document.getElementById("errorPassword").innerHTML = "Passwords Different"
              </script>';
         }
 
-        if(validateName($User->Name()) === true && validateName($User->Firstname()) === true && validateEmail($User->eMail()) === true && validatePhone($User->Phone()) === true && validatePasswords($User->Password(), $_POST["Password2"]) === true )
-        {
-            SignUP($User);
+        if (validateName($User->Name()) === true && validateName($User->Firstname()) === true && validateEmail($User->eMail()) === true && validatePhone($User->Phone()) === true && validatePasswords($User->Password(), $_POST["Password2"]) === true) {
+            // var_dump(SignUP($User));
+            if (SignUP($User) === true) {
+                $_SESSION['codeUser'] = $User->CodeUser();
+                $_SESSION['Login'] = $User->Username();
+                // echo  $_SESSION['codeUser'] . " " .  $_SESSION['Login'];
+                echo
+                "<script>
+                    Relocation('Views/LogIN.php')
+                </script>";
+            } else {
+                echo
+                '<script>
+                    document.getElementById("errorPassword").innerHTML = "Something went wrong </br> Retry please"
+                </script>';
+            }
         }
-        
     }
 }
 

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 // Setting internal encoding for string functions
 mb_internal_encoding("UTF-8");
 
@@ -37,17 +37,6 @@ function afficher()
     }
 }
 
-//Sign UP Function
-function SignUP(Users $User)
-{
-    $db = connection();
-    // $User = new Users(array("CodeUser" => "code1", "Name" => "name1", "Firstname" => "first",  "BirthDate" => "0000-00-00",  "eMail" => "email",  "Phone" => "phone",  "Username" => "user1",  "Password" => "pass",  "isAlive" => 0));
-    $UserManager = new UsersManager($db);
-    if ($UserManager->signUP($User) == true) {
-        echo "Success";
-    }else echo "Fail";
-}
-
 
 //Validate eMail format
 function validateEmail($email)
@@ -74,10 +63,10 @@ function validatePhone($phone)
 //Validate phone format
 function validateName($name)
 {
-    if (preg_match ("/^[a-zA-z]*$/", $name) ) {  
+    if (preg_match("/^[a-zA-z]*$/", $name)) {
         return true;
-    } else {  
-        return false; 
+    } else {
+        return false;
     }
 }
 
@@ -85,10 +74,10 @@ function validateName($name)
 //Validate passwords
 function validatePasswords($pwd1, $pwd2)
 {
-    if ($pwd1 == $pwd2) {  
+    if ($pwd1 == $pwd2) {
         return true;
-    } else {  
-        return false; 
+    } else {
+        return false;
     }
 }
 
@@ -96,7 +85,56 @@ function validatePasswords($pwd1, $pwd2)
 //Return a random colour
 function color()
 {
-    $color = ["green","yellow","blue","black","red","blue","darkmagenta","purple","orange","pink","Gainsboro","gray","khaki","lime","tomato","purple","thistle","Salmon" ];
-    $rand = rand(0, (count($color)-1));
+    $color = ["green", "yellow", "blue", "black", "red", "blue", "darkmagenta", "purple", "orange", "pink", "Gainsboro", "gray", "khaki", "lime", "tomato", "purple", "thistle", "Salmon"];
+    $rand = rand(0, (count($color) - 1));
     return $color[$rand];
+}
+
+
+
+
+
+
+
+// ************************************************************* //
+// ************************************************************* //
+// ************************************************************* //
+//                     Functions Users                          // 
+// ************************************************************* //
+// ************************************************************* //
+// ************************************************************* //
+
+//Sign UP Function
+function SignUP(Users $User)
+{
+    $db = connection();
+    $UserManager = new UsersManager($db);
+    // var_dump($UserManager->existanceEMailDB($User));
+
+    if ($UserManager->existanceEMailDB($User) === true) {
+        echo
+        '<script>
+            document.getElementById("errorEMail").innerHTML = "Existant eMail address </br> Choose another one"
+         </script>';
+    }
+
+    if ($UserManager->existanceUsernameDB($User) === true) {
+        echo
+        '<script>
+            document.getElementById("errorUsername").innerHTML = "Existant Username </br> Choose another one"
+        </script>';
+    }
+
+    if ($UserManager->existancePhoneDB($User) === true) {
+        echo
+        '<script>
+            document.getElementById("errorPhone").innerHTML = "Existant phone number </br> Choose another one"
+        </script>';
+    }
+
+    if ($UserManager->existanceEMailDB($User) === false || $UserManager->existanceUsernameDB($User) === false || $UserManager->existancePhoneDB($User) === false) {
+        if ($UserManager->signUP($User) === true) {
+            return true;
+        } else return false;
+    }
 }
