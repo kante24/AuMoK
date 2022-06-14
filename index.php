@@ -55,7 +55,6 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
         <p id="p">Manger nene</p>
         <input type="button" id="btn" />
         <p id="popup"></p>
-        <p id="errorLogin"></p>
         
 
         <?php
