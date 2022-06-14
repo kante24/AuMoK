@@ -58,6 +58,28 @@ class UsersManager
         }
     }
 
+    //Log IN
+    public function logIN(Users $user)
+    {
+        try {
+
+            $eMail = $user->eMail();
+            $Username = $user->Username();
+            $Pwd = $user->Password();
+
+            $pdo = $this->_db;
+            $query = $pdo->query("SELECT * FROM Users WHERE (Username = '$Username' or eMail = '$eMail') AND Password = '$Pwd' AND isAlive = 1");
+            $data = $query->fetchAll(PDO::FETCH_ASSOC);
+            if ($data != null) {
+                return $data;
+            } else {
+                return false;
+            }
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
+
     //Checks if the username, email address, phone or username already exists
     public function existanceUsernameDB(Users $user)
     {
@@ -106,8 +128,4 @@ class UsersManager
             return false;
         }
     }
-
-
-
-
 }

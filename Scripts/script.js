@@ -2,12 +2,15 @@ $(document).ready(function() {
 
     $('#Password').keyup(function(event) {
         pwd = event.target.value;
-
         //Parse password value here for a match up after
         $('#isSame').val(pwd);
     });
 
+
+
+
 })
+
 
 
 //Load Page Gif

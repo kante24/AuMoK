@@ -111,30 +111,55 @@ function SignUP(Users $User)
     $UserManager = new UsersManager($db);
     // var_dump($UserManager->existanceEMailDB($User));
 
-    if ($UserManager->existanceEMailDB($User) === true) {
+    if ($UserManager->existanceEMailDB($User) == true) {
         echo
         '<script>
             document.getElementById("errorEMail").innerHTML = "Existant eMail address </br> Choose another one"
          </script>';
     }
 
-    if ($UserManager->existanceUsernameDB($User) === true) {
+    if ($UserManager->existanceUsernameDB($User) == true) {
         echo
         '<script>
             document.getElementById("errorUsername").innerHTML = "Existant Username </br> Choose another one"
         </script>';
     }
 
-    if ($UserManager->existancePhoneDB($User) === true) {
+    if ($UserManager->existancePhoneDB($User) == true) {
         echo
         '<script>
             document.getElementById("errorPhone").innerHTML = "Existant phone number </br> Choose another one"
         </script>';
     }
 
-    if ($UserManager->existanceEMailDB($User) === false || $UserManager->existanceUsernameDB($User) === false || $UserManager->existancePhoneDB($User) === false) {
-        if ($UserManager->signUP($User) === true) {
+    if ($UserManager->existanceEMailDB($User) == false && $UserManager->existanceUsernameDB($User) == false && $UserManager->existancePhoneDB($User) == false) {
+        if ($UserManager->signUP($User) == true) {
             return true;
         } else return false;
+    }
+}
+
+
+//Log IN Function
+function LogIN(Users $User)
+{
+    $db = connection();
+    $UserManager = new UsersManager($db);
+
+    if ($UserManager->existanceUsernameDB($User) == false || $UserManager->existanceEMailDB($User) == false) {
+        echo
+        '<script>
+            document.getElementById("errorLogin").innerHTML = "Inexistant Username/eMail"
+        </script>';
+    }
+    if ($UserManager->existanceUsernameDB($User) == true || $UserManager->existanceEMailDB($User) == true) {
+        if ($UserManager->logIN($User) != false) {
+            $_SESSION["User"] = $UserManager->logIN($User);
+        } else {
+            echo
+            '<script>
+                document.getElementById("errorLogin").innerHTML = "Username or Password Incorrect"
+            </script>';
+        };
     }
 }

@@ -231,52 +231,48 @@ if (isset($_POST["addUser"])) {
     $User = new Users(array("CodeUser" => $codeUser, "Name" => $_POST["Name"], "Firstname" => $_POST["Firstname"], "BirthDate" => $_POST["birthDate"], "eMail" => $_POST["eMail"], "Phone" => $_POST["Phone"], "Username" => $_POST["Username"], "Password" => $_POST["Password"], "isAlive" => true));
 
     //Tests for some formats
-    //If any attribute is empty
-    if (!empty($User->Username()) && !empty($User->Name()) && !empty($User->Firstname()) && !empty($User->BirthDate()) && !empty($User->eMail()) && !empty($User->Phone()) && !empty($User->Username()) && !empty($User->Password()) && !empty($User->isAlive()) && !empty($_POST["Password2"])) {
+    //If any attribute is white spaced
+    // if (!empty($User->Username()) && !empty($User->Name()) && !empty($User->Firstname()) && !empty($User->BirthDate()) && !empty($User->eMail()) && !empty($User->Phone()) && !empty($User->Username()) && !empty($User->Password()) && !empty($User->isAlive()) && !empty($_POST["Password2"])) {
+    if (ctype_space($User->Username()) == false && ctype_space($User->Name()) == false && ctype_space($User->Firstname()) == false && ctype_space($User->BirthDate()) == false && ctype_space($User->eMail()) == false && ctype_space($User->Phone()) == false && ctype_space($User->Username()) == false ) {
 
-        if (validateName($User->Name()) === false) {
+        if (validateName($User->Name()) == false) {
             echo
             '<script>
                 document.getElementById("errorName").innerHTML = "Only Letters"
              </script>';
         }
 
-        if (validateName($User->Firstname()) === false) {
+        if (validateName($User->Firstname()) == false) {
             echo
             '<script>
                 document.getElementById("errorFirstname").innerHTML = "Only Letters"
              </script>';
         }
 
-        if (validateEmail($User->eMail()) === false) {
+        if (validateEmail($User->eMail()) == false) {
             echo
             '<script>
                 document.getElementById("errorEMail").innerHTML = "Invalid Address eMail format"
              </script>';
         }
 
-        if (validatePhone($User->Phone()) === false) {
+        if (validatePhone($User->Phone()) == false) {
             echo
             '<script>
                 document.getElementById("errorPhone").innerHTML = "Invalid Phone Number"
              </script>';
         }
 
-        if (validatePasswords($User->Password(), $_POST["Password2"]) === false) {
+        if (validatePasswords($User->Password(), $_POST["Password2"]) == false) {
             echo
             '<script>
                 document.getElementById("errorPassword").innerHTML = "Passwords Different"
              </script>';
         }
 
-        if (validateName($User->Name()) === true && validateName($User->Firstname()) === true && validateEmail($User->eMail()) === true && validatePhone($User->Phone()) === true && validatePasswords($User->Password(), $_POST["Password2"]) === true) {
-            // var_dump(SignUP($User));
-            if (SignUP($User) === true) {
-                // $_SESSION['codeUser'] = $User->CodeUser();
-                // $_SESSION['Login'] = $User->Username();
-                $_SESSION['User'] = $User;
+        if (validateName($User->Name()) == true && validateName($User->Firstname()) == true && validateEmail($User->eMail()) == true && validatePhone($User->Phone()) == true && validatePasswords($User->Password(), $_POST["Password2"]) == true) {
 
-                // echo  $_SESSION['codeUser'] . " " .  $_SESSION['Login'];
+            if (SignUP($User) == true) {
                 echo
                 "<script>
                     Relocation('Views/LogIN.php')
@@ -288,6 +284,7 @@ if (isset($_POST["addUser"])) {
                 </script>';
             }
         }
+
     }
 }
 
