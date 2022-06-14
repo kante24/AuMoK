@@ -95,7 +95,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                 <!-- BirthDate -->
                 <div class="col-6">
                     <div class="row justify-content-center">
-                        <input id="birthDate" type="date" name="birthDate" value="" style="vertical-align:top; width: 200px;height:50px;text-align: center;"  required />
+                        <input id="birthDate" type="date" name="birthDate" style="vertical-align:top; width: 200px;height:50px;text-align: center;"  required />
                     </div>
                     <div class="row error justify-content-center">
                         <p id="errorBirthDate"></p>

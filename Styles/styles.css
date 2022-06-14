@@ -8,6 +8,14 @@
     bottom: 0;
 }
 
+#load {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    background: url("/dashboard/AuMoK/Images/Infinity.gif") no-repeat center center
+}
+
 
 /* .center {
     text-align: center;
