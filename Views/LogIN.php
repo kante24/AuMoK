@@ -33,9 +33,10 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 <!-- </head> -->
 
 <!-- <body> -->
+<div id="load"></div>
 
 
-<div class="container justify-content-center shadow-lg" id="popupLogIn" style="width: 300px;margin-top: 150px;">
+<div id="content" class="container justify-content-center shadow-lg" id="popupLogIn" style="width: 300px;margin-top: 150px;">
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 

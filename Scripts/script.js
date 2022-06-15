@@ -15,14 +15,15 @@ $(document).ready(function() {
 
 //Load Page Gif
 document.onreadystatechange = function() {
-    document.getElementById('content').style.visibility = "hidden";
     var state = document.readyState
     if (state == 'complete') {
         setTimeout(function() {
-            // document.getElementById('interactive');
+            document.getElementById('interactive');
             document.getElementById('load').style.visibility = "hidden";
             document.getElementById('content').style.visibility = "visible";
         }, 1000);
+    } else {
+        document.getElementById('content').style.visibility = "hidden";
     }
 }
 

@@ -6,30 +6,30 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 <html lang="en">
 
 <style>
-    #load {
+    /* #load {
         width: 100%;
         height: 100%;
         position: fixed;
         z-index: 9999;
         background: url("/dashboard/AuMoK/Images/Infinity.gif") no-repeat center center
-    }
+    } */
 </style>
 
 
 
 <script>
-    document.onreadystatechange = function() {
-        var state = document.readyState
-        if (state == 'complete') {
-            setTimeout(function() {
-                document.getElementById('interactive');
-                document.getElementById('load').style.visibility = "hidden";
-                document.getElementById('content').style.visibility = "visible";
-            }, 1000);
-        } else {
-            document.getElementById('content').style.visibility = "hidden";
-        }
-    }
+    // document.onreadystatechange = function() {
+    //     var state = document.readyState
+    //     if (state == 'complete') {
+    //         setTimeout(function() {
+    //             document.getElementById('interactive');
+    //             document.getElementById('load').style.visibility = "hidden";
+    //             document.getElementById('content').style.visibility = "visible";
+    //         }, 1000);
+    //     } else {
+    //         document.getElementById('content').style.visibility = "hidden";
+    //     }
+    // }
 
     $("#btn").click(function() {
         var text = $("#p").text()

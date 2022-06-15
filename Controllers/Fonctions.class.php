@@ -146,7 +146,7 @@ function LogIN(Users $User)
     $db = connection();
     $UserManager = new UsersManager($db);
 
-    if ($UserManager->existanceUsernameDB($User) == false || $UserManager->existanceEMailDB($User) == false) {
+    if ($UserManager->existanceUsernameDB($User) == false && $UserManager->existanceEMailDB($User) == false) {
         echo
         '<script>
             document.getElementById("errorLogin").innerHTML = "Inexistant Username/eMail"

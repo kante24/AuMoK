@@ -1,6 +1,6 @@
 <?php
+//Require files for header & footer
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
-require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +56,10 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 
 <body>
 
-    <div class="container backColorChange" style="border-radius: 50%;margin-top: 30px; text-align: center; width: 800px ; background-color: antiquewhite;">
+    <div id="load"></div>
+
+    <!-- <div class="container backColorChange" style="border-radius: 50%;margin-top: 30px; text-align: center; width: 800px ; background-color: antiquewhite;"> -->
+    <div class="container shadow-lg" id="content" style="margin-top: 50px; text-align: center; width: 800px">
 
         <form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
@@ -137,7 +140,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                 <!-- Username -->
                 <div class="col-6">
                     <div class="row form-floating  justify-content-center">
-                        <input class="form-control" id="Username" style="width: 200px;height:50px;" type="text" name="Username" placeholder="Username" required>
+                        <input class="form-control" id="Username" style="width: 200px;height:50px;text-align:center" type="text" name="Username" placeholder="Username" required>
                         <label for="floatingInput">Username</label>
                     </div>
                     <div class="row error  justify-content-center">
@@ -197,14 +200,14 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
             <div class="row mt-3 justify-content-center">
 
                 <!-- Add -->
-                <div class="col-3">
+                <div class="col-3 mb-4">
                     <button class="btn btn-success" type="submit" style="margin: 0 auto;width: 150px;" name="addUser">
                         Add <img class="m-1" src="https://www.pngmart.com/files/21/Add-Button-PNG-Isolated-File.png" style="width: 20px; height: 20px;" ; />
                     </button>
                 </div>
 
                 <!-- Reset -->
-                <div class="col-3">
+                <div class="col-3 mb-4">
                     <button class="btn btn-danger" style="margin: 0 auto;width: 150px;" value="Reset" name="reset" onclick="Relocation('Views/SignUP.php')">
                         Reset <img class="m-1" src="https://cdn-icons-png.flaticon.com/512/70/70287.png" style="width: 20px; height: 20px;" ; />
                     </button>
