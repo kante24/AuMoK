@@ -23,12 +23,6 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
     #linkSignUp:active {
         color: blue;
     }
-
-    /* 
-        #popupLogIn{
-            position: fixed;
-            transition: opacity;
-        } */
 </style>
 <!-- </head> -->
 
@@ -36,7 +30,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 <div id="load"></div>
 
 
-<div id="content" class="container justify-content-center shadow-lg" id="popupLogIn" style="width: 300px;margin-top: 150px;">
+<div id="content" class="container justify-content-center shadow-lg popupLogIn" style="width: 300px;margin-top: 150px;">
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
@@ -85,11 +79,12 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 //If click on button login and Login = white space
 if (isset($_POST["btnLogin"]) && ctype_space($_POST["Login"]) == false) {
     $User = new Users(array("Username" => $_POST["Login"], "Password" => $_POST["Password"]));
-    LogIN($User);
-    echo
-    "<script>
-        Relocation('Views/Home.php')
-    </script>";
+    if (LogIN($User) == true) {
+        echo
+        "<script>
+            Relocation('Views/Home.php')
+        </script>";
+    }
 }
 
 ?>

@@ -27,16 +27,6 @@ function autoChargeFonction($class)
 spl_autoload_register('autoChargeFonction');
 
 
-function afficher()
-{
-    $db = connection();
-    $UserManager = new UsersManager($db);
-    $results = $UserManager->Users();
-    foreach ($results as $key => $value) {
-        echo $value->name() . " jiiudf" . $value->firstname();
-    }
-}
-
 
 //Validate eMail format
 function validateEmail($email)
@@ -155,6 +145,7 @@ function LogIN(Users $User)
     if ($UserManager->existanceUsernameDB($User) == true || $UserManager->existanceEMailDB($User) == true) {
         if ($UserManager->logIN($User) != false) {
             $_SESSION["User"] = $UserManager->logIN($User);
+            return true;
         } else {
             echo
             '<script>

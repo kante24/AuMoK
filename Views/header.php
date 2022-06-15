@@ -1,7 +1,8 @@
 <?php
 
-require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Fonctions.class.php");
-require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Fonctions.class.php");
+// require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 
 ?>
 
@@ -9,11 +10,16 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- <style>
+        .popupLogIn{
+            visibility: hidden;
+        }
+    </style> -->
 
 
     <!-- CSS Bootstrap -->
@@ -74,6 +80,9 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 
     </nav>
 
+    <?
+    // include_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/LogIN.php");
+    ?>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

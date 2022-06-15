@@ -6,9 +6,6 @@ $(document).ready(function() {
         $('#isSame').val(pwd);
     });
 
-
-
-
 })
 
 
@@ -33,7 +30,8 @@ function Relocation(page) {
 }
 
 function nene() {
-    document.write("manger")
+    $("#popupLogIn").css("visibility", "visible")
+        // document.write($("#popupLogIn").css("visibility"))
 }
 
 
