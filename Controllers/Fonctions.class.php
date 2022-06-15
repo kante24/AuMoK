@@ -105,6 +105,7 @@ function SignUP(Users $User)
         echo
         '<script>
             document.getElementById("errorEMail").innerHTML = "Existant eMail address </br> Choose another one"
+            document.getElementById("errorSignUP").innerHTML = "Existant eMail address </br> Choose another one"
          </script>';
     }
 
@@ -112,6 +113,7 @@ function SignUP(Users $User)
         echo
         '<script>
             document.getElementById("errorUsername").innerHTML = "Existant Username </br> Choose another one"
+            document.getElementById("errorSignUP").innerHTML = "Existant Username </br> Choose another one"
         </script>';
     }
 
@@ -119,11 +121,13 @@ function SignUP(Users $User)
         echo
         '<script>
             document.getElementById("errorPhone").innerHTML = "Existant phone number </br> Choose another one"
+            document.getElementById("errorSignUP").innerHTML = "Existant phone number </br> Choose another one"
         </script>';
     }
 
     if ($UserManager->existanceEMailDB($User) == false && $UserManager->existanceUsernameDB($User) == false && $UserManager->existancePhoneDB($User) == false) {
         if ($UserManager->signUP($User) == true) {
+            $_SESSION["User"] = $UserManager->logIN($User);
             return true;
         } else return false;
     }

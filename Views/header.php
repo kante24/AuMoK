@@ -60,12 +60,13 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                         <a class="nav-link active" aria-current="page" href="/dashboard/AuMoK/"> HOME </a>
                     </li>
 
-                    <li class="nav-item" id="btnLogin">
+                    <li class="nav-item" id="btnLogin" onclick="popupLogin()">
                         <p class="nav-link active pointer">LOG IN</p>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/dashboard/AuMoK/Views/SignUP.php">SIGN UP</a>
+                    <!-- btnSignup -->
+                    <li class="nav-item" id="btnSignup" onclick="popupSignin()">
+                        <p class="nav-link active pointer">SIGN UP</p>
                     </li>
                 </ul>
 
@@ -82,13 +83,28 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 
     <?
     require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/LogIN.php");
+    require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/SignUP.php");
     ?>
 
     <script>
-    // For cases where error in login popup 
+
+        // For cases where error in login popup 
         if (document.getElementById("errorLogin").innerHTML != "") {
+            var modal = document.getElementById("myLogin");
             modal.style.display = "block";
         }
+        // For cases where error in signup popup 
+        if (document.getElementById("errorSignUP").innerHTML != "") {
+            var modal = document.getElementById("mySignup");
+            modal.style.display = "block";
+        }
+
+        // if(document.getElementById("myLogin").style.display == "block")
+        // {
+        //     var modal = document.getElementById("mySignup");
+        //     modal.style.display = "none";
+        // }
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

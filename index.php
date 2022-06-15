@@ -21,12 +21,12 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 </head>
 
 <body>
-
-
+<div id="load"></div>
 
     <script>
         
     </script>
+    
 </body>
 
 </html>

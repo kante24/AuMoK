@@ -39,8 +39,18 @@
         background-color: rgba(0, 0, 0, 0.4);
     }
 
+
     /* Login Content */
-    .modal-content {
+    .loginContent {
+        width: 0px;
+        height: 0px;
+        margin: auto;
+        margin-top: 200px;
+        margin-left: 650px;
+    }
+
+    /* Login Content */
+    /* .modal-content {
         background-color: #fefefe;
         border: 1px solid #888;
         width: 0px;
@@ -48,14 +58,14 @@
         margin: auto;
         margin-top: 200px;
         margin-left: 650px;
-    }
+    } */
 </style>
 
-<!-- The Modal -->
+<!-- The Login -->
 <div id="myLogin" class="Login">
 
-    <!-- Modal content -->
-    <div class="modal-content justify-content-center" style="text-align: center;">
+    <!-- Login content -->
+    <div class="modal-content loginContent justify-content-center" style="text-align: center;" id="content">
 
         <div class="container justify-content-center shadow-lg popupLogIn" style="width: 300px;margin-top: 150px;background-color:white">
 
@@ -70,7 +80,7 @@
                     </div>
 
                     <!-- Button to close Login popup -->
-                    <div class="mt-1 col-3 justify-content-center close" id="closeLogin" style="width: 60px;height: 50px" onclick="Login()">
+                    <div class="mt-1 col-3 justify-content-center close closeLogin" id="closeLogin" style="width: 60px;height: 50px" onclick="Login()">
                         <img class="mt-1" src="https://cdn-icons-png.flaticon.com/512/70/70287.png" style="width: 40px; height: 40px;" ; />
                     </div>
 
@@ -137,36 +147,33 @@
 
 
 <script>
-    // Get the modal
-    var modal = document.getElementById("myLogin");
+    function popupLogin() {
+        // Get the modal
+        var modal = document.getElementById("myLogin");
 
-    // Get the button that opens the modal
-    var btnLogin = document.getElementById("btnLogin");
+        // Get the button that opens the modal
+        var btnLogin = document.getElementById("btnLogin");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+        // Get the button that closes the modal
+        var btnClose = document.getElementsByClassName("closeLogin")[0];
 
-    // When the user clicks the button, open the modal 
-    btnLogin.onclick = function() {
-        modal.style.display = "block";
-    }
+        // When the user clicks the button, open the modal 
+        btnLogin.onclick = function() {
+            modal.style.display = "block";
+        }
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
+        // When the user clicks on the button (x), close the modal
+        btnClose.onclick = function() {
             modal.style.display = "none";
         }
-    }
 
-    // if(document.getElementById("errorLogin").innerHTML == ""){
-    // modal.style.display = "block";
-    // document.getElementById("p").innerHTML = "nene"
-    // }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
 </script>
 
 <?
