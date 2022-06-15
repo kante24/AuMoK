@@ -21,12 +21,20 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 </head>
 
 <body>
-<div id="load"></div>
-
+    <div id="load"></div>
+    <p id="p" style="display: block;">nene</p>
     <script>
-        
+        // var login = document.getElementById("myLogin")
+        // document.write(document.getElementById("myLogin").style.display)
+        // document.write("Manger nene")
+        // document.write(login.style.display)
+        // if(login.style.display == "block")
+        // {
+        //     document.write("manger nene")
+        // }
+        // document.write(p.style.display)
     </script>
-    
+
 </body>
 
 </html>
