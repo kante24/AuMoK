@@ -2,7 +2,7 @@
 
 require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Fonctions.class.php");
 // require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
-require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
+require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 
 ?>
 
@@ -15,11 +15,11 @@ require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- <style>
-        .popupLogIn{
-            visibility: hidden;
+    <style>
+        .pointer {
+            cursor: pointer;
         }
-    </style> -->
+    </style>
 
 
     <!-- CSS Bootstrap -->
@@ -60,8 +60,8 @@ require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer
                         <a class="nav-link active" aria-current="page" href="/dashboard/AuMoK/"> HOME </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/dashboard/AuMoK/Views/LogIN.php">LOG IN</a>
+                    <li class="nav-item" id="btnLogin">
+                        <p class="nav-link active pointer">LOG IN</p>
                     </li>
 
                     <li class="nav-item">
@@ -80,9 +80,20 @@ require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer
 
     </nav>
 
+
+    <!-- The Modal -->
+    <!-- <div id="myModal" class="modal"> -->
+
+    <!-- Modal content -->
+    <!-- <div class="container modal-content justify-content-center" style="text-align: center;"> -->
+    <!-- <p> -->
     <?
-    // include_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/LogIN.php");
+    require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/LogIN.php");
     ?>
+    <!-- </p>
+        </div>
+
+    </div> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

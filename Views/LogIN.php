@@ -1,17 +1,5 @@
-<?php
-require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
-?>
-
-<!-- <!DOCTYPE html> -->
-<!-- <html lang="en"> -->
-
-<!-- <head> -->
-<!-- <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOG IN PAGE</title> -->
-
 <style>
+
     #linkSignUp {
         color: red;
     }
@@ -23,56 +11,160 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
     #linkSignUp:active {
         color: blue;
     }
+
+    #closeLogin:hover {
+        cursor: pointer;
+        background-color: red;
+    }
+
+
+    /* The Login (background) */
+    .Login {
+        /* Hidden by default */
+        display: none;
+        /* Stay in place */
+        position: fixed;
+        /* Sit on top */
+        z-index: 1;
+        /* Location of the box */
+        padding-top: 100px;
+        /* Full width */
+        width: 100%;
+        /* Full height */
+        height: 100%;
+        /* Enable scroll if needed */
+        overflow: auto;
+        /* Fallback color */
+        background-color: rgb(0, 0, 0);
+        /* Black w/ opacity */
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Login Content */
+    .modal-content {
+        background-color: #fefefe;
+        border: 1px solid #888;
+        width: 0px;
+        height: 0px;
+        margin: auto;
+        margin-top: 200px;
+        margin-left: 650px;
+    }
+
 </style>
-<!-- </head> -->
 
-<!-- <body> -->
-<div id="load"></div>
+<!-- The Modal -->
+<div id="myLogin" class="Login">
 
+    <!-- Modal content -->
+    <div class="modal-content justify-content-center" style="text-align: center;">
 
-<div id="content" class="container justify-content-center shadow-lg popupLogIn" style="width: 300px;margin-top: 150px;">
+        <div class="container justify-content-center shadow-lg popupLogIn" style="width: 300px;margin-top: 150px;background-color:white">
 
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
+                <!-- First row -->
+                <div class="row mt-5 justify-content-center">
 
-        <div class="row mt-5 justify-content-center">
-            <h1 style="text-shadow: 2px 2px black; text-align: center;">SIGN IN</h1>
+                    <!-- Text : Sign IN -->
+                    <div class="col-9 mt-2">
+                        <h1 style="text-shadow: 2px 2px black; text-align: center;">SIGN IN</h1>
+                    </div>
+
+                    <!-- Button to close Login popup -->
+                    <div class="mt-1 col-3 justify-content-center close" id="closeLogin" style="width: 60px;height: 50px" onclick="Login()">
+                        <img class="mt-1" src="https://cdn-icons-png.flaticon.com/512/70/70287.png" style="width: 40px; height: 40px;" ; />
+                    </div>
+
+                </div>
+
+                <!-- Second row -->
+                <div class="row mt-5 justify-content-center">
+
+                    <!-- Input Username -->
+                    <div class="col-12 form-floating">
+                        <input class="form-control" id="Login" style="width: 250px;height:60px;" type="text" name="Login" placeholder="Login" required>
+                        <label for="floatingInput">Username or eMail</label>
+                    </div>
+
+                </div>
+
+                <!-- Thirth row -->
+                <div class="row mt-5 justify-content-center">
+
+                    <!-- Input Password -->
+                    <div class="col-12 form-floating">
+                        <input class="form-control" style="width: 250px;height:60px;" type="password" name="Password" placeholder="Password" required>
+                        <label for="floatingInput">Password</label>
+                    </div>
+
+                </div>
+
+                <!-- Fourth row -->
+                <div class="row mt-3 justify-content-center">
+
+                    <!-- Error text -->
+                    <div class="col-12 form-floating">
+                        <p id="errorLogin" style="color: red;text-align:center"></p>
+                    </div>
+
+                </div>
+
+                <!-- Fith row -->
+                <div class="row mt-3 justify-content-center">
+
+                    <!-- Button Login -->
+                    <button class="btn btn-success" type="submit" style="margin: 0 auto;width: 150px;" name="btnLogin">
+                        LOG IN </br> <img class="m-2" src="http://cdn.onlinewebfonts.com/svg/img_311846.png " style="width: 20px; height: 20px;" ; />
+                    </button>
+
+                </div>
+
+                <!-- Sixth row -->
+                <div class="row mt-5 justify-content-center">
+
+                    <!-- Link Sign UP -->
+                    <p>No account? <a id="linkSignUp" href="#">Sign UP</a></p>
+
+                </div>
+
+            </form>
+
         </div>
 
-        <div class="row mt-5 justify-content-center">
-            <div class="col-12 form-floating">
-                <input class="form-control" id="Login" style="width: 250px;height:60px;" type="text" name="Login" placeholder="Login" required>
-                <label for="floatingInput">Username or eMail</label>
-            </div>
-        </div>
+    </div>
 
-        <div class="row mt-5 justify-content-center">
-            <div class="col-12 form-floating">
-                <input class="form-control" style="width: 250px;height:60px;" type="password" name="Password" placeholder="Password" required>
-                <label for="floatingInput">Password</label>
-            </div>
-        </div>
-
-        <div class="row mt-3 justify-content-center">
-            <div class="col-12 form-floating">
-                <p id="errorLogin" style="color: red;text-align:center"></p>
-            </div>
-        </div>
-
-        <div class="row mt-3 justify-content-center">
-            <button class="btn btn-success" type="submit" style="margin: 0 auto;width: 150px;" name="btnLogin">
-                LOG IN </br> <img class="m-2" src="http://cdn.onlinewebfonts.com/svg/img_311846.png " style="width: 20px; height: 20px;" ; />
-            </button>
-        </div>
-
-        <div class="row mt-5 justify-content-center">
-            <p>No account? <a id="linkSignUp" href="#">Sign UP</a></p>
-        </div>
-
-
-    </form>
 
 </div>
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myLogin");
+
+    // Get the button that opens the modal
+    var btnLogin = document.getElementById("btnLogin");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btnLogin.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
 <?
 
@@ -88,8 +180,3 @@ if (isset($_POST["btnLogin"]) && ctype_space($_POST["Login"]) == false) {
 }
 
 ?>
-
-
-<!-- </body> -->
-
-<!-- </html> -->

@@ -6,7 +6,22 @@ $(document).ready(function() {
         $('#isSame').val(pwd);
     });
 
+    $(window).click(function() {
+        var display = $(".popupLogIn").css("visibility")
+        if (visibility == "hidden") {
+            $(".popupLogIn").css("visibility", "visible")
+        } else {
+            $(".popupLogIn").css("visibility", "hidden")
+        }
+    });
+
+
+    ////////////////////////////////////////////////////
+    //Login
+
 })
+
+
 
 
 
@@ -29,9 +44,22 @@ function Relocation(page) {
     window.location.href = "/dashboard/AuMoK/" + page;
 }
 
-function nene() {
-    $("#popupLogIn").css("visibility", "visible")
-        // document.write($("#popupLogIn").css("visibility"))
+function Login() {
+    var visibility = $(".popupLogIn").css("visibility")
+    if (visibility == "hidden") {
+        $(".popupLogIn").css("visibility", "visible")
+    } else {
+        $(".popupLogIn").css("visibility", "hidden")
+    }
+    // document.write($("#popupLogIn").css("visibility"))
+}
+
+// function n() {
+//     document.write($("#p").text());
+// }
+
+function manger() {
+    document.getElementById("p").innerHTML = "Manger nene"
 }
 
 
