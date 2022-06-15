@@ -10,9 +10,6 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 
 
 
-<script>
-
-</script>
 
 <head>
 
@@ -26,6 +23,10 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 <body>
 
 
+
+    <script>
+        
+    </script>
 </body>
 
 </html>

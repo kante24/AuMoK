@@ -1,5 +1,4 @@
 <style>
-
     #linkSignUp {
         color: red;
     }
@@ -50,7 +49,6 @@
         margin-top: 200px;
         margin-left: 650px;
     }
-
 </style>
 
 <!-- The Modal -->
@@ -164,6 +162,11 @@
             modal.style.display = "none";
         }
     }
+
+    // if(document.getElementById("errorLogin").innerHTML == ""){
+    // modal.style.display = "block";
+    // document.getElementById("p").innerHTML = "nene"
+    // }
 </script>
 
 <?
