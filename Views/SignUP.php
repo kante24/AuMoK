@@ -108,11 +108,16 @@
 
                 <form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
-                    <!-- <div class="row center justify-content-center"> -->
-                    <div class="row center float-end">
+                    <div class="row">
+                        <div class="col-11">
+                            <h1 style="text-shadow: 2px 2px black">SIGN UP</h1>
+                        </div>
+
                         <!-- Button to close SignIN popup -->
-                        <div class="mt-1 col-3 float-end justify-content-center closeSignup" id="closeSignup" style="width: 60px;height: 50px;float:right" onclick="Login()">
-                            <img class="mt-1" src="https://cdn-icons-png.flaticon.com/512/70/70287.png" style="width: 40px; height: 40px;" ; />
+                        <div class="col-1 center float-end">
+                            <div class="mt-1 col-3 float-end justify-content-center closeSignup" id="closeSignup" style="width: 60px;height: 50px;float:right" onclick="Login()">
+                                <img class="mt-1" src="https://cdn-icons-png.flaticon.com/512/70/70287.png" style="width: 40px; height: 40px;" ; />
+                            </div>
                         </div>
                     </div>
 
@@ -296,6 +301,7 @@
             // When the user clicks the button, open the modal 
             btnSignup.onclick = function() {
                 modal.style.display = "block";
+                modal.scrollTop = modal.scrollHeight;
             }
 
             // When the user clicks on <span> (x), close the modal

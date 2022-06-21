@@ -19,6 +19,14 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
         .pointer {
             cursor: pointer;
         }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* .dropstart:hover .dropdown-menu {
+            display: block;
+        } */
     </style>
 
 
@@ -56,24 +64,53 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
+                    <!-- Home -->
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/dashboard/AuMoK/"> HOME </a>
                     </li>
 
-                    <li class="nav-item" id="btnLogin" onclick="popupLogin()">
-                        <p class="nav-link active pointer">LOG IN</p>
+                    <!-- Search -->
+                    <li class="nav-item dropdown">
+
+                        <!-- icon Reserach -->
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/dashboard/AuMoK/Images/iconReserachAuto.png" style="width: 30;height: 30px;" />
+                        </a>
+                        <!-- Drop search form -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <!-- <form class="d-flex" action="/dashboard/KAMW/Views/Recherche.php"> -->
+                                <form class="d-flex" action="#">
+                                    <input style="width: 700px;text-align:center;" class="form-control me-1 ms-1" type="search" placeholder="SEARCH BY ..." aria-label="Search" name="keyword">
+                                    <button class="btn btn-outline-dark me-1" type="submit">Search</button>
+                                </form>
+                            </li>
+                        </ul>
                     </li>
 
-                    <!-- btnSignup -->
-                    <li class="nav-item" id="btnSignup" onclick="popupSignin()">
-                        <p class="nav-link active pointer">SIGN UP</p>
-                    </li>
                 </ul>
 
-                <form class="d-flex" action="/dashboard/KAMW/Views/Recherche.php">
-                    <input style="width: 500px;text-align:center" class="form-control me-2" type="search" placeholder="SEARCH BY ..." aria-label="Search" name="critere">
-                    <button class="btn btn-outline-dark" type="submit">Search</button>
-                </form>
+                <!-- dropdown list for actions = Sign UP & Log IN -->
+                <div class="nav-item dropstart">
+
+                    <!-- Text to display -->
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/dashboard/AuMoK/Images/iconAccount.png" style="width: 30;height: 30px;" />
+                    </a>
+                    <!-- Dropdown list -->
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="dropdown-item pointer" id="btnLogin" onclick="popupLogin()">
+                            LOG IN
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-item pointer" id="btnSignup" onclick="popupSignin()">
+                            SIGN UP
+                        </li>
+                    </ul>
+
+                </div>
 
             </div>
 
@@ -87,24 +124,17 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
     ?>
 
     <script>
-
         // For cases where error in login popup 
         if (document.getElementById("errorLogin").innerHTML != "") {
             var modal = document.getElementById("myLogin");
             modal.style.display = "block";
         }
+
         // For cases where error in signup popup 
         if (document.getElementById("errorSignUP").innerHTML != "") {
             var modal = document.getElementById("mySignup");
             modal.style.display = "block";
         }
-
-        // if(document.getElementById("myLogin").style.display == "block")
-        // {
-        //     var modal = document.getElementById("mySignup");
-        //     modal.style.display = "none";
-        // }
-        
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

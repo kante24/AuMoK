@@ -76,7 +76,7 @@
 
                     <!-- Text : Sign IN -->
                     <div class="col-9 mt-2">
-                        <h1 style="text-shadow: 2px 2px black; text-align: center;">SIGN IN</h1>
+                        <h1 style="text-shadow: 2px 2px black; text-align: center;">LOG IN</h1>
                     </div>
 
                     <!-- Button to close Login popup -->

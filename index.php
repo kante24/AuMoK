@@ -22,17 +22,23 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 
 <body>
     <div id="load"></div>
-    <p id="p" style="display: block;">nene</p>
+    <div id="content">
+        Manger nene
+    </div>
     <script>
-        // var login = document.getElementById("myLogin")
-        // document.write(document.getElementById("myLogin").style.display)
-        // document.write("Manger nene")
-        // document.write(login.style.display)
-        // if(login.style.display == "block")
-        // {
-        //     document.write("manger nene")
-        // }
-        // document.write(p.style.display)
+        //Load Page Gif
+        document.onreadystatechange = function() {
+            var state = document.readyState
+            if (state == 'complete') {
+                setTimeout(function() {
+                    document.getElementById('interactive');
+                    document.getElementById('load').style.visibility = "hidden";
+                    document.getElementById('content').style.visibility = "visible";
+                }, 1000);
+            } else {
+                document.getElementById('content').style.visibility = "hidden";
+            }
+        }
     </script>
 
 </body>
