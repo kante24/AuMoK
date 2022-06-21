@@ -81,7 +81,7 @@
 
                     <!-- Button to close Login popup -->
                     <div class="mt-1 col-3 justify-content-center close closeLogin" id="closeLogin" style="width: 60px;height: 50px" onclick="Login()">
-                        <img class="mt-1" src="https://cdn-icons-png.flaticon.com/512/70/70287.png" style="width: 40px; height: 40px;" ; />
+                        <img class="mt-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 40px; height: 40px;" />
                     </div>
 
                 </div>
@@ -123,7 +123,7 @@
 
                     <!-- Button Login -->
                     <button class="btn btn-success" type="submit" style="margin: 0 auto;width: 150px;" name="btnLogin">
-                        LOG IN </br> <img class="m-2" src="http://cdn.onlinewebfonts.com/svg/img_311846.png " style="width: 20px; height: 20px;" ; />
+                        LOG IN </br> <img class="m-2" src="/dashboard/AuMoK/Images/iconAccount.png" style="width: 20px; height: 20px;" ; />
                     </button>
 
                 </div>

@@ -12,9 +12,6 @@ if (!isset($_SESSION['User'])) {
 }
 else if (isset($_SESSION['User'])) {
     $User = new Users($_SESSION['User'][0]);
-    // echo "Nom = " . $User->Name();
-    // var_dump($_SESSION['User'][0]["Name"]);
-    // var_dump($User->CodeUser());
 }
 ?>
 

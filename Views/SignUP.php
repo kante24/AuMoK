@@ -10,7 +10,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIGN UP PAGE</title>
 
     <style>
         .center {
@@ -116,7 +115,7 @@
                         <!-- Button to close SignIN popup -->
                         <div class="col-1 center float-end">
                             <div class="mt-1 col-3 float-end justify-content-center closeSignup" id="closeSignup" style="width: 60px;height: 50px;float:right" onclick="Login()">
-                                <img class="mt-1" src="https://cdn-icons-png.flaticon.com/512/70/70287.png" style="width: 40px; height: 40px;" ; />
+                                <img class="mt-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 40px; height: 40px;" ; />
                             </div>
                         </div>
                     </div>
@@ -260,14 +259,14 @@
                         <!-- Add -->
                         <div class="col-3 mb-4">
                             <button class="btn btn-success" type="submit" style="margin: 0 auto;width: 150px;" name="addUser">
-                                Add <img class="m-1" src="https://www.pngmart.com/files/21/Add-Button-PNG-Isolated-File.png" style="width: 20px; height: 20px;" ; />
+                                Add <img class="m-1" src="/dashboard/AuMoK/Images/iconPlus.png" style="width: 20px; height: 20px;" ; />
                             </button>
                         </div>
 
                         <!-- Reset -->
                         <div class="col-3 mb-4">
                             <button class="btn btn-danger" style="margin: 0 auto;width: 150px;" value="Reset" name="reset" onclick="Relocation('Views/SignUP.php')">
-                                Reset <img class="m-1" src="https://cdn-icons-png.flaticon.com/512/70/70287.png" style="width: 20px; height: 20px;" ; />
+                                Reset <img class="m-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 20px; height: 20px;" ; />
                             </button>
                         </div>
 
