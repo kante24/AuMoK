@@ -257,16 +257,9 @@
                     <div class="row mt-3 justify-content-center">
 
                         <!-- Add -->
-                        <div class="col-3 mb-4">
+                        <div class="col-6 mb-4">
                             <button class="btn btn-success" type="submit" style="margin: 0 auto;width: 150px;" name="addUser">
                                 Add <img class="m-1" src="/dashboard/AuMoK/Images/iconPlus.png" style="width: 20px; height: 20px;" ; />
-                            </button>
-                        </div>
-
-                        <!-- Reset -->
-                        <div class="col-3 mb-4">
-                            <button class="btn btn-danger" style="margin: 0 auto;width: 150px;" value="Reset" name="reset" onclick="Relocation('Views/SignUP.php')">
-                                Reset <img class="m-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 20px; height: 20px;" ; />
                             </button>
                         </div>
 
@@ -285,8 +278,8 @@
 
 
     <script>
+
         function popupSignin() {
-            // document.write("Manger nene")
             // Get the modal
             var modal = document.getElementById("mySignup");
 
@@ -315,6 +308,7 @@
                 }
             }
         }
+        
     </script>
 
 </body>

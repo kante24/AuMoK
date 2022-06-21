@@ -158,3 +158,20 @@ function LogIN(Users $User)
         };
     }
 }
+
+
+function brands()
+{
+    $db = connection();
+    $pdo = $db;
+    $query = $pdo->query("SELECT * FROM AutoBrands");
+    $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    if ($data != null) {
+        return $data;
+        // foreach ($data as $row) {
+        //     echo $row["BrandName"];
+        // }
+    } else {
+        return false;
+    }
+}

@@ -1,5 +1,7 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
+
+$data = brands();
 ?>
 
 <!DOCTYPE html>
@@ -21,25 +23,26 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 </head>
 
 <body>
-    <div id="load"></div>
-    <div id="content">
-        Manger nene
-    </div>
-    <script>
-        //Load Page Gif
-        document.onreadystatechange = function() {
-            var state = document.readyState
-            if (state == 'complete') {
-                setTimeout(function() {
-                    document.getElementById('interactive');
-                    document.getElementById('load').style.visibility = "hidden";
-                    document.getElementById('content').style.visibility = "visible";
-                }, 1000);
-            } else {
-                document.getElementById('content').style.visibility = "hidden";
+
+
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+
+        <div class="col form-floating">
+            <input class="form-control" type="text" list="brands" name="brands" placeholder="Auto Brands" style="width: 200px;" required>
+            <label for="floatingInput">Auto Brands</label>
+        </div>
+
+        <datalist id="brands">
+            <?
+            for ($i = 0; $i < count($data); $i++) {
+                echo '<option value="' . $data[$i]["BrandName"] . '">';
             }
-        }
-    </script>
+            ?>
+        </datalist>
+        <input type="submit">
+    </form>
+
+
 
 </body>
 
@@ -47,5 +50,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php"
 
 
 <?
-
+if (isset($_POST["brands"])) {
+    // echo $_POST["browser"];
+}
 ?>
