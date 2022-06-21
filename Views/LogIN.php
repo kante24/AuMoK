@@ -48,17 +48,7 @@
         margin-top: 200px;
         margin-left: 650px;
     }
-
-    /* Login Content */
-    /* .modal-content {
-        background-color: #fefefe;
-        border: 1px solid #888;
-        width: 0px;
-        height: 0px;
-        margin: auto;
-        margin-top: 200px;
-        margin-left: 650px;
-    } */
+    
 </style>
 
 <!-- The Login -->
@@ -187,7 +177,7 @@ if (isset($_POST["btnLogin"]) && ctype_space($_POST["Login"]) == false) {
         "<script>
             Relocation('Views/Home.php')
         </script>";
-    }
+    } 
 }
 
 ?>

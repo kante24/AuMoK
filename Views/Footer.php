@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body> -->
     
     <div class="footer" id="google_translate_element"></div>
 
@@ -24,6 +24,6 @@
 
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-</body>
+<!-- </body>
 
-</html>
+</html> -->

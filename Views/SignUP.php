@@ -246,14 +246,14 @@
                         <!-- Erreur Pwd -->
                         <div class="col-6">
                             <!--  Hidden to match up pwds -->
-                            <input id="isSame" />
-                            <!-- <input type="hidden" id="isSame"/> -->
+                            <!-- <input id="isSame" /> -->
+                            <input type="hidden" id="isSame"/>
                         </div>
 
                     </div>
 
                     <!-- Eigth row -->
-                    <!-- Button group to confirm or reset informations -->
+                    <!-- Button Add to confirm informations -->
                     <div class="row mt-3 justify-content-center">
 
                         <!-- Add -->
@@ -338,13 +338,13 @@ if (isset($_POST["addUser"])) {
              </script>';
         }
 
-        if (validateName($User->Firstname()) == false) {
-            echo
-            '<script>
-                document.getElementById("errorFirstname").innerHTML = "Only Letters"
-                document.getElementById("errorSignUP").innerHTML = "Only Letters"
-             </script>';
-        }
+        // if (validateName($User->Firstname()) == false) {
+        //     echo
+        //     '<script>
+        //         document.getElementById("errorFirstname").innerHTML = "Only Letters"
+        //         document.getElementById("errorSignUP").innerHTML = "Only Letters"
+        //      </script>';
+        // }
 
         if (validateEmail($User->eMail()) == false) {
             echo

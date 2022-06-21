@@ -1,7 +1,6 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
-// require("../Controllers/Fonctions.class.php");
-// session_start();
+// If session User does not exist, page relocation to index.php
 if (!isset($_SESSION['User'])) {
     // Header to index.php
     echo
@@ -10,6 +9,7 @@ if (!isset($_SESSION['User'])) {
         </script>";
     exit;
 }
+// Else If session User exists create new Users by with that session
 else if (isset($_SESSION['User'])) {
     $User = new Users($_SESSION['User'][0]);
 }

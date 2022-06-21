@@ -37,7 +37,9 @@ class UsersManager
     public function signUP(Users $user)
     {
         try {
+            // Connection
             $pdo = $this->_db;
+            // SQL Query
             $query = $pdo->prepare("INSERT into Users (CodeUser, Name, Firstname, BirthDate, eMail, Phone, Username, Password, isAlive) VALUES (:CodeUser, :Namee, :Firstname, :BirthDate, :eMail, :Phone, :Username, :Passwordd, :isAlive)");
             $result = $query->execute([
                 ":CodeUser" => $user->CodeUser(),
@@ -50,6 +52,7 @@ class UsersManager
                 ":Passwordd" => $user->Password(),
                 ":isAlive" => $user->isAlive()
             ]);
+            // If execution is successfull, return true, else return false
             if ($result) {
                 return true;
             } else return false;
@@ -67,9 +70,13 @@ class UsersManager
             $Username = $user->Username();
             $Pwd = $user->Password();
 
+            // Conection
             $pdo = $this->_db;
+            //SLQ Query
             $query = $pdo->query("SELECT * FROM Users WHERE (Username = '$Username' or eMail = '$eMail') AND Password = '$Pwd' AND isAlive = 1");
+            // Fetch results
             $data = $query->fetchAll(PDO::FETCH_ASSOC);
+            // If result is not null, return result 'array', else return false
             if ($data != null) {
                 return $data;
             } else {
@@ -80,7 +87,7 @@ class UsersManager
         }
     }
 
-    //Checks if the username, email address, phone or username already exists
+    //Checks if the username exists
     public function existanceUsernameDB(Users $user)
     {
         $Username = $user->Username();
@@ -93,6 +100,7 @@ class UsersManager
         }
     }
 
+    //Checks if the  email address already exists
     public function existanceEMailDB(Users $user)
     {
         $eMail = $user->eMail();
@@ -105,6 +113,7 @@ class UsersManager
         }
     }
 
+    //Checks if the phone number already exists
     public function existancePhoneDB(Users $user)
     {
         $Phone = $user->Phone();

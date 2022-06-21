@@ -23,19 +23,16 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
         .dropdown:hover .dropdown-menu {
             display: block;
         }
-
-        /* .dropstart:hover .dropdown-menu {
-            display: block;
-        } */
     </style>
 
 
     <!-- CSS Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-    <!-- jQuery -->
+    <!-- jQuery script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <!-- File js -->
     <script type="text/javascript" src="/dashboard/AuMoK/Scripts/script.js"></script>
 
 
@@ -49,7 +46,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 
 <body>
 
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
+    <!--Nav bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
         <div class="container-fluid">
@@ -86,6 +83,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                                 </form>
                             </li>
                         </ul>
+                        
                     </li>
 
                 </ul>

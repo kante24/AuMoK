@@ -31,6 +31,7 @@ spl_autoload_register('autoChargeFonction');
 //Validate eMail format
 function validateEmail($email)
 {
+    // Return true if format correct, else return false
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return true;
     } else {
@@ -42,6 +43,7 @@ function validateEmail($email)
 //Validate phone format
 function validatePhone($phone)
 {
+    // Return true if format correct, else return false
     if (preg_match('/^[0-9]{10}+$/', $phone)) {
         return true;
     } else {
@@ -53,6 +55,7 @@ function validatePhone($phone)
 //Validate phone format
 function validateName($name)
 {
+    // Return true if format correct, else return false
     if (preg_match("/^[a-zA-z]*$/", $name)) {
         return true;
     } else {
@@ -64,6 +67,7 @@ function validateName($name)
 //Validate passwords
 function validatePasswords($pwd1, $pwd2)
 {
+    // Return true if both passwords match, else return false
     if ($pwd1 == $pwd2) {
         return true;
     } else {
@@ -97,10 +101,14 @@ function color()
 //Sign UP Function
 function SignUP(Users $User)
 {
+    // Database
     $db = connection();
     $UserManager = new UsersManager($db);
-    // var_dump($UserManager->existanceEMailDB($User));
+    
+    // Before sign up, must check if address eMail, phone number or username already exist in DB
+    // If so display error messages
 
+    // Existance address eMail
     if ($UserManager->existanceEMailDB($User) == true) {
         echo
         '<script>
@@ -109,6 +117,7 @@ function SignUP(Users $User)
          </script>';
     }
 
+    // Existance username
     if ($UserManager->existanceUsernameDB($User) == true) {
         echo
         '<script>
@@ -117,6 +126,7 @@ function SignUP(Users $User)
         </script>';
     }
 
+    // Existance phone number
     if ($UserManager->existancePhoneDB($User) == true) {
         echo
         '<script>
@@ -125,9 +135,13 @@ function SignUP(Users $User)
         </script>';
     }
 
+    // If address eMail, username and phone number does not exist already
     if ($UserManager->existanceEMailDB($User) == false && $UserManager->existanceUsernameDB($User) == false && $UserManager->existancePhoneDB($User) == false) {
+        // If sign up of user successfull
         if ($UserManager->signUP($User) == true) {
+            // Create new session User
             $_SESSION["User"] = $UserManager->logIN($User);
+            // Return true as success
             return true;
         } else return false;
     }
@@ -137,25 +151,35 @@ function SignUP(Users $User)
 //Log IN Function
 function LogIN(Users $User)
 {
+    // Datebase
     $db = connection();
     $UserManager = new UsersManager($db);
 
+    // Before log in, must check if address eMail or username already exist in DB
+    // If no display error messages
     if ($UserManager->existanceUsernameDB($User) == false && $UserManager->existanceEMailDB($User) == false) {
         echo
         '<script>
             document.getElementById("errorLogin").innerHTML = "Inexistant Username/eMail"
         </script>';
     }
+    // If Username or address eMail exist in DB
     if ($UserManager->existanceUsernameDB($User) == true || $UserManager->existanceEMailDB($User) == true) {
+        // If log IN == successfull
         if ($UserManager->logIN($User) != false) {
+            // Create new session User
             $_SESSION["User"] = $UserManager->logIN($User);
+            // Return true as success
             return true;
-        } else {
+        } 
+        // If log IN != successfull 
+        else {
+            // Display error message
             echo
             '<script>
                 document.getElementById("errorLogin").innerHTML = "Username or Password Incorrect"
             </script>';
-        };
+        }
     }
 }
 
@@ -168,9 +192,6 @@ function brands()
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     if ($data != null) {
         return $data;
-        // foreach ($data as $row) {
-        //     echo $row["BrandName"];
-        // }
     } else {
         return false;
     }
