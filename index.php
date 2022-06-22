@@ -8,9 +8,9 @@ $data = BrandsList();
 <html lang="en">
 
 <style>
-    div{
+    /* div{
         border: solid;
-    }
+    } */
 </style>
 
 
@@ -44,16 +44,6 @@ $data = BrandsList();
         </datalist>
         <input type="submit">
     </form>
-
-    <div class="container">
-        <!-- <div class="row"> -->
-            row
-            <div class="col">
-                colP
-                
-            </div>
-        <!-- </div> -->
-    </div>
 
 
 

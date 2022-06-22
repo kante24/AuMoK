@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : jeu. 23 juin 2022 à 00:03
+-- Généré le : jeu. 23 juin 2022 à 00:29
 -- Version du serveur :  10.4.19-MariaDB
 -- Version de PHP : 7.3.28
 
@@ -407,6 +407,19 @@ INSERT INTO `CarBrands` (`IdBrand`, `BrandName`, `BrandLogo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `CarModels`
+--
+
+CREATE TABLE `CarModels` (
+  `idModel` int(11) NOT NULL,
+  `ModelName` varchar(100) NOT NULL,
+  `BrandName` varchar(100) NOT NULL,
+  `Year` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Users`
 --
 
@@ -437,7 +450,16 @@ INSERT INTO `Users` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Pho
 -- Index pour la table `CarBrands`
 --
 ALTER TABLE `CarBrands`
-  ADD PRIMARY KEY (`IdBrand`,`BrandName`);
+  ADD PRIMARY KEY (`IdBrand`) USING BTREE,
+  ADD UNIQUE KEY `BrandName` (`BrandName`);
+
+--
+-- Index pour la table `CarModels`
+--
+ALTER TABLE `CarModels`
+  ADD PRIMARY KEY (`idModel`) USING BTREE,
+  ADD UNIQUE KEY `ModelName` (`ModelName`,`BrandName`),
+  ADD KEY `carmodels_ibfk_1` (`BrandName`);
 
 --
 -- Index pour la table `Users`
@@ -456,7 +478,23 @@ ALTER TABLE `Users`
 -- AUTO_INCREMENT pour la table `CarBrands`
 --
 ALTER TABLE `CarBrands`
-  MODIFY `IdBrand` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
+  MODIFY `IdBrand` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=367;
+
+--
+-- AUTO_INCREMENT pour la table `CarModels`
+--
+ALTER TABLE `CarModels`
+  MODIFY `idModel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `CarModels`
+--
+ALTER TABLE `CarModels`
+  ADD CONSTRAINT `carmodels_ibfk_1` FOREIGN KEY (`BrandName`) REFERENCES `CarBrands` (`BrandName`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
