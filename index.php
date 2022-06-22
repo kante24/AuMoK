@@ -1,13 +1,16 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
 
-$data = brands();
+$data = BrandsList();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <style>
+    div{
+        border: solid;
+    }
 </style>
 
 
@@ -41,6 +44,23 @@ $data = brands();
         </datalist>
         <input type="submit">
     </form>
+
+    <div class="container">
+        <div class="row">
+            row
+            <div class="col">
+                colP
+                <div class="row">
+                    <div class="col">
+                        Logo
+                    </div>
+                    <div class="col">
+                        Name
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

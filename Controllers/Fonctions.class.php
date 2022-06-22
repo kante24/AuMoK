@@ -7,7 +7,7 @@ mb_internal_encoding("UTF-8");
 function connection()
 {
     try {
-        $pdo = new PDO("mysql:host=localhost;dbname=aumok", "root", "");
+        $pdo = new PDO("mysql:host=localhost;dbname=AuMoK", "root", "");
         return $pdo;
     } catch (PDOException $e) {
         echo $e->getMessage();
@@ -184,15 +184,11 @@ function LogIN(Users $User)
 }
 
 
-function brands()
+function BrandsList()
 {
+    // Datebase
     $db = connection();
-    $pdo = $db;
-    $query = $pdo->query("SELECT * FROM AutoBrands");
-    $data = $query->fetchAll(PDO::FETCH_ASSOC);
-    if ($data != null) {
-        return $data;
-    } else {
-        return false;
-    }
+    $BrandManager = new BrandsManager($db);
+    // var_dump($BrandManager->Brands());
+    return $BrandManager->Brands();
 }

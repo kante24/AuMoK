@@ -65,18 +65,20 @@ class UsersManager
     public function logIN(Users $user)
     {
         try {
-
-            $eMail = $user->eMail();
-            $Username = $user->Username();
-            $Pwd = $user->Password();
-
             // Conection
             $pdo = $this->_db;
             //SLQ Query
-            $query = $pdo->query("SELECT * FROM Users WHERE (Username = '$Username' or eMail = '$eMail') AND Password = '$Pwd' AND isAlive = 1");
-            // Fetch results
-            $data = $query->fetchAll(PDO::FETCH_ASSOC);
-            // If result is not null, return result 'array', else return false
+            $query = $pdo->prepare("SELECT * FROM Users WHERE (Username = :Username or eMail = :eMail) AND Password = :Password AND isAlive = 1");
+            // Fetch query results
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute(array(
+                "Username" => $user->Username(),
+                "eMail" => $user->eMail(),
+                "Password" => $user->Password(),
+            ));
+            
+            $data = $query->fetchAll();
+            // If query result is not null, return result 'array', else return false
             if ($data != null) {
                 return $data;
             } else {
@@ -90,9 +92,24 @@ class UsersManager
     //Checks if the username exists
     public function existanceUsernameDB(Users $user)
     {
-        $Username = $user->Username();
-        $req = $this->_db->query("SELECT * FROM Users WHERE Username= '$Username' ");
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        // $Username = $user->Username();
+
+        // $req = $this->_db->query("SELECT * FROM Users WHERE Username= '$Username' ");
+
+        // $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        // if ($data != null) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+
+        $req = $this->_db->prepare("SELECT * FROM Users WHERE Username= :Username");
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $req->execute(array(
+            "Username" => $user->Username()
+        ));
+
+        $data = $req->fetchAll();
         if ($data != null) {
             return true;
         } else {
@@ -103,9 +120,22 @@ class UsersManager
     //Checks if the  email address already exists
     public function existanceEMailDB(Users $user)
     {
-        $eMail = $user->eMail();
-        $req = $this->_db->query("SELECT * FROM Users WHERE eMail= '$eMail' ");
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        // $eMail = $user->eMail();
+        // $req = $this->_db->query("SELECT * FROM Users WHERE eMail= '$eMail' ");
+        // $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        // if ($data != null) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+
+        $req = $this->_db->prepare("SELECT * FROM Users WHERE eMail= :eMail");
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $req->execute(array(
+            "eMail" => $user->eMail()
+        ));
+
+        $data = $req->fetchAll();
         if ($data != null) {
             return true;
         } else {
@@ -116,9 +146,22 @@ class UsersManager
     //Checks if the phone number already exists
     public function existancePhoneDB(Users $user)
     {
-        $Phone = $user->Phone();
-        $req = $this->_db->query("SELECT * FROM Users WHERE Phone= '$Phone' ");
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        // $Phone = $user->Phone();
+        // $req = $this->_db->query("SELECT * FROM Users WHERE Phone= '$Phone' ");
+        // $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        // if ($data != null) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+
+        $req = $this->_db->prepare("SELECT * FROM Users WHERE Phone= :Phone");
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $req->execute(array(
+            "Phone" => $user->Phone()
+        ));
+
+        $data = $req->fetchAll();
         if ($data != null) {
             return true;
         } else {
@@ -128,9 +171,22 @@ class UsersManager
 
     public function existanceCodeUserDB(Users $user)
     {
-        $codeUser = $user->CodeUser();
-        $req = $this->_db->query("SELECT * FROM Users WHERE Username= '$codeUser' ");
-        $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        // $codeUser = $user->CodeUser();
+        // $req = $this->_db->query("SELECT * FROM Users WHERE Username= '$codeUser' ");
+        // $data = $req->fetchAll(PDO::FETCH_ASSOC);
+        // if ($data != null) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+
+        $req = $this->_db->prepare("SELECT * FROM Users WHERE CodeUser= :CodeUser");
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        $req->execute(array(
+            "CodeUser" => $user->CodeUser()
+        ));
+
+        $data = $req->fetchAll();
         if ($data != null) {
             return true;
         } else {

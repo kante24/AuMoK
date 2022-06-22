@@ -15,6 +15,7 @@ else if (isset($_SESSION['User'])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +27,8 @@ else if (isset($_SESSION['User'])) {
 <body>
     
     <?
-    echo "Nom = " . $User->Name()
+    echo "Nom = " . $User->Name();
+    BrandsList();
     ?>
 
 </body>

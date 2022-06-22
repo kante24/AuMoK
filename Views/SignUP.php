@@ -98,7 +98,7 @@
 
     <div id="mySignup" class="Signup">
 
-        <div class="modal-content justify-content-center" style="text-align: center;" id="content">
+        <div class="modal-content justify-content-center" style="text-align: center;">
 
             <!-- <div class="container backColorChange" style="border-radius: 50%;margin-top: 30px; text-align: center; width: 800px ; background-color: antiquewhite;"> -->
             <div class="container shadow-lg" style="width: 800px;background-color:white">

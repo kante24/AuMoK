@@ -55,9 +55,9 @@
 <div id="myLogin" class="Login">
 
     <!-- Login content -->
-    <div class="modal-content loginContent justify-content-center" style="text-align: center;" id="content">
+    <div class="modal-content loginContent justify-content-center" style="text-align: center;">
 
-        <div class="container justify-content-center shadow-lg popupLogIn" style="width: 300px;margin-top: 150px;background-color:white">
+        <div class="container justify-content-center shadow-lg" style="width: 300px;margin-top: 150px;background-color:white">
 
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 

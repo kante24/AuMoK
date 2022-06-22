@@ -132,6 +132,7 @@ class Users
     {
         $this->_isAlive = $isAlive;
     }
+//
 
 
     public function hydrate(array $donnees)
@@ -143,6 +144,5 @@ class Users
             }
         }
     }
-//
 
 }
