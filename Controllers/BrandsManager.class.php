@@ -24,7 +24,7 @@ class BrandsManager
     {
         // Conection
         $pdo = $this->_db;
-        $query = $pdo->query("SELECT * FROM CarBrands");
+        $query = $pdo->query("SELECT * FROM CarBrands ORDER BY BrandName ASC");
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
         if ($data != null) {
             return $data;

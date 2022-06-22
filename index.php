@@ -46,20 +46,13 @@ $data = BrandsList();
     </form>
 
     <div class="container">
-        <div class="row">
+        <!-- <div class="row"> -->
             row
             <div class="col">
                 colP
-                <div class="row">
-                    <div class="col">
-                        Logo
-                    </div>
-                    <div class="col">
-                        Name
-                    </div>
-                </div>
+                
             </div>
-        </div>
+        <!-- </div> -->
     </div>
 
 
