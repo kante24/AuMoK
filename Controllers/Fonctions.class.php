@@ -184,11 +184,11 @@ function LogIN(Users $User)
 }
 
 
-function BrandsList()
+function CarBrandsList()
 {
     // Datebase
     $db = connection();
-    $BrandManager = new BrandsManager($db);
+    $CarBrandManager = new CarBrandsManager($db);
     // var_dump($BrandManager->Brands());
-    return $BrandManager->Brands();
+    return $CarBrandManager->CarBrands();
 }

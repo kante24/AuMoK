@@ -1,6 +1,6 @@
 <?php
 
-class Brands
+class CarBrands
 {
 
 //Params

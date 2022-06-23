@@ -1,7 +1,7 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
 
-$data = BrandsList();
+$data = CarBrandsList();
 ?>
 
 <!DOCTYPE html>

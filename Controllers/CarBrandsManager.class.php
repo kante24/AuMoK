@@ -1,7 +1,7 @@
 <?php
 
 
-class BrandsManager
+class CarBrandsManager
 {
     private $_db;
 
@@ -20,7 +20,7 @@ class BrandsManager
         return $this->_db = $db;
     }
 
-    public function Brands()
+    public function CarBrands()
     {
         // Conection
         $pdo = $this->_db;
