@@ -27,15 +27,15 @@ $data = CarBrandsList();
 
 <body>
 
-
     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
 
+
         <div class="col form-floating">
-            <input class="form-control" type="text" list="brands" name="brands" placeholder="Auto Brands" style="width: 200px;" required>
-            <label for="floatingInput">Auto Brands</label>
+            <input class="form-control" type="text" list="Carbrands" name="Carbrands" placeholder="Auto Brands" style="width: 200px;" required>
+            <label for="floatingInput">Car Brand Name</label>
         </div>
 
-        <datalist id="brands">
+        <datalist id="Carbrands">
             <?
             for ($i = 0; $i < count($data); $i++) {
                 echo '<option value="' . $data[$i]["BrandName"] . '">';
