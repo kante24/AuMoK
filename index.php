@@ -1,7 +1,7 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
 
-$data = BrandsList();
+$data = CarBrandsList();
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +45,8 @@ $data = BrandsList();
         <input type="submit">
     </form>
 
-
+<input type="button" value="SignUP" id="btnSignup" onclick="popupSignin()"/>
+<input type="button" value="LogIN" id="btnLogin" onclick="popupLogin()"/>
 
 </body>
 

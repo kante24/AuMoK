@@ -26,9 +26,8 @@ else if (isset($_SESSION['User'])) {
 </head>
 <body>
     
-    <?
-    echo "Nom = " . $User->Name();
-    BrandsList();
+    
+    <?php
     ?>
 
 </body>

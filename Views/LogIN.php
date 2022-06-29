@@ -140,6 +140,7 @@
     function popupLogin() {
         // Get the modal
         var modal = document.getElementById("myLogin");
+        modal.style.display = "block";
 
         // Get the button that opens the modal
         var btnLogin = document.getElementById("btnLogin");

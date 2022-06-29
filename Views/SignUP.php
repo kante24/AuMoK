@@ -56,7 +56,7 @@
             /* Hidden by default */
             display: none;
             /* Stay in place */
-            /* position: fixed; */
+            position: relative;
             /* Sit on top */
             z-index: 1;
             /* Location of the box */
@@ -66,7 +66,7 @@
             /* Full height */
             height: 100%;
             /* Enable scroll if needed */
-            /* overflow: auto; */
+            overflow: auto;
             /* Fallback color */
             background-color: rgb(0, 0, 0);
             /* Black w/ opacity */
@@ -74,13 +74,14 @@
         }
 
         /* Login Content */
-        .modal-content1 {
+        .signupContent {
             background-color: #fefefe;
             border: 1px solid #888;
             width: 0px;
             height: 0px;
             margin: auto;
             margin-left: 400px;
+            margin-top: 400px;
         }
 
 
@@ -98,7 +99,7 @@
 
     <div id="mySignup" class="Signup">
 
-        <div class="modal-content justify-content-center" style="text-align: center;">
+        <div class="modal-content justify-content-center signupContent" style="text-align: center;">
 
             <!-- <div class="container backColorChange" style="border-radius: 50%;margin-top: 30px; text-align: center; width: 800px ; background-color: antiquewhite;"> -->
             <div class="container shadow-lg" style="width: 800px;background-color:white">
@@ -247,7 +248,7 @@
                         <div class="col-6">
                             <!--  Hidden to match up pwds -->
                             <!-- <input id="isSame" /> -->
-                            <input type="hidden" id="isSame"/>
+                            <input type="hidden" id="isSame" />
                         </div>
 
                     </div>
@@ -278,10 +279,11 @@
 
 
     <script>
-
         function popupSignin() {
             // Get the modal
             var modal = document.getElementById("mySignup");
+            modal.style.display = "block";
+
 
             // Get the button that opens the modal
             var btnSignup = document.getElementById("btnSignup");
@@ -303,12 +305,12 @@
 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
+                // alert(event.target)
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
             }
         }
-        
     </script>
 
 </body>
