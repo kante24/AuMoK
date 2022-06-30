@@ -1,8 +1,20 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
 
-//Data from database with all car brands name
+//Data from database with all car brands
 $data = CarBrandsList();
+// Test data value
+if($data == false)
+{
+    // Empty data
+    $data = (array());
+    // Display error message
+    echo '
+        <script>
+            document.getElementById("searchError").innerHTML = "No Brand Found"
+        </script>
+    ';
+}
 // initialize Car brand name
 $CarBrandName = "";
 // initialize Car brand logo

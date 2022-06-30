@@ -183,12 +183,3 @@ function LogIN(Users $User)
     }
 }
 
-
-function CarBrandsList()
-{
-    // Datebase
-    $db = connection();
-    $CarBrandManager = new CarBrandsManager($db);
-    // var_dump($BrandManager->Brands());
-    return $CarBrandManager->CarBrands();
-}

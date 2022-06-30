@@ -1,7 +1,7 @@
 <?php
 
 
-class CarBrandsManager
+class CarsManager
 {
     private $_db;
 
@@ -22,9 +22,24 @@ class CarBrandsManager
 
     public function CarBrands()
     {
-        // Conection
+        // Connection
         $pdo = $this->_db;
         $query = $pdo->query("SELECT * FROM CarBrands ORDER BY BrandName ASC");
+        
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        if ($data != null) {
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    public function CarModels()
+    {
+        // Connection
+        $pdo = $this->_db;
+        $query = $pdo->query("SELECT * FROM CarModels ORDER BY BrandName ASC");
+        
         $data = $query->fetchAll(PDO::FETCH_ASSOC);
         if ($data != null) {
             return $data;
