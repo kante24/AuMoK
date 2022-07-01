@@ -1,11 +1,11 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
 
+
 //Data from database with all car brands
 $data = CarBrandsList();
 // Test data value
-if($data == false)
-{
+if ($data == false) {
     // Empty data
     $data = (array());
     // Display error message
@@ -40,7 +40,7 @@ if (isset($_POST["CarbrandName"])) {
     /* div {
         border: solid;
     } */
-    
+
     .ColorChange {
         border: bold;
         animation: colorAnimation 5s infinite;
@@ -77,12 +77,11 @@ if (isset($_POST["CarbrandName"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME PAGE</title>
+    <title>Car Brands PAGE</title>
 
 </head>
 
 <body>
-
 
     <!-- Search Div -->
     <div class="container-fluid">
@@ -124,14 +123,14 @@ if (isset($_POST["CarbrandName"])) {
     </div>
 
 
-    <!-- Result Of Search Div -->
+    <!-- Result Of Brand Search Div -->
     <div class="container-fluid mt-5 mb-5" id="searchResult">
 
         <!-- Horizontal bar -->
         <hr class="mt-3 ColorChange" />
 
         <!-- Result Div -->
-        <div class="row justify-content-center">
+        <a class="row justify-content-center" href="?BrandName=<? echo $CarBrandName ?>" style="text-decoration: none; color:black">
 
             <div class="col-2 shadow-lg p-3 m-2 bg-body rounded">
 
@@ -148,6 +147,47 @@ if (isset($_POST["CarbrandName"])) {
 
             </div>
 
+        </a>
+
+        <!-- Horizontal bar -->
+        <hr class="mb-3 ColorChange" />
+
+    </div>
+
+
+
+    <!-- Result Of Models Search Div -->
+    <div class="container-fluid mt-5 mb-5" id="Models">
+
+        <!-- Horizontal bar -->
+        <hr class="mt-3 ColorChange" />
+
+        <!-- Result Div -->
+        <div class="row mt-3">
+            <?
+            if (isset($_GET["BrandName"])) {
+                $CarBrandName = new CarModels(array("BrandName" => $_GET["BrandName"]));
+                $SearchedModels = CarBrandModels($CarBrandName);
+                if ($SearchedModels != false) {
+                    // Initialize number of columns in one row
+                    $col = 1;
+                    for ($i = 0; $i < count($SearchedModels); $i++) { 
+                        ?>
+                        <div class="col shadow-lg p-3 m-2 bg-body rounded">
+                            <? echo $SearchedModels[$i]; ?>
+                        </div>
+                        <? 
+                        if ($col % 10 == 0) { ?>
+                            <!-- Colsing current row at number of 10 columns -->
+                            </div>
+                            <!-- Opening new row -->
+                            <div class="row">
+                        <? }
+                        $col++;
+                    }
+                }
+            }
+            ?>
         </div>
 
         <!-- Horizontal bar -->
@@ -157,38 +197,46 @@ if (isset($_POST["CarbrandName"])) {
 
 
     <!-- All Car Brands List -->
-    <div class="row mt-3">
-        <?
-        // Initialize _col as number of columns in one row
-        $_col = 1;
-        // For every brand in data
-        for ($i = 0; $i < count($data); $i++) {
-        ?>
-            <!-- Brand Column -->
-            <div class="col shadow-lg p-3 m-2 bg-body rounded">
-                <!-- In each Column -->
-                <div class="row">
-                    <!-- Band Logo Div -->
-                    <div class="col-3 p-2">
-                        <img style="width: 100%; height: 100%;" src="<? echo $data[$i]["BrandLogo"] ?>" />
-                    </div>
-                    <!-- Brand Name Div -->
-                    <div class="col-9 p-2" style="text-align: center;" translate="no">
-                        <b><? echo $data[$i]["BrandName"] ?></b>
-                    </div>
+    <div class="container-fluid">
+
+        <div class="row mt-3">
+            <?
+            // Initialize _col as number of columns in one row
+            $_col = 1;
+            // For every brand in data
+            for ($i = 0; $i < count($data); $i++) {
+            ?>
+                <!-- Brand Column -->
+                <div class="col shadow-lg p-3 m-2 bg-body rounded">
+                    <!-- Link to display Models -->
+                    <a href="?BrandName=<? echo $data[$i]["BrandName"] ?>" style="text-decoration: none; color:black">
+                        <!-- In each Column -->
+                        <div class="row">
+                            <!-- Band Logo Div -->
+                            <div class="col-3 p-2">
+                                <img style="width: 100%; height: 100%;" src="<? echo $data[$i]["BrandLogo"] ?>" />
+
+                            </div>
+                            <!-- Brand Name Div -->
+                            <div class="col-9 p-2" style="text-align: center;" translate="no">
+                                <b><? echo $data[$i]["BrandName"] ?></b>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            <!-- If number of columns = 6 in one row, close row and open new row -->
-            <? if ($_col % 6 == 0) { ?>
-                <!-- Closing current row -->
-                </div>
-                <!-- Opening new row -->
-                <div class="row">
-            <? }
-            // Increments number of columns 
-            $_col++;
-        }
-        ?>
+                <!-- If number of columns = 6 in one row, close row and open new row -->
+                <? if ($_col % 6 == 0) { ?>
+                        <!-- Closing current row -->
+                        </div>
+                        <!-- Opening new row -->
+                        <div class="row">
+                    <? }
+                    // Increments number of columns 
+                    $_col++;
+            }
+            ?>
+        </div>
+
     </div>
 
 
@@ -217,6 +265,16 @@ if (isset($_POST["CarbrandName"])) {
                 </script>
             ';
         }
+    }
+    // If no model found for brand
+    if ($SearchedModels == false) {
+        echo '
+                <script>
+                    document.getElementById("searchError").innerHTML = "No Model Found"
+                    var modal = document.getElementById("Models");
+                    modal.style.display = "none";
+                </script>
+            ';
     }
     ?>
 

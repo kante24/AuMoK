@@ -8,9 +8,9 @@ $data = CarBrandsList();
 <html lang="en">
 
 <style>
-    /* div{
+    div {
         border: solid;
-    } */
+    }
 </style>
 
 
@@ -27,26 +27,8 @@ $data = CarBrandsList();
 
 <body>
 
-    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-
-
-        <div class="col form-floating">
-            <input class="form-control" type="text" list="Carbrands" name="Carbrands" placeholder="Auto Brands" style="width: 200px;" required>
-            <label for="floatingInput">Car Brand Name</label>
-        </div>
-
-        <datalist id="Carbrands">
-            <?
-            for ($i = 0; $i < count($data); $i++) {
-                echo '<option value="' . $data[$i]["BrandName"] . '">';
-            }
-            ?>
-        </datalist>
-        <input type="submit">
-    </form>
-
-<input type="button" value="SignUP" id="btnSignup" onclick="popupSignin()"/>
-<input type="button" value="LogIN" id="btnLogin" onclick="popupLogin()"/>
+    <!-- <input type="button" value="SignUP" id="btnSignup" onclick="popupSignin()"/>
+<input type="button" value="LogIN" id="btnLogin" onclick="popupLogin()"/> -->
 
 </body>
 
