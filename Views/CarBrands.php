@@ -1,6 +1,16 @@
 <?php
-require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
-
+// If no session, start one
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// If no session user, display header
+if (!isset($_SESSION['User'])) {
+    require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Header.php");
+}
+// Else If session User exists display headerIN
+else if (isset($_SESSION['User'])) {
+    require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
+}
 
 //Data from database with all car brands
 $data = CarBrandsList();

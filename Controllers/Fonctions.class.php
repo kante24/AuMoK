@@ -1,5 +1,10 @@
 <?php
-session_start();
+// session_start();
+// If no session, start one
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Setting internal encoding for string functions
 mb_internal_encoding("UTF-8");
 
@@ -36,6 +41,11 @@ function color()
     $color = ["green", "yellow", "blue", "black", "red", "blue", "darkmagenta", "purple", "orange", "pink", "Gainsboro", "gray", "khaki", "lime", "tomato", "purple", "thistle", "Salmon"];
     $rand = rand(0, (count($color) - 1));
     return $color[$rand];
+}
+
+function nene()
+{
+    echo "nene";
 }
 
 
