@@ -8,9 +8,9 @@ $data = CarBrandsList();
 <html lang="en">
 
 <style>
-    div {
+    /* div {
         border: solid;
-    }
+    } */
 </style>
 
 
@@ -27,10 +27,11 @@ $data = CarBrandsList();
 
 <body>
 
-    <!-- <input type="button" value="SignUP" id="btnSignup" onclick="popupSignin()"/>
-<input type="button" value="LogIN" id="btnLogin" onclick="popupLogin()"/> -->
+
 
 </body>
+
+
 
 </html>
 

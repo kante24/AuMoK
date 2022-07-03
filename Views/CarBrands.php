@@ -157,13 +157,13 @@ if (isset($_POST["CarbrandName"])) {
 
 
     <!-- Result Of Models Search Div -->
-    <div class="container-fluid mt-5 mb-5" id="Models">
+    <div class="container-fluid mt-5 mb-5 justify-content-center" id="Models">
 
         <!-- Horizontal bar -->
         <hr class="mt-3 ColorChange" />
 
         <!-- Result Div -->
-        <div class="row mt-3">
+        <div class="row justify-content-center mt-3">
             <?
             if (isset($_GET["BrandName"])) {
                 $CarBrandName = new CarModels(array("BrandName" => $_GET["BrandName"]));
@@ -173,7 +173,7 @@ if (isset($_POST["CarbrandName"])) {
                     $col = 1;
                     for ($i = 0; $i < count($SearchedModels); $i++) { 
                         ?>
-                        <div class="col shadow-lg p-3 m-2 bg-body rounded">
+                        <div class="col justify-content-center shadow-lg  p-3 m-2 bg-body rounded">
                             <? echo $SearchedModels[$i]; ?>
                         </div>
                         <? 
@@ -266,11 +266,22 @@ if (isset($_POST["CarbrandName"])) {
             ';
         }
     }
-    // If no model found for brand
-    if ($SearchedModels == false) {
+    // If search but no model found for brand
+    if (isset($_GET["BrandName"]) && $SearchedModels == false) {
+        // Hide models div and display error msg
         echo '
                 <script>
                     document.getElementById("searchError").innerHTML = "No Model Found"
+                    var modal = document.getElementById("Models");
+                    modal.style.display = "none";
+                </script>
+            ';
+    }
+    // Else if no search, Hide models div
+    else if (!isset($_GET["BrandName"]))
+    {
+        echo '
+                <script>
                     var modal = document.getElementById("Models");
                     modal.style.display = "none";
                 </script>

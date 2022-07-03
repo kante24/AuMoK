@@ -25,7 +25,8 @@ else if (isset($_SESSION['User'])) {
     <title>HOME</title>
 </head>
 <body>
-    
+    Name = <?echo $User->Name()?> <br/>
+    Firstname = <?echo $User->Firstname()?> <br/>
     
     <?php
     ?>

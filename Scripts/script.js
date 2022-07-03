@@ -31,6 +31,11 @@ function Relocation(page) {
     window.location.href = "/dashboard/AuMoK/" + page;
 }
 
+// Function Message
+function Message(id, msg) {
+    document.getElementById(id).innerHTML = msg
+}
+
 function Login() {
     var visibility = $(".popupLogIn").css("visibility")
     if (visibility == "hidden") {

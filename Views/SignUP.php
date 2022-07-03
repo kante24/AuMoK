@@ -56,7 +56,7 @@
             /* Hidden by default */
             display: none;
             /* Stay in place */
-            position: relative;
+            position: fixed;
             /* Sit on top */
             z-index: 1;
             /* Location of the box */
@@ -80,8 +80,8 @@
             width: 0px;
             height: 0px;
             margin: auto;
-            margin-left: 400px;
-            margin-top: 400px;
+            margin-left: 350px;
+            margin-top: 250px;
         }
 
 
@@ -104,7 +104,7 @@
             <!-- <div class="container backColorChange" style="border-radius: 50%;margin-top: 30px; text-align: center; width: 800px ; background-color: antiquewhite;"> -->
             <div class="container shadow-lg" style="width: 800px;background-color:white">
 
-                <p id="errorSignUP"></p>
+                <p id="errorSignUP" style="visibility: hidden;"></p>
 
                 <form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
@@ -148,13 +148,8 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <!-- Second row -->
-                    <div class="row mt-5 justify-content-center">
-
                         <!-- BirthDate -->
-                        <div class="col-6">
+                        <div class="col-3 m-2">
                             <div class="row justify-content-center">
                                 <input id="birthDate" type="date" name="birthDate" style="vertical-align:top; width: 200px;height:50px;text-align: center;" required />
                             </div>
@@ -190,13 +185,8 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <!-- Fourth row -->
-                    <div class="row mt-5 justify-content-center">
-
                         <!-- Username -->
-                        <div class="col-6">
+                        <div class="col-3 m-2">
                             <div class="row form-floating  justify-content-center">
                                 <input class="form-control" id="Username" style="width: 200px;height:50px;text-align:center" type="text" name="Username" placeholder="Username" required>
                                 <label for="floatingInput">Username</label>
@@ -351,24 +341,24 @@ if (isset($_POST["addUser"])) {
         if (validateEmail($User->eMail()) == false) {
             echo
             '<script>
-                document.getElementById("errorEMail").innerHTML = "Invalid Address eMail format"
-                document.getElementById("errorSignUP").innerHTML = "Invalid Address eMail format"
+                document.getElementById("errorEMail").innerHTML = "Invalid Address eMail Format"
+                document.getElementById("errorSignUP").innerHTML = "Invalid Address eMail Format"
              </script>';
         }
 
         if (validatePhone($User->Phone()) == false) {
             echo
             '<script>
-                document.getElementById("errorPhone").innerHTML = "Invalid Phone Number"
-                document.getElementById("errorSignUP").innerHTML = "Invalid Phone Number"
+                document.getElementById("errorPhone").innerHTML = "Invalid Phone Number Format"
+                document.getElementById("errorSignUP").innerHTML = "Invalid Phone Number Format"
              </script>';
         }
 
         if (validatePasswords($User->Password(), $_POST["Password2"]) == false) {
             echo
             '<script>
-                document.getElementById("errorPassword").innerHTML = "Passwords Different"
-                document.getElementById("errorSignUP").innerHTML = "Passwords Different"
+                document.getElementById("errorPassword").innerHTML = "Passwords Differ"
+                document.getElementById("errorSignUP").innerHTML = "Passwords Differ"
              </script>';
         }
 

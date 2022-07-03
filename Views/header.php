@@ -2,6 +2,7 @@
 
 require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Fonctions.class.php");
 require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/CarFunctions.class.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/UsersFonctions.class.php");
 // require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 
@@ -68,23 +69,37 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                     </li>
 
                     <!-- Search -->
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
 
-                        <!-- icon Reserach -->
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="/dashboard/AuMoK/Images/iconReserachAuto.png" style="width: 30;height: 30px;" />
-                        </a>
-                        <!-- Drop search form -->
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <!-- <form class="d-flex" action="/dashboard/KAMW/Views/Recherche.php"> -->
-                                <form class="d-flex" action="#">
-                                    <input style="width: 700px;text-align:center;" class="form-control me-1 ms-1" type="search" placeholder="SEARCH BY ..." aria-label="Search" name="keyword">
-                                    <button class="btn btn-outline-dark me-1" type="submit">Search</button>
-                                </form>
-                            </li>
-                        </ul>
-                        
+                        <div class="btn-group">
+                            <a class="nav-link btn" type="button" href="/dashboard/AuMoK/Views/CarBrands.php" id="navbarDropdown" role="button" aria-expanded="false">
+                                <img src="/dashboard/AuMoK/Images/iconReserachAuto.png" style="width: 30;height: 30px;" />
+                            </a>
+    
+                            
+                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <!-- <form class="d-flex" action="/dashboard/KAMW/Views/Recherche.php"> -->
+                                    <form class="d-flex" action="/dashboard/AuMoK/Views/CarBrands.php" method="POST">
+                                        <input style="width: 700px;text-align:center;" class="form-control me-1 ms-1" list="CarbrandName" type="search" placeholder="SEARCH BY BRAND NAME" aria-label="Search" name="CarbrandName">
+                                        <button class="btn btn-outline-dark me-1" type="submit">Search</button>
+                                        <!-- Data list for cars brand name -->
+                                        <datalist id="CarbrandName">
+                                        <?
+                                            $Brands = CarBrandsList();
+                                            for ($i = 0; $i < count($Brands); $i++) {
+                                                echo '<option value="' . $Brands[$i]["BrandName"] . '">';
+                                            }
+                                        ?>
+                                        </datalist>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+
                     </li>
 
                 </ul>
