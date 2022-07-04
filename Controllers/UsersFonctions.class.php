@@ -157,6 +157,22 @@ function LogIN(Users $User)
 
 
 
+// 
+function DeleteUser(Users $User)
+{
+    // Database
+    $db = connection();
+    $UserManager = new UsersManager($db);
+
+    if($UserManager->deleteUser($User) == true)
+    {
+        return true;
+    }
+    else return false;
+}
+
+
+
 
 
 ?>
