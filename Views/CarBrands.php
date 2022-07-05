@@ -77,6 +77,15 @@ if (isset($_POST["CarbrandName"])) {
             color: <? echo color() ?>;
         }
     }
+
+    #btnToTop {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        cursor: pointer;
+    }
 </style>
 
 
@@ -183,7 +192,7 @@ if (isset($_POST["CarbrandName"])) {
                     $col = 1;
                     for ($i = 0; $i < count($SearchedModels); $i++) { 
                         ?>
-                        <div class="col justify-content-center shadow-lg  p-3 m-2 bg-body rounded">
+                        <div class="col justify-content-center shadow-lg p-2 m-2 bg-body rounded" style="text-align: center;" translate="no">
                             <? echo $SearchedModels[$i]; ?>
                         </div>
                         <? 
@@ -299,6 +308,33 @@ if (isset($_POST["CarbrandName"])) {
     }
     ?>
 
+    <!-- Button to scroll up to top -->
+    <img onclick="topFunction()" id="btnToTop" src="/dashboard/AuMoK/Images/iconUP.png" style="width: 30px;height:30px" />
+
+    <script>
+        // Script to scroll up to top of page
+        //Get the button
+        var mybutton = document.getElementById("btnToTop");
+
+        // When the user scrolls down 40px from the top of page, show the button to scroll up to top
+        window.onscroll = function() {scrollFunction()};
+
+        // Function to display button when user scrolls down 40px from the top of page
+        // Or Hide it otherwise
+        function scrollFunction() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
 
 </body>
 

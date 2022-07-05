@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 29 juin 2022 à 04:03
+-- Généré le : mar. 05 juil. 2022 à 05:05
 -- Version du serveur :  10.4.19-MariaDB
 -- Version de PHP : 7.3.28
 
@@ -427,7 +427,6 @@ CREATE TABLE `CarModels` (
 --
 
 INSERT INTO `CarModels` (`idModel`, `ModelName`, `BrandName`) VALUES
-(3535, '', 'Volkswagen'),
 (1031, '024', 'Dodge'),
 (3183, '1', 'Polestar'),
 (413, '1 Series', 'BMW'),
@@ -1980,7 +1979,18 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `isAlive`) VALUES
-('KanDav52356280084', 'Kante', 'David', '2022-05-30', 'aa@gmail.com', '4382336332', 'David', '123', 1);
+('KanDav28242084457', 'Kante', 'David', '2022-07-11', 'aa@gmail.com', '4382336332', 'David', '123', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `UsersInfos`
+--
+
+CREATE TABLE `UsersInfos` (
+  `CodeUser` varchar(100) NOT NULL,
+  `SignUPDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Index pour les tables déchargées
@@ -2011,6 +2021,12 @@ ALTER TABLE `Users`
   ADD UNIQUE KEY `Username` (`Username`) USING HASH;
 
 --
+-- Index pour la table `UsersInfos`
+--
+ALTER TABLE `UsersInfos`
+  ADD PRIMARY KEY (`CodeUser`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -2024,7 +2040,7 @@ ALTER TABLE `CarBrands`
 -- AUTO_INCREMENT pour la table `CarModels`
 --
 ALTER TABLE `CarModels`
-  MODIFY `idModel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3571;
+  MODIFY `idModel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3569;
 
 --
 -- Contraintes pour les tables déchargées
@@ -2035,6 +2051,12 @@ ALTER TABLE `CarModels`
 --
 ALTER TABLE `CarModels`
   ADD CONSTRAINT `carmodels_ibfk_1` FOREIGN KEY (`BrandName`) REFERENCES `CarBrands` (`BrandName`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `UsersInfos`
+--
+ALTER TABLE `UsersInfos`
+  ADD CONSTRAINT `usersinfos_ibfk_1` FOREIGN KEY (`CodeUser`) REFERENCES `Users` (`CodeUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
