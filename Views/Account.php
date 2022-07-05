@@ -91,17 +91,19 @@ if (isset($_POST["deleteAccount"])) {
         <div class="row mt-5 ms-5 me-5 d-flex align-items-start">
 
             <!-- Left Row => Options -->
-            <div class="col-4 shadow-lg p-3 mb-5 bg-body rounded nav flex-column nav-pills" style="border-right: solid; height: min(100%, 250px);" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <!-- <div class="col-4 shadow-lg p-3 mb-5 bg-body rounded nav flex-column nav-pills" style="border-right: solid; height: min(100%, 250px);" id="v-pills-tab" role="tablist" aria-orientation="vertical"> -->
+            <div class="col-4 shadow-lg p-3 mb-5 bg-body rounded nav flex-column nav-pills" style="border-right: solid;" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
                 <!-- Option to Display Profil Infos -->
                 <button class="btn btn-outline-success active mt-3" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">
                     PROFILE
                 </button>
 
-                <button class="btn btn-outline-primary mt-3" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
+                <!-- <button class="btn btn-outline-primary mt-3" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button> -->
 
                 <button class="btn btn-outline-dark mt-3" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
 
+                <!-- Button to delete account -->
                 <button class="btn btn-outline-danger mt-3" id="v-pills-delete-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delete" type="button" role="tab" aria-controls="v-pills-delete" aria-selected="false">
                     DELETE ACCOUNT <span><img class="mb-1" src="/dashboard/AuMoK/Images/iconTrash.png" style="width:20px ;height:20px" /></span>
                 </button>
@@ -111,19 +113,20 @@ if (isset($_POST["deleteAccount"])) {
 
 
             <!-- Right Row => Results -->
-            <div class="ColorChange col-7 shadow-lg p-3 mb-5 ms-3 bg-body rounded tab-content" id="v-pills-tabContent" style="height: min(100%,250px);">
+            <!-- <div class="ColorChange col-7 shadow-lg p-3 mb-5 ms-3 bg-body rounded tab-content" id="v-pills-tabContent" style="height: min(100%,250px);"> -->
+            <div class="ColorChange col-7 shadow-lg p-3 mb-5 ms-3 bg-body rounded tab-content" id="v-pills-tabContent">
 
                 <!-- Profile Informaions -->
                 <div class="container-fluid tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <div class="row mt-3 bg-light">
-                        <!-- Col for a Title -->
-                        <div class="col-8">
+                        <!-- Col for Username as a Title -->
+                        <div class="col-10">
                             <h1 style="text-align: center;">
-                                <? echo $User->Firstname() . "  " . $User->Name() ?>
+                                <? echo $User->Username() ?>'s General Informations
                             </h1>
                         </div>
                         <!-- Col for button to edit informations -->
-                        <div class="col-4 mt-1 mb-1">
+                        <div class="col-2 mt-1 mb-1">
                             <img id="editButton" onclick="" class="float-end pointer" src="/dashboard/AuMoK/Images/iconEdit2.jpg" style="width: 50px;height:50px" />
                             <img id="CloseButton" onclick="" class="float-end pointer" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 50px;height:50px" />
                         </div>
@@ -131,50 +134,38 @@ if (isset($_POST["deleteAccount"])) {
 
                     <!-- Current User Informations -->
                     <div class="row" id="ProfileInformations">
-                        Infos
-                    </div>
-                    <!-- Container div for Edits -->
-                    <div class="row m-5" id="ProfileEditer">
-                        <!-- First row -->
+                        <!-- Row for firstname, name, birthdate -->
+                        <div class="row mt-3">
+                            <div class="col-12" style="text-align: center;">
+                                <!-- Firstname and Name -->
+                                <h5 style="display:inline;"> <? echo $User->Firstname() ?> &#160; <? echo $User->Name() ?> &#160; </h5>
+                                <p style="display:inline;"> &#160; born on </p>
+                                <!-- Birthdate -->
+                                <h5 style="display: inline;"> &#160; <? echo $User->BirthDate() ?></h5>
+                            </div>
+                        </div>
+                        <!-- Horizontale bar -->
+                        <div class="row mt-3 justify-content-center">
+                            <hr style="width: 50%;" class="ColorChange" />
+                        </div>
                         <div class="row justify-content-center">
-                            <!-- Edit Last Name -->
-                            <div class="col-3 center m-2">
-                                <div class="row center form-floating">
-                                    <input class="form-control" id="Name" style="text-align:center" type="text" name="Name" placeholder="Name" value="<? echo $User->Name() ?>">
-                                    <label for="floatingInput" style="text-align:center">Current = <? echo $User->Name() ?></label>
-                                </div>
-                                <!-- Row for error -->
-                                <div class="row justify-content-center error">
-                                    <p id="errorName"></p>
-                                </div>
-                            </div>
-                            <!--  Edit Firstname -->
-                            <div class="col-3 m-2">
-                                <div class="row form-floating">
-                                    <input class="form-control" id="Firstname" style="vertical-align:top; width: 100%;height:100%;text-align: center;" type="text" name="Firstname" placeholder="Firstname" value="<? echo $User->Firstname() ?>">
-                                    <label for="floatingInput" style="text-align:center">Current = <? echo $User->Firstname() ?></label>
-                                </div>
-                                <!-- Error -->
-                                <div class="row error justify-content-center">
-                                    <p id="errorFirstname"></p>
-                                </div>
-                            </div>
-                            <!-- Edit BirthDate -->
-                            <div class="col-3 m-2">
-                                <div class="row justify-content-center">
-                                    <input id="birthDate" type="date" name="birthDate" style="vertical-align:top; width: 200px;height:50px;text-align: center;" value="<? echo $User->BirthDate() ?>" />
-                                </div>
-                                <!-- Error -->
-                                <div class="row error justify-content-center">
-                                    <p id="errorBirthDate"></p>
-                                </div>
+                            <div class="col-12" style="text-align: center;">
+                                <p style="display:inline;"> Phone Number = </p>
+                                <h5 style="display:inline;"> &#160;  <? echo $User->Phone() ?> </h5>
+                                &#160;&#160;/&#160;&#160;
+                                <p style="display:inline;"> Address eMail = </p>
+                                <h5 style="display:inline;"> &#160;  <? echo $User->eMail() ?> </h5>
                             </div>
                         </div>
                     </div>
+                    <!-- Container div for Edits -->
+                    <div class="row m-5" id="ProfileEditer">
+                        Edition mode
+                    </div>
                 </div>
 
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">C</div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">D</div>
+                <!-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">C</div> -->
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Settings<br/><br/><br/><br/><br/><br/><br/><br/>j</div>
 
                 <!-- Delete Accout -->
                 <div class="tab-pane fade" id="v-pills-delete" role="tabpanel" aria-labelledby="v-pills-delete-tab">

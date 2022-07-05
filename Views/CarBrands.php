@@ -261,56 +261,55 @@ if (isset($_POST["CarbrandName"])) {
 
 
     <?
-    // If no search request hide div for search result
-    // OR
-    // If so but invalide car brand name
-    if (!isset($_POST["CarbrandName"])) {
-        // Hide search Div
-        echo '
-            <script>
-                var modal = document.getElementById("searchResult");
-                modal.style.display = "none";
-            </script>
-        ';
-    } else {
-        // If $CarBrandName stills empty (means no result found)
-        if ($CarBrandName == "") {
+        // If no search request hide div for search result
+        // OR
+        // If so but invalide car brand name
+        if (!isset($_POST["CarbrandName"])) {
             // Hide search Div
             echo '
                 <script>
-                    document.getElementById("searchError").innerHTML = "No Brand Found"
                     var modal = document.getElementById("searchResult");
                     modal.style.display = "none";
                 </script>
             ';
+        } else {
+            // If $CarBrandName stills empty (means no result found)
+            if ($CarBrandName == "") {
+                // Hide search Div
+                echo '
+                    <script>
+                        document.getElementById("searchError").innerHTML = "No Brand Found"
+                        var modal = document.getElementById("searchResult");
+                        modal.style.display = "none";
+                    </script>
+                ';
+            }
         }
-    }
-    // If search but no model found for brand
-    if (isset($_GET["BrandName"]) && $SearchedModels == false) {
-        // Hide models div and display error msg
-        echo '
+        // If search but no model found for brand
+        if (isset($_GET["BrandName"]) && $SearchedModels == false) {
+            // Hide models div and display error msg
+            echo '
                 <script>
                     document.getElementById("searchError").innerHTML = "No Model Found"
                     var modal = document.getElementById("Models");
                     modal.style.display = "none";
                 </script>
             ';
-    }
-    // Else if no search, Hide models div
-    else if (!isset($_GET["BrandName"]))
-    {
-        echo '
+        }
+        // Else if no search, Hide models div
+        else if (!isset($_GET["BrandName"]))
+        {
+            echo '
                 <script>
                     var modal = document.getElementById("Models");
                     modal.style.display = "none";
                 </script>
             ';
-    }
+        }
     ?>
 
     <!-- Button to scroll up to top -->
     <img onclick="topFunction()" id="btnToTop" src="/dashboard/AuMoK/Images/iconUP.png" style="width: 30px;height:30px" />
-
     <script>
         // Script to scroll up to top of page
         //Get the button

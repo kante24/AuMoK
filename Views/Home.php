@@ -11,6 +11,11 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.ph
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
+    <style>
+        /* div {
+            border: solid;
+        } */
+    </style>
 </head>
 
 <body>
@@ -20,6 +25,8 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.ph
 
     <?php
     ?>
+
+
 
 </body>
 
