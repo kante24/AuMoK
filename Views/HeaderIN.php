@@ -1,8 +1,9 @@
 <?php
 
-require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Fonctions.class.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Functions.class.php");
 require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/CarFunctions.class.php");
-require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/UsersFonctions.class.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/UsersFunctions.class.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/UsersCheckedFunctions.class.php");
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 
 // If session User does not exist, page relocation to index.php
@@ -18,6 +19,7 @@ if (!isset($_SESSION['User'])) {
 // Else If session User exists create new Users by with that session
 else if (isset($_SESSION['User'])) {
     $User = new Users($_SESSION['User'][0]);
+    $checked = new UsersChecked(UserChecked($User)[0]);
 }
 
 ?>

@@ -33,8 +33,6 @@ spl_autoload_register('autoChargeFonction');
 
 
 
-
-
 //Return a random colour
 function color()
 {
@@ -42,6 +40,8 @@ function color()
     $rand = rand(0, (count($color) - 1));
     return $color[$rand];
 }
+
+
 
 function nene()
 {

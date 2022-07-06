@@ -2,6 +2,7 @@
 
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
 
+
 // Account Deletion
 // If request for delete account
 if (isset($_POST["deleteAccount"])) {
@@ -316,6 +317,21 @@ if (isset($_POST["editEMailPhone"])) {
                                 <img class="float-start pointer" id="editEMailPhoneButton" onclick="editEMailPhone()" class="float-end pointer" src="/dashboard/AuMoK/Images/iconEdit.png" style="width: 20px;height:20px" />
                                 <!-- Button to close edit mode -->
                                 <img class="float-start pointer mt-4" id="closeEMailPhone" onclick="editEMailPhone()" class="float-end pointer" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 20px;height:20px;display:none" />
+                            </div>
+                        </div>
+
+                        <!-- Horizontale bar -->
+                        <div class="row mt-3 justify-content-center">
+                            <hr class="ColorChange" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-11" id="currentEMailPhone" style="text-align: center;">
+                                <!-- Current Phone Number  -->
+                                <p style="display:inline;"> Phone Number is <? echo checkedBool($checked->PhoneChecked()) ?> </p>
+                                &#160;/&#160;
+                                <!-- Current Address eMail -->
+                                <p style="display:inline;"> Address eMail is <? echo checkedBool($checked->eMailChecked()) ?> </p>
                             </div>
                         </div>
                     </div>
