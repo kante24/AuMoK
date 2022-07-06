@@ -5,7 +5,6 @@ require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/
 require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/UsersFonctions.class.php");
 // require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
-
 ?>
 
 <!DOCTYPE html>

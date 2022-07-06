@@ -76,7 +76,7 @@ class UsersManager
                 "eMail" => $user->eMail(),
                 "Password" => $user->Password(),
             ));
-            
+
             $data = $query->fetchAll();
             // If query result is not null, return result 'array', else return false
             if ($data != null) {
@@ -157,30 +157,75 @@ class UsersManager
     }
 
     ////////////////////////////////////////////////////////////////////////////
-   //////////////////////// Delete Account/////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////
-  public function deleteUser(Users $user)
-  {
-    try {
-        // Connection
-        $pdo = $this->_db;
-        // SQL Query
-        $query = $pdo->prepare("UPDATE Users SET isAlive = false WHERE CodeUser = :CodeUser");
-        $result = $query->execute([
-            ":CodeUser" => $user->CodeUser()
-        ]);
-        // If execution is successfull, return true, else return false
-        if ($result) {
-            return true;
-        } else return false;
-    } catch (Exception $ex) {
-        echo $ex->getMessage();
+    //////////////////////// Delete Account/////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    public function deleteUser(Users $user)
+    {
+        try {
+            // Connection
+            $pdo = $this->_db;
+            // SQL Query
+            $query = $pdo->prepare("UPDATE Users SET isAlive = false WHERE CodeUser = :CodeUser");
+            $result = $query->execute([
+                ":CodeUser" => $user->CodeUser()
+            ]);
+            // If execution is successfull, return true, else return false
+            if ($result) {
+                return true;
+            } else return false;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
     }
-  }
 
 
+    ////////////////////////////////////////////////////////////////////////////
+    //////////////// Update Account's Name, Birthdate///////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    public function updateUserName(Users $user)
+    {
+        try {
+            // Connection
+            $pdo = $this->_db;
+            // SQL Query
+            $query = $pdo->prepare("UPDATE Users SET Name = :Name, Firstname = :Firstname, BirthDate = :BirthDate WHERE CodeUser = :CodeUser");
+            $result = $query->execute([
+                ":CodeUser" => $user->CodeUser(),
+                ":Name" => $user->Name(),
+                ":Firstname" => $user->Firstname(),
+                ":BirthDate" => $user->BirthDate(),
+            ]);
+            // If execution is successfull, return true, else return false
+            if ($result) {
+                return true;
+            } else return false;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
 
 
-
-
+    ////////////////////////////////////////////////////////////////////////////
+    /////////////////// Update Account's Phone, eMail //////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    public function updateUserEMailPhone(Users $user)
+    {
+        try {
+            // Connection
+            $pdo = $this->_db;
+            // SQL Query
+            $query = $pdo->prepare("UPDATE Users SET Phone = :Phone, eMail = :eMail WHERE CodeUser = :CodeUser");
+            $result = $query->execute([
+                ":CodeUser" => $user->CodeUser(),
+                ":Phone" => $user->Phone(),
+                ":eMail" => $user->eMail(),
+            ]);
+            // If execution is successfull, return true, else return false
+            if ($result) {
+                return true;
+            } else return false;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
 }

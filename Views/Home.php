@@ -20,11 +20,13 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.ph
 
 <body>
 
-    Name = <? echo $User->Name() ?> <br />
-    Firstname = <? echo $User->Firstname() ?> <br />
+    Name = <?// echo $User->Name() ?> <br />
+    Firstname = <?// echo $User->Firstname() ?> <br />
 
     <?php
     ?>
+
+    
 
 
 

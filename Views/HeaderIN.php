@@ -9,9 +9,10 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 if (!isset($_SESSION['User'])) {
     // Header to index.php
     echo
-    "<script>
-            Relocation('')
-        </script>";
+        "<script>
+            window.location.href = '/dashboard/AuMoK/';
+        </script>"
+    ;
     exit;
 }
 // Else If session User exists create new Users by with that session

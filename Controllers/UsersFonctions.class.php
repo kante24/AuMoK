@@ -157,7 +157,7 @@ function LogIN(Users $User)
 
 
 
-// 
+// Delete User function
 function DeleteUser(Users $User)
 {
     // Database
@@ -171,6 +171,31 @@ function DeleteUser(Users $User)
     else return false;
 }
 
+// Update User Account's name, birthDate
+function UpdateUserName(Users $User)
+{
+    // Database
+    $db = connection();
+    $UserManager = new UsersManager($db);
+    if($UserManager->updateUserName($User) == true)
+    {
+        return true;
+    }
+    else return false;
+}
+
+// Update User Account's phone, eMail
+function UpdateUserEMailPhone(Users $User)
+{
+    // Database
+    $db = connection();
+    $UserManager = new UsersManager($db);
+    if($UserManager->updateUserEMailPhone($User) == true)
+    {
+        return true;
+    }
+    else return false;
+}
 
 
 
