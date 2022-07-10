@@ -193,7 +193,7 @@ if (isset($_POST["CarbrandName"])) {
                     for ($i = 0; $i < count($SearchedModels); $i++) { 
                         ?>
                         <div class="col justify-content-center shadow-lg p-2 m-2 bg-body rounded" style="text-align: center;" translate="no">
-                            <? echo $SearchedModels[$i]; ?>
+                            <?echo $_GET["BrandName"] . " " . $SearchedModels[$i]; ?>
                         </div>
                         <? 
                         if ($col % 10 == 0) { ?>

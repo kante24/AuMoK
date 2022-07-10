@@ -279,8 +279,8 @@
             var btnSignup = document.getElementById("btnSignup");
 
             // Get the <span> element that closes the modal
-            var btnClose = document.getElementsByClassName("closeSignup")[0];
-            // var btnClose = document.getElementById("closeSignup");
+            // var btnClose = document.getElementsByClassName("closeSignup")[0];
+            var btnClose = document.getElementById("closeSignup");
 
             // When the user clicks the button, open the modal 
             btnSignup.onclick = function() {
@@ -365,10 +365,15 @@ if (isset($_POST["addUser"])) {
         if (validateName($User->Name()) == true && validateName($User->Firstname()) == true && validateEmail($User->eMail()) == true && validatePhone($User->Phone()) == true && validatePasswords($User->Password(), $_POST["Password2"]) == true) {
 
             if (SignUP($User) == true) {
+                // echo
+                // "<script>
+                //     Relocation('Views/Home.php')
+                // </script>";
                 echo
-                "<script>
-                    Relocation('Views/Home.php')
-                </script>";
+                    "<script>
+                        window.location.href = '/dashboard/AuMoK/Views/Home.php';
+                    </script>"
+                ;
             } else {
                 echo
                 '<script>

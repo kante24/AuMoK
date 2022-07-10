@@ -191,7 +191,7 @@ if (isset($_POST["editEMailPhone"])) {
             <!-- <div class="ColorChange col-7 shadow-lg p-3 mb-5 ms-3 bg-body rounded tab-content" id="v-pills-tabContent" style="height: min(100%,250px);"> -->
             <div class="ColorChange col-7 shadow-lg p-3 mb-5 ms-3 bg-body rounded tab-content" id="v-pills-tabContent">
 
-                <!-- Profile Informaions -->
+                <!-- Profile Informaions (Result onClick Button profile) -->
                 <div class="container-fluid tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <!-- Title Row -->
                     <div class="row mt-3 bg-light">
@@ -278,7 +278,7 @@ if (isset($_POST["editEMailPhone"])) {
                                 <h5 class="position-relative" style="display:inline;">
                                     &#160; <? echo $User->Phone() ?>
                                     <!-- Phone Status Check  (Green = Verified / Red = unVerified) -->
-                                    <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle <?StatusCheck($checked->PhoneChecked())?> p-2 ms-2 mb-3"><span class="visually-hidden">Check Phone Status </span></span>
+                                    <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle <?StatusCheck($checked->PhoneChecked())?> p-2 ms-2 mb-3"><span class="visually-hidden">Check Phone Status</span></span>
                                 </h5>
                                 <p class="ms-4 me-2" style="display:inline;">/</p>
                                 <!-- Current Address eMail -->
@@ -371,21 +371,16 @@ if (isset($_POST["editEMailPhone"])) {
     <script>
         var left = document.getElementById('v-pills-tab');
         var right = document.getElementById('v-pills-tabContent');
-        // if (left.offsetHeight > right.offsetHeight) {
-        //     right.style.height = left.offsetHeight
-        // } else if (left.offsetHeight < right.offsetHeight) {
-        //     left.style.height = right.offsetHeight
-        // }
 
-        function ajustRows() {
+        // function ajustRows() {
             if (left.offsetHeight > right.offsetHeight) {
                 right.style.height = left.offsetHeight
             } else if (left.offsetHeight < right.offsetHeight) {
                 left.style.height = right.offsetHeight
             }
-        }
+        // }
 
-        ajustRows()
+        // ajustRows()
 
         /////////////////////////////////////////////////////////////////////////////
         /////////////////////////// Part for profile edition ///////////////////////

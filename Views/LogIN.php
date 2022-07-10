@@ -146,7 +146,8 @@
         var btnLogin = document.getElementById("btnLogin");
 
         // Get the button that closes the modal
-        var btnClose = document.getElementsByClassName("closeLogin")[0];
+        // var btnClose = document.getElementsByClassName("closeLogin")[0];
+        var btnClose = document.getElementById("closeLogin");
 
         // When the user clicks the button, open the modal 
         btnLogin.onclick = function() {
@@ -179,6 +180,12 @@ if (isset($_POST["btnLogin"]) && ctype_space($_POST["Login"]) == false) {
             Relocation('Views/Home.php')
         </script>";
     } 
+}
+elseif (isset($_POST["btnLogin"]) && ctype_space($_POST["Login"]) == true) {
+    echo 
+    '<script>
+        document.getElementById("errorLogin").innerHTML = "Empty Fields for Username / eMail"
+    </script>';
 }
 
 ?>
