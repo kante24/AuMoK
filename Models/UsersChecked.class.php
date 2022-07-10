@@ -7,6 +7,7 @@ class UsersChecked
     private $_codeUser;
     private $_phoneChecked;
     private $_eMailChecked;
+    private $_userInformations;
 //
 
 //Constructors
@@ -34,6 +35,11 @@ class UsersChecked
         return $this->_eMailChecked;
     }
 
+    public function UserInformations()
+    {
+        return $this->_userInformations;
+    }
+
 // 
 
 
@@ -53,6 +59,12 @@ class UsersChecked
     {
         $this->_eMailChecked = $EMailChecked;
     }
+    
+    public function setUserInformations($UserInformations)
+    {
+        $this->_userInformations = $UserInformations;
+    }
+    
     
 
 //

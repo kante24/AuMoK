@@ -1,5 +1,6 @@
 <?
     require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
+    UserInformations($User);
 ?>
 <style>
 
@@ -16,7 +17,7 @@
     /* The Information modal (background) */
     .Informations {
         /* Hidden by default */
-        /* display: none; */
+        display: none;
         /* Stay in place */
         position: fixed;
         /* Sit on top */
@@ -48,10 +49,10 @@
 </style>
 <input type="button" id="btnInfos" onclick="popupInformations()" value="Display" />
 
-<!-- The Login -->
+<!-- The Informations Body -->
 <div id="myInfos" class="Informations">
 
-    <!-- Login content -->
+    <!-- Informations content -->
     <div class="modal-content infosContent justify-content-center" style="text-align: center;">
 
         <div class="container justify-content-center shadow-lg" style="width: 600px;margin-top: 150px;background-color:white">

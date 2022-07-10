@@ -228,4 +228,57 @@ class UsersManager
             echo $ex->getMessage();
         }
     }
+
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////// UserChecked //////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    // Return table checked user from db
+    public function UserChecked(Users $user)
+    {
+        // Conection
+        $pdo = $this->_db;
+        //SLQ Query
+        $query = $pdo->prepare("SELECT * FROM UsersChecked WHERE CodeUser = :CodeUser");
+        // Fetch query results
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute(array(
+            "CodeUser" => $user->CodeUser()
+        ));
+
+        $data = $query->fetchAll();
+        // If query result is not null, return result 'array', else return false
+        if ($data != null) {
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    /////////////////////////// User Informations ///////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    public function UserInformations(Users $user)
+    {
+        // Conection
+        $pdo = $this->_db;
+        //SLQ Query
+        $query = $pdo->prepare("SELECT * FROM UsersInformations WHERE CodeUser = :CodeUser");
+        // Fetch query results
+        $query->setFetchMode(PDO::FETCH_ASSOC);
+        $query->execute(array(
+            "CodeUser" => $user->CodeUser()
+        ));
+
+        $data = $query->fetchAll();
+        // If query result is not null, return result 'array', else return false
+        if ($data != null) {
+            return $data;
+        } else {
+            return false;
+        }
+    }
 }

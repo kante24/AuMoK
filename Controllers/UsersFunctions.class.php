@@ -13,6 +13,9 @@
 
 
 //Validate eMail format
+
+use FTP\Connection;
+
 function validateEmail($email)
 {
     // Return true if format correct, else return false
@@ -196,6 +199,56 @@ function UpdateUserEMailPhone(Users $User)
     }
     else return false;
 }
+
+// Function to display popup for user to fill with his informations
+function UserInformations(Users $user)
+{
+    $popupInfo =
+        '
+        <script>
+            window.onload = function(){
+                setTimeout(popupInformations, 1000);
+               };
+        </script>
+    ';
+    // echo $popupInfo;
+
+    // Get an user's informations
+    $db = connection();
+    $UserManager = new UsersManager($db) ;
+    $data = $UserManager->UserInformations($user);
+    if($data != null && $data == true)
+    {
+        $userInformations = new UsersInformations($data[0]);
+        var_dump($userInformations->Address());
+    }
+}
+
+
+// Function to get checked of an user
+function UserChecked(Users $user)
+{
+    // Database
+    $db = connection();
+    $UserCheckedManager = new UsersManager($db);
+    // Return checked of User from db
+    return $UserCheckedManager->UserChecked($user);
+ 
+}
+
+// Get as parameter $checked form header In and an color
+function StatusCheck($checked)
+{
+    if($checked != null)
+    {
+        if ($checked == 0) {
+            echo "bg-danger";
+        } elseif ($checked == 1) {
+            echo "bg-success";
+        }
+    }
+}
+
 
 
 
