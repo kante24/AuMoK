@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 05 juil. 2022 à 05:05
+-- Généré le : dim. 10 juil. 2022 à 22:28
 -- Version du serveur :  10.4.19-MariaDB
 -- Version de PHP : 7.3.28
 
@@ -1979,17 +1979,54 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `isAlive`) VALUES
-('KanDav28242084457', 'Kante', 'David', '2022-07-11', 'aa@gmail.com', '4382336332', 'David', '123', 1);
+('KanDav28242084457', 'Kante', 'David', '2022-07-20', 'aa@gmail.com', '4382336332', 'David', '123', 1);
+
+--
+-- Déclencheurs `Users`
+--
+DELIMITER $$
+CREATE TRIGGER `New User Checked` AFTER INSERT ON `Users` FOR EACH ROW INSERT INTO `UsersChecked` (`CodeUser`, `PhoneChecked`, `eMailChecked`, `UserInformations`) VALUES (New.CodeUser, '0', '0', '0')
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `New User Informations` AFTER INSERT ON `Users` FOR EACH ROW INSERT INTO `UsersInformations` (`CodeUser`, `CodeInformation`, `Address`, `ContactPreference`, `TimePreference`, `isFilled`, `SignUpDate`) VALUES (New.CodeUser, 'a', 'a', 'Phone', 'Morning', '0', CURDATE())
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `UsersInfos`
+-- Structure de la table `UsersChecked`
 --
 
-CREATE TABLE `UsersInfos` (
+CREATE TABLE `UsersChecked` (
   `CodeUser` varchar(100) NOT NULL,
-  `SignUPDate` date NOT NULL
+  `PhoneChecked` tinyint(1) NOT NULL DEFAULT 0,
+  `eMailChecked` tinyint(1) NOT NULL DEFAULT 0,
+  `UserInformations` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `UsersChecked`
+--
+
+INSERT INTO `UsersChecked` (`CodeUser`, `PhoneChecked`, `eMailChecked`, `UserInformations`) VALUES
+('KanDav28242084457', 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `UsersInformations`
+--
+
+CREATE TABLE `UsersInformations` (
+  `CodeUser` varchar(100) NOT NULL,
+  `CodeInformation` varchar(100) NOT NULL,
+  `Address` text NOT NULL DEFAULT 'n/a',
+  `ContactPreference` text NOT NULL DEFAULT 'Phone',
+  `TimePreference` text NOT NULL DEFAULT 'Morning',
+  `isFilled` tinyint(1) NOT NULL DEFAULT 0,
+  `SignUpDate` date NOT NULL DEFAULT '0000-00-00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -2021,10 +2058,16 @@ ALTER TABLE `Users`
   ADD UNIQUE KEY `Username` (`Username`) USING HASH;
 
 --
--- Index pour la table `UsersInfos`
+-- Index pour la table `UsersChecked`
 --
-ALTER TABLE `UsersInfos`
+ALTER TABLE `UsersChecked`
   ADD PRIMARY KEY (`CodeUser`);
+
+--
+-- Index pour la table `UsersInformations`
+--
+ALTER TABLE `UsersInformations`
+  ADD PRIMARY KEY (`CodeUser`,`CodeInformation`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -2053,10 +2096,16 @@ ALTER TABLE `CarModels`
   ADD CONSTRAINT `carmodels_ibfk_1` FOREIGN KEY (`BrandName`) REFERENCES `CarBrands` (`BrandName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `UsersInfos`
+-- Contraintes pour la table `UsersChecked`
 --
-ALTER TABLE `UsersInfos`
-  ADD CONSTRAINT `usersinfos_ibfk_1` FOREIGN KEY (`CodeUser`) REFERENCES `Users` (`CodeUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `UsersChecked`
+  ADD CONSTRAINT `userschecked_ibfk_1` FOREIGN KEY (`CodeUser`) REFERENCES `Users` (`CodeUser`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `UsersInformations`
+--
+ALTER TABLE `UsersInformations`
+  ADD CONSTRAINT `usersinformations_ibfk_1` FOREIGN KEY (`CodeUser`) REFERENCES `Users` (`CodeUser`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

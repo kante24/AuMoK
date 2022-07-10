@@ -275,11 +275,19 @@ if (isset($_POST["editEMailPhone"])) {
                             <div class="col-11" id="currentEMailPhone" style="text-align: center;">
                                 <!-- Current Phone Number  -->
                                 <p style="display:inline;"> Phone Number = </p>
-                                <h5 style="display:inline;"> &#160; <? echo $User->Phone() ?> </h5>
-                                &#160;&#160;/&#160;&#160;
+                                <h5 class="position-relative" style="display:inline;">
+                                    &#160; <? echo $User->Phone() ?>
+                                    <!-- Phone Status Check  (Green = Verified / Red = unVerified) -->
+                                    <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle <?StatusCheck($checked->PhoneChecked())?> p-2 ms-2 mb-3"><span class="visually-hidden">Check Phone Status </span></span>
+                                </h5>
+                                <p class="ms-4 me-2" style="display:inline;">/</p>
                                 <!-- Current Address eMail -->
                                 <p style="display:inline;"> Address eMail = </p>
-                                <h5 style="display:inline;"> &#160; <? echo $User->eMail() ?> </h5>
+                                <h5 class="position-relative" style="display:inline;">
+                                    &#160; <? echo $User->eMail() ?>
+                                    <!-- Email Status Check (Green = Verified / Red = unVerified) -->
+                                    <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle <?StatusCheck($checked->eMailChecked())?> p-2 ms-2 mb-3"><span class="visually-hidden">Check eMail Status </span></span>
+                                </h5>
                             </div>
                             <!-- Row for edition mode -->
                             <div class="col-11" id="EMailPhoneEdition" style="display: none;">
@@ -323,16 +331,6 @@ if (isset($_POST["editEMailPhone"])) {
                         <!-- Horizontale bar -->
                         <div class="row mt-3 justify-content-center">
                             <hr class="ColorChange" />
-                        </div>
-
-                        <div class="row">
-                            <div class="col-11" id="currentEMailPhone" style="text-align: center;">
-                                <!-- Current Phone Number  -->
-                                <p style="display:inline;"> Phone Number is <? echo checkedBool($checked->PhoneChecked()) ?> </p>
-                                &#160;/&#160;
-                                <!-- Current Address eMail -->
-                                <p style="display:inline;"> Address eMail is <? echo checkedBool($checked->eMailChecked()) ?> </p>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -269,7 +269,7 @@
 
 
     <script>
-        function popupSignin() {
+        function popupSignUP() {
             // Get the modal
             var modal = document.getElementById("mySignup");
             modal.style.display = "block";

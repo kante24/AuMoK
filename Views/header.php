@@ -118,7 +118,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li class="dropdown-item pointer" id="btnSignup" onclick="popupSignin()">
+                        <li class="dropdown-item pointer" id="btnSignup" onclick="popupSignUP()">
                             SIGN UP
                         </li>
                     </ul>

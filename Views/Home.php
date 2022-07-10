@@ -1,5 +1,6 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
+var_dump($User)
 ?>
 
 
@@ -19,19 +20,14 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.ph
 </head>
 
 <body>
+    <br /><br /><br />
 
 
-    Name = <? echo $User->Name() ?> <br />
-    Firstname = <? echo $User->Firstname() ?> <br />
 
-    <?php
-    // var_dump(UserChecked($User));
-    $checked = new UsersChecked(UserChecked($User)[0]);
-    // echo $checked->isAlive() ;
-    echo checkedBool( $checked->isAlive());
-    ?>
 
-    
+
+
+
 
 
 

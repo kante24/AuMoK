@@ -10,12 +10,12 @@ function UserChecked(Users $user)
  
 }
 
-function checkedBool($checked)
+function StatusCheck($checked)
 {
     if ($checked == 0) {
-        return "unVerified";
+        echo "bg-danger";
     } elseif ($checked == 1) {
-        return "Verified";
+        echo "bg-success";
     }
 }
 

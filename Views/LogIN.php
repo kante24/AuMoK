@@ -122,7 +122,7 @@
                 <div class="row mt-5 justify-content-center">
 
                     <!-- Link Sign UP -->
-                    <p>No account? <a id="linkSignUp" href="#">Sign UP</a></p>
+                    <p>No account? <a id="linkSignUp" href="#" onclick="popupSignUP()">Sign UP</a></p>
 
                 </div>
 

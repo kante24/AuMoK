@@ -5,7 +5,6 @@ class UsersChecked
 
 //Params
     private $_codeUser;
-    private $_isAlive;
     private $_phoneChecked;
     private $_eMailChecked;
 //
@@ -25,11 +24,6 @@ class UsersChecked
         return $this->_codeUser;
     }
 
-    public function isAlive()
-    {
-        return $this->_isAlive;
-    }
-
     public function PhoneChecked()
     {
         return $this->_phoneChecked;
@@ -44,11 +38,6 @@ class UsersChecked
 
 
 //Setters
-
-    public function setIsAlive($isAlive)
-    {
-        $this->_isAlive = $isAlive;
-    }
     
     public function setCodeUser($CodeUser)
     {

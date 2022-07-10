@@ -25,7 +25,7 @@ class UsersCheckedManager
         // Conection
         $pdo = $this->_db;
         //SLQ Query
-        $query = $pdo->prepare("SELECT * FROM UsersChecked WHERE CodeUser = :CodeUser AND isAlive = 1");
+        $query = $pdo->prepare("SELECT * FROM UsersChecked WHERE CodeUser = :CodeUser");
         // Fetch query results
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute(array(
