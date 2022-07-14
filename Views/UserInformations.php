@@ -1,6 +1,6 @@
 <?
     require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
-    UserInformations($User);
+    // UserInformations($User);
 ?>
 <style>
 
@@ -17,7 +17,7 @@
     /* The Information modal (background) */
     .Informations {
         /* Hidden by default */
-        display: none;
+        /* display: none; */
         /* Stay in place */
         position: fixed;
         /* Sit on top */
@@ -62,16 +62,19 @@
                 <!-- First row -->
                 <div class="row mt-5 justify-content-center">
 
-                    <!-- Text : Sign IN -->
+                    <!-- Text - Title -->
                     <div class="col-9 mt-2">
                         <h1 style="text-shadow: 1px 1px black; text-align: center;">Tell us about <?echo $User->Username()?></h1>
                     </div>
 
-                    <!-- Button to close Login popup -->
+                    <!-- Button to close Informations popup -->
                     <div class="mt-1col-3 justify-content-center closeInfos" id="closeInfos" style="width: 60px;height: 50px" onclick="Informations()">
                         <img class="mt-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 40px; height: 40px;" />
                     </div>
 
+                </div>
+
+                <div class="row">
                 </div>
 
             </form>
@@ -116,17 +119,8 @@
     }
 </script>
 
-<?
+<?php
 
-//If click on button login and Login = white space
-if (isset($_POST["btnLogin"]) && ctype_space($_POST["Login"]) == false) {
-    $User = new Users(array("Username" => $_POST["Login"], "Password" => $_POST["Password"]));
-    if (LogIN($User) == true) {
-        echo
-        "<script>
-            Relocation('Views/Home.php')
-        </script>";
-    } 
-}
+
 
 ?>

@@ -207,7 +207,7 @@ function UserInformations(Users $user)
         '
         <script>
             window.onload = function(){
-                setTimeout(popupInformations, 1000);
+                setInterval(popupInformations, 1000);
                };
         </script>
     ';
@@ -220,7 +220,17 @@ function UserInformations(Users $user)
     if($data != null && $data == true)
     {
         $userInformations = new UsersInformations($data[0]);
-        var_dump($userInformations->Address());
+        // var_dump($userInformations->Address());
+        if(trim($userInformations->Address()) != "n/a")
+        {
+            echo "filled";
+        }
+        // In db, n/a for address will means that user's informations are the default
+        // In that case display form for information
+        elseif(trim($userInformations->Address()) == "n/a")
+        {
+            echo "no filled";
+        }
     }
 }
 
