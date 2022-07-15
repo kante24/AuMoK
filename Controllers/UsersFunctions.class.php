@@ -210,19 +210,11 @@ function UserInformations(Users $user)
         // In db, n/a for address will means that user's informations are the default
         // In that case display form for information
         elseif (trim($userInformations->Address()) == "n/a") {
-            // echo "no filled";
-            //     $popupInfo ='
-            //     <script>
-            //         window.onload = function(){
-            //             setInterval(popupInformations, 1000);
-            //         };
-            //     </script>
-            // ';
-            //Display popup every 5 minutes
+            //Display popup every minute
             $popupInfo =
                 '<script>
                     window.onload = function(){
-                    setInterval(popupInformations, 300000);
+                        setInterval(popupInformations, 60000);
                    };
                 </script>
             ';

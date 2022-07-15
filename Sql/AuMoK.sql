@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 15 juil. 2022 à 02:13
+-- Généré le : ven. 15 juil. 2022 à 03:54
 -- Version du serveur :  10.4.19-MariaDB
 -- Version de PHP : 7.3.28
 
@@ -1978,7 +1978,7 @@ CREATE TABLE `Users` (
 -- Déclencheurs `Users`
 --
 DELIMITER $$
-CREATE TRIGGER `Before Delete User Insert into User Deleted` BEFORE DELETE ON `Users` FOR EACH ROW INSERT INTO `UsersDeleted` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `deletionDate`) VALUES (Old.CodeUser, Old.Name, Old.Firstname, Old.BirthDate, Old.eMail, Old.Phone, Old.Username, Old.Password, CURDATE())
+CREATE TRIGGER `Before Delete User Insert Him into UserDeleted` BEFORE DELETE ON `Users` FOR EACH ROW INSERT INTO `UsersDeleted` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `deletionDate`,`SignUpDate`, `Address`) VALUES (Old.CodeUser, Old.Name, Old.Firstname, Old.BirthDate, Old.eMail, Old.Phone, Old.Username, Old.Password, CURDATE(), (SELECT SignUpDate FROM UsersInformations WHERE CodeUser = Old.CodeUser) ,(SELECT Address FROM UsersInformations WHERE CodeUser = Old.CodeUser) )
 $$
 DELIMITER ;
 DELIMITER $$
@@ -2024,14 +2024,6 @@ CREATE TABLE `UsersDeleted` (
   `Address` text DEFAULT 'n/a'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Déchargement des données de la table `UsersDeleted`
---
-
-INSERT INTO `UsersDeleted` (`IdUserDeleted`, `CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `deletionDate`, `SignUpDate`, `Address`) VALUES
-(4, 'n/a', 'n/a', 'n/a', '0000-00-00', 'n/a', 'n/a', 'n/a', 'n/a', '2022-07-14', '0000-00-00', 'n/a'),
-(5, 'n/a', 'n/a', 'n/a', '0000-00-00', 'n/a', 'n/a', 'n/a', 'n/a', '2022-07-14', '0000-00-00', 'n/a');
-
 -- --------------------------------------------------------
 
 --
@@ -2047,14 +2039,6 @@ CREATE TABLE `UsersInformations` (
   `isFilled` tinyint(1) NOT NULL DEFAULT 0,
   `SignUpDate` date NOT NULL DEFAULT '0000-00-00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déclencheurs `UsersInformations`
---
-DELIMITER $$
-CREATE TRIGGER `Before Delete Infos Add in UsersDeleted` BEFORE DELETE ON `UsersInformations` FOR EACH ROW UPDATE `UsersDeleted` SET `SignUpDate` = Old.SignUpDate, `UsersDeleted`.`Address` = adfda WHERE `UsersDeleted`.`CodeUser` = `UsersInformations`.CodeUser
-$$
-DELIMITER ;
 
 --
 -- Index pour les tables déchargées
@@ -2123,13 +2107,13 @@ ALTER TABLE `CarModels`
 -- AUTO_INCREMENT pour la table `UsersDeleted`
 --
 ALTER TABLE `UsersDeleted`
-  MODIFY `IdUserDeleted` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `IdUserDeleted` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT pour la table `UsersInformations`
 --
 ALTER TABLE `UsersInformations`
-  MODIFY `CodeInformation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `CodeInformation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Contraintes pour les tables déchargées

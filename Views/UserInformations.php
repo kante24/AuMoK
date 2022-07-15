@@ -1,13 +1,12 @@
 <?
 // require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
 // Display popup for Informations every 5 minutes if unFilled
-if(UserAddress($User) == false){
+if (UserAddress($User) == false) {
+    //display every 5 minutes while Infos unFilled
     UserInformations($User);
-}
-// ;
+};
 ?>
 <style>
-
     /* div {
         border: solid;
     } */
@@ -50,7 +49,8 @@ if(UserAddress($User) == false){
         margin-left: 400px;
     }
 </style>
-
+<!-- <input type="button" value="Display" onclick="popupInformations()" />
+<br /> -->
 <!-- The Informations Body -->
 <div id="myInfos" class="Informations">
 
@@ -151,9 +151,12 @@ if(UserAddress($User) == false){
 
 <script>
     function popupInformations() {
+
         // Get the modal
         var modal = document.getElementById("myInfos");
+        // When the user clicks the button, open the modal 
         modal.style.display = "block";
+
 
         // Get the button that opens the modal
         var btnInfos = document.getElementById("btnInfos");
@@ -161,11 +164,6 @@ if(UserAddress($User) == false){
         // Get the button that closes the modal
         // var btnClose = document.getElementsByClassName("closeInfos")[0];
         var btnClose = document.getElementById("closeInfos");
-
-        // When the user clicks the button, open the modal 
-        btnInfos.onclick = function() {
-            modal.style.display = "block";
-        }
 
         // When the user clicks on the button (x), close the modal
         btnClose.onclick = function() {
@@ -179,8 +177,6 @@ if(UserAddress($User) == false){
             }
         }
     }
-
-
 </script>
 <?
 if (isset($_POST["submitInfos"])) {
@@ -188,14 +184,11 @@ if (isset($_POST["submitInfos"])) {
     $TimePreference = $_POST["TimePreference"];
     $Address = $_POST["Address"] . "/" . $_POST["City"] . "/" . $_POST["Country"];
 
-    $UserInformations = New UsersInformations(array("CodeUser"=>$User->CodeUser(), "ContactPreference"=>$ContactPreference, "TimePreference"=>$TimePreference,"Address"=>$Address));
+    $UserInformations = new UsersInformations(array("CodeUser" => $User->CodeUser(), "ContactPreference" => $ContactPreference, "TimePreference" => $TimePreference, "Address" => $Address));
     UpdateUserInformations($UserInformations);
     // if(UpdateUserInformations($UserInformations) == true )
     // {
     //     UpdateUserInformations($UserInformations);
     // }
-
-    
-
 }
 ?>
