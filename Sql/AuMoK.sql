@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : dim. 10 juil. 2022 à 22:28
+-- Généré le : ven. 15 juil. 2022 à 02:13
 -- Version du serveur :  10.4.19-MariaDB
 -- Version de PHP : 7.3.28
 
@@ -1975,21 +1975,18 @@ CREATE TABLE `Users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `Users`
---
-
-INSERT INTO `Users` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `isAlive`) VALUES
-('KanDav28242084457', 'Kante', 'David', '2022-07-20', 'aa@gmail.com', '4382336332', 'David', '123', 1);
-
---
 -- Déclencheurs `Users`
 --
+DELIMITER $$
+CREATE TRIGGER `Before Delete User Insert into User Deleted` BEFORE DELETE ON `Users` FOR EACH ROW INSERT INTO `UsersDeleted` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `deletionDate`) VALUES (Old.CodeUser, Old.Name, Old.Firstname, Old.BirthDate, Old.eMail, Old.Phone, Old.Username, Old.Password, CURDATE())
+$$
+DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `New User Checked` AFTER INSERT ON `Users` FOR EACH ROW INSERT INTO `UsersChecked` (`CodeUser`, `PhoneChecked`, `eMailChecked`, `UserInformations`) VALUES (New.CodeUser, '0', '0', '0')
 $$
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `New User Informations` AFTER INSERT ON `Users` FOR EACH ROW INSERT INTO `UsersInformations` (`CodeUser`, `CodeInformation`, `Address`, `ContactPreference`, `TimePreference`, `isFilled`, `SignUpDate`) VALUES (New.CodeUser, 'a', 'a', 'Phone', 'Morning', '0', CURDATE())
+CREATE TRIGGER `New User Informations` AFTER INSERT ON `Users` FOR EACH ROW INSERT INTO `UsersInformations` (`CodeUser`, `ContactPreference`, `TimePreference`, `isFilled`, `SignUpDate`) VALUES (New.CodeUser, 'Phone', 'Morning', '0', CURDATE())
 $$
 DELIMITER ;
 
@@ -2006,12 +2003,34 @@ CREATE TABLE `UsersChecked` (
   `UserInformations` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Déchargement des données de la table `UsersChecked`
+-- Structure de la table `UsersDeleted`
 --
 
-INSERT INTO `UsersChecked` (`CodeUser`, `PhoneChecked`, `eMailChecked`, `UserInformations`) VALUES
-('KanDav28242084457', 0, 0, 0);
+CREATE TABLE `UsersDeleted` (
+  `IdUserDeleted` int(11) NOT NULL,
+  `CodeUser` varchar(100) DEFAULT 'n/a',
+  `Name` text DEFAULT 'n/a',
+  `Firstname` text DEFAULT 'n/a',
+  `BirthDate` date DEFAULT '0000-00-00',
+  `eMail` varchar(100) DEFAULT 'n/a',
+  `Phone` varchar(100) DEFAULT 'n/a',
+  `Username` text DEFAULT 'n/a',
+  `Password` text DEFAULT 'n/a',
+  `deletionDate` date DEFAULT '0000-00-00',
+  `SignUpDate` date DEFAULT '0000-00-00',
+  `Address` text DEFAULT 'n/a'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `UsersDeleted`
+--
+
+INSERT INTO `UsersDeleted` (`IdUserDeleted`, `CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `deletionDate`, `SignUpDate`, `Address`) VALUES
+(4, 'n/a', 'n/a', 'n/a', '0000-00-00', 'n/a', 'n/a', 'n/a', 'n/a', '2022-07-14', '0000-00-00', 'n/a'),
+(5, 'n/a', 'n/a', 'n/a', '0000-00-00', 'n/a', 'n/a', 'n/a', 'n/a', '2022-07-14', '0000-00-00', 'n/a');
 
 -- --------------------------------------------------------
 
@@ -2021,13 +2040,21 @@ INSERT INTO `UsersChecked` (`CodeUser`, `PhoneChecked`, `eMailChecked`, `UserInf
 
 CREATE TABLE `UsersInformations` (
   `CodeUser` varchar(100) NOT NULL,
-  `CodeInformation` varchar(100) NOT NULL,
+  `CodeInformation` int(11) NOT NULL,
   `Address` text NOT NULL DEFAULT 'n/a',
   `ContactPreference` text NOT NULL DEFAULT 'Phone',
   `TimePreference` text NOT NULL DEFAULT 'Morning',
   `isFilled` tinyint(1) NOT NULL DEFAULT 0,
   `SignUpDate` date NOT NULL DEFAULT '0000-00-00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déclencheurs `UsersInformations`
+--
+DELIMITER $$
+CREATE TRIGGER `Before Delete Infos Add in UsersDeleted` BEFORE DELETE ON `UsersInformations` FOR EACH ROW UPDATE `UsersDeleted` SET `SignUpDate` = Old.SignUpDate, `UsersDeleted`.`Address` = adfda WHERE `UsersDeleted`.`CodeUser` = `UsersInformations`.CodeUser
+$$
+DELIMITER ;
 
 --
 -- Index pour les tables déchargées
@@ -2064,10 +2091,17 @@ ALTER TABLE `UsersChecked`
   ADD PRIMARY KEY (`CodeUser`);
 
 --
+-- Index pour la table `UsersDeleted`
+--
+ALTER TABLE `UsersDeleted`
+  ADD PRIMARY KEY (`IdUserDeleted`);
+
+--
 -- Index pour la table `UsersInformations`
 --
 ALTER TABLE `UsersInformations`
-  ADD PRIMARY KEY (`CodeUser`,`CodeInformation`);
+  ADD PRIMARY KEY (`CodeUser`) USING BTREE,
+  ADD UNIQUE KEY `CodeInformation` (`CodeInformation`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -2084,6 +2118,18 @@ ALTER TABLE `CarBrands`
 --
 ALTER TABLE `CarModels`
   MODIFY `idModel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3569;
+
+--
+-- AUTO_INCREMENT pour la table `UsersDeleted`
+--
+ALTER TABLE `UsersDeleted`
+  MODIFY `IdUserDeleted` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `UsersInformations`
+--
+ALTER TABLE `UsersInformations`
+  MODIFY `CodeInformation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Contraintes pour les tables déchargées

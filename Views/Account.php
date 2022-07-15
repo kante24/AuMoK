@@ -15,6 +15,7 @@ if (isset($_POST["deleteAccount"])) {
     }
     // Else If deletion successfull
     else if (DeleteUser($User) == true) {
+        session_destroy();
         echo
         "<script>
             Relocation('')

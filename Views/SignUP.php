@@ -115,7 +115,7 @@
 
                         <!-- Button to close SignIN popup -->
                         <div class="col-1 center float-end">
-                            <div class="mt-1 col-3 float-end justify-content-center closeSignup" id="closeSignup" style="width: 60px;height: 50px;float:right" onclick="Login()">
+                            <div class="mt-1 col-3 float-end justify-content-center closeSignup" id="closeSignup" style="width: 60px;height: 50px;float:right" onclick="popupSignUP()">
                                 <img class="mt-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 40px; height: 40px;" ; />
                             </div>
                         </div>
@@ -330,14 +330,6 @@ if (isset($_POST["addUser"])) {
              </script>';
         }
 
-        // if (validateName($User->Firstname()) == false) {
-        //     echo
-        //     '<script>
-        //         document.getElementById("errorFirstname").innerHTML = "Only Letters"
-        //         document.getElementById("errorSignUP").innerHTML = "Only Letters"
-        //      </script>';
-        // }
-
         if (validateEmail($User->eMail()) == false) {
             echo
             '<script>
@@ -362,7 +354,7 @@ if (isset($_POST["addUser"])) {
              </script>';
         }
 
-        if (validateName($User->Name()) == true && validateName($User->Firstname()) == true && validateEmail($User->eMail()) == true && validatePhone($User->Phone()) == true && validatePasswords($User->Password(), $_POST["Password2"]) == true) {
+        if (validateName($User->Name()) == true && validateEmail($User->eMail()) == true && validatePhone($User->Phone()) == true && validatePasswords($User->Password(), $_POST["Password2"]) == true) {
 
             if (SignUP($User) == true) {
                 // echo

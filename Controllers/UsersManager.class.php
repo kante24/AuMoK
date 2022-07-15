@@ -39,23 +39,27 @@ class UsersManager
         try {
             // Connection
             $pdo = $this->_db;
-            // SQL Query
-            $query = $pdo->prepare("INSERT into Users (CodeUser, Name, Firstname, BirthDate, eMail, Phone, Username, Password, isAlive) VALUES (:CodeUser, :Namee, :Firstname, :BirthDate, :eMail, :Phone, :Username, :Passwordd, :isAlive)");
-            $result = $query->execute([
-                ":CodeUser" => $user->CodeUser(),
-                ":Namee" => $user->Name(),
-                ":Firstname" => $user->Firstname(),
-                ":BirthDate" => $user->BirthDate(),
-                ":eMail" => $user->eMail(),
-                ":Phone" => $user->Phone(),
-                ":Username" => $user->Username(),
-                ":Passwordd" => $user->Password(),
-                ":isAlive" => $user->isAlive()
-            ]);
-            // If execution is successfull, return true, else return false
-            if ($result) {
-                return true;
-            } else return false;
+            // if ($this->existanceCodeUserDB($user) == false) {
+            //     return false;
+            // } else {
+                // SQL Query
+                $query = $pdo->prepare("INSERT into Users (CodeUser, Name, Firstname, BirthDate, eMail, Phone, Username, Password, isAlive) VALUES (:CodeUser, :Namee, :Firstname, :BirthDate, :eMail, :Phone, :Username, :Passwordd, :isAlive)");
+                $result = $query->execute([
+                    ":CodeUser" => $user->CodeUser(),
+                    ":Namee" => $user->Name(),
+                    ":Firstname" => $user->Firstname(),
+                    ":BirthDate" => $user->BirthDate(),
+                    ":eMail" => $user->eMail(),
+                    ":Phone" => $user->Phone(),
+                    ":Username" => $user->Username(),
+                    ":Passwordd" => $user->Password(),
+                    ":isAlive" => 1
+                ]);
+                // If execution is successfull, return true, else return false
+                if ($result) {
+                    return true;
+                } else return false;
+            // }
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
@@ -165,7 +169,11 @@ class UsersManager
             // Connection
             $pdo = $this->_db;
             // SQL Query
-            $query = $pdo->prepare("UPDATE Users SET isAlive = false WHERE CodeUser = :CodeUser");
+            // $query = $pdo->prepare("UPDATE Users SET isAlive = false WHERE CodeUser = :CodeUser");
+            // $result = $query->execute([
+            //     ":CodeUser" => $user->CodeUser()
+            // ]);
+            $query = $pdo->prepare("DELETE FROM Users WHERE CodeUser = :CodeUser");
             $result = $query->execute([
                 ":CodeUser" => $user->CodeUser()
             ]);
@@ -279,6 +287,34 @@ class UsersManager
             return $data;
         } else {
             return false;
+        }
+    }
+    public function UpdateUserInformations(UsersInformations $userInfos)
+    {
+        try {
+            // Connection
+            $pdo = $this->_db;
+            // SQL Query
+            $query = $pdo->prepare("UPDATE UsersInformations SET Address = :Address, ContactPreference = :ContactPreference, TimePreference = :TimePreference WHERE CodeUser = :CodeUser");
+            $us = new Users(array("CodeUser" => $userInfos->CodeUser()));
+            // Check existance User by codeUser
+            // If no return false
+            if ($this->existanceCodeUserDB($us) == false) {
+                return false;
+            } else {
+                $result = $query->execute([
+                    "CodeUser" => $userInfos->CodeUser(),
+                    "Address" => $userInfos->Address(),
+                    "ContactPreference" => $userInfos->ContactPreference(),
+                    "TimePreference" => $userInfos->TimePreference(),
+                ]);
+                // If execution is successfull, return true, else return false
+                if ($result) {
+                    return true;
+                } else return false;
+            }
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
         }
     }
 }

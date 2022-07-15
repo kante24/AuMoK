@@ -154,8 +154,7 @@ else if (isset($_SESSION['User'])) {
     </nav>
 
     <?
-    require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/LogIN.php");
-    require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/SignUP.php");
+    require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/UserInformations.php");
     ?>
 
     <script>

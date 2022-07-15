@@ -70,7 +70,7 @@
                     </div>
 
                     <!-- Button to close Login popup -->
-                    <div class="mt-1 col-3 justify-content-center close closeLogin" id="closeLogin" style="width: 60px;height: 50px" onclick="Login()">
+                    <div class="mt-1 col-3 justify-content-center close closeLogin" id="closeLogin" style="width: 60px;height: 50px" onclick="popupLogin()">
                         <img class="mt-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 40px; height: 40px;" />
                     </div>
 
@@ -177,7 +177,7 @@ if (isset($_POST["btnLogin"]) && ctype_space($_POST["Login"]) == false) {
     if (LogIN($User) == true) {
         echo
         "<script>
-            Relocation('Views/Home.php')
+            window.location.href = '/dashboard/AuMoK/Views/Home.php'
         </script>";
     } 
 }

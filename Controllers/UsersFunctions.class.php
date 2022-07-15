@@ -72,7 +72,7 @@ function SignUP(Users $User)
     // Database
     $db = connection();
     $UserManager = new UsersManager($db);
-    
+
     // Before sign up, must check if address eMail, phone number or username already exists in DB
     // If already exists display error messages
 
@@ -131,7 +131,7 @@ function LogIN(Users $User)
     // Before log in, must check if address eMail or username already exists in DB
     // If neither address eMail or username exists display error messages
     if ($UserManager->existanceUsernameDB($User) == false && $UserManager->existanceEMailDB($User) == false) {
-        echo 
+        echo
         '<script>
             document.getElementById("errorLogin").innerHTML = "Inexistant Username/Address eMail"
         </script>';
@@ -145,7 +145,7 @@ function LogIN(Users $User)
             $_SESSION["User"] = $UserManager->logIN($User);
             // Return true as success
             return true;
-        } 
+        }
         // If log IN not successfull 
         else {
             // Display error message
@@ -155,7 +155,6 @@ function LogIN(Users $User)
             </script>';
         }
     }
-
 }
 
 
@@ -167,11 +166,9 @@ function DeleteUser(Users $User)
     $db = connection();
     $UserManager = new UsersManager($db);
 
-    if($UserManager->deleteUser($User) == true)
-    {
+    if ($UserManager->deleteUser($User) == true) {
         return true;
-    }
-    else return false;
+    } else return false;
 }
 
 // Update User Account's name, birthDate
@@ -180,11 +177,9 @@ function UpdateUserName(Users $User)
     // Database
     $db = connection();
     $UserManager = new UsersManager($db);
-    if($UserManager->updateUserName($User) == true)
-    {
+    if ($UserManager->updateUserName($User) == true) {
         return true;
-    }
-    else return false;
+    } else return false;
 }
 
 // Update User Account's phone, eMail
@@ -193,43 +188,45 @@ function UpdateUserEMailPhone(Users $User)
     // Database
     $db = connection();
     $UserManager = new UsersManager($db);
-    if($UserManager->updateUserEMailPhone($User) == true)
-    {
+    if ($UserManager->updateUserEMailPhone($User) == true) {
         return true;
-    }
-    else return false;
+    } else return false;
 }
 
 // Function to display popup for user to fill with his informations
 function UserInformations(Users $user)
 {
-    $popupInfo =
-        '
-        <script>
-            window.onload = function(){
-                setInterval(popupInformations, 1000);
-               };
-        </script>
-    ';
-    // echo $popupInfo;
-
     // Get an user's informations
     $db = connection();
-    $UserManager = new UsersManager($db) ;
+    $UserManager = new UsersManager($db);
     $data = $UserManager->UserInformations($user);
-    if($data != null && $data == true)
-    {
+    if ($data != null && $data == true) {
         $userInformations = new UsersInformations($data[0]);
-        // var_dump($userInformations->Address());
-        if(trim($userInformations->Address()) != "n/a")
-        {
-            echo "filled";
+
+        if (trim($userInformations->Address()) != "n/a") {
+            //     echo "filled";
         }
+
         // In db, n/a for address will means that user's informations are the default
         // In that case display form for information
-        elseif(trim($userInformations->Address()) == "n/a")
-        {
-            echo "no filled";
+        elseif (trim($userInformations->Address()) == "n/a") {
+            // echo "no filled";
+            //     $popupInfo ='
+            //     <script>
+            //         window.onload = function(){
+            //             setInterval(popupInformations, 1000);
+            //         };
+            //     </script>
+            // ';
+            //Display popup every 5 minutes
+            $popupInfo =
+                '<script>
+                    window.onload = function(){
+                    setInterval(popupInformations, 300000);
+                   };
+                </script>
+            ';
+            echo $popupInfo;
         }
     }
 }
@@ -243,14 +240,12 @@ function UserChecked(Users $user)
     $UserCheckedManager = new UsersManager($db);
     // Return checked of User from db
     return $UserCheckedManager->UserChecked($user);
- 
 }
 
 // Get as parameter $checked form header In and an color
 function StatusCheck($checked)
 {
-    if($checked != null)
-    {
+    if ($checked != null) {
         if ($checked == 0) {
             echo "bg-danger";
         } elseif ($checked == 1) {
@@ -259,8 +254,46 @@ function StatusCheck($checked)
     }
 }
 
+// Get and explode user address
+function UserAddress(Users $user)
+{
+    // Get an user's informations
+    $db = connection();
+    $UserManager = new UsersManager($db);
+    $data = $UserManager->UserInformations($user);
+    if ($data != null && $data == true) {
+        $userInformations = new UsersInformations($data[0]);
+        // In db, n/a for address will means that user's informations are the default
+        // In that case display form for information
+        if (trim($userInformations->Address()) != "n/a") {
+            // echo "Address = " . $userInformations->Address();
+            $CompleteAddress = explode("/", $userInformations->Address());
+            // $address = $CompleteAddress[0];
+            // $city = $CompleteAddress[1];
+            // $country = $CompleteAddress[2];
+            // $coAd = "Address = " . $address .  " - " . " City = " .  $city .  " - " .  " Country = " . $country;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
 
-
-
-
-?>
+function UpdateUserInformations(UsersInformations $user)
+{
+    $db = connection();
+    $UserManager = new UsersManager($db);
+    if($UserManager->UpdateUserInformations($user) == true){
+        return true;
+    }
+    else{
+        echo '
+            <script>
+                document.getElementById("errorInfos").innerHTML = "PLease Retry!";
+                var modal = document.getElementById("myInfos");
+                modal.style.display = "block";
+            </script>
+        ';
+    }
+}
