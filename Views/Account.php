@@ -96,6 +96,19 @@ if (isset($_POST["editEMailPhone"])) {
     }
 }
 
+if(isset($_POST["editAddress"]))
+{
+    $Address = $_POST["editedAddress"] . "/" . $_POST["editedCity"] . "/" . $_POST["editedCountry"];
+    // echo $_POST["editedAddress"] . " " . $_POST["editedCity"] . " " . $_POST["editedCountry"];
+    // echo $Address;
+    $UserInfos = new UsersInformations(array("CodeUser"=>$User->CodeUser(), "Address"=>$Address));
+    if(UpdateUserAddress($UserInfos) == true)
+    {
+        echo "Success";
+    }
+    else echo "failure";
+}
+
 ?>
 
 
@@ -177,7 +190,9 @@ if (isset($_POST["editEMailPhone"])) {
 
                 <!-- <button class="btn btn-outline-primary mt-3" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button> -->
 
-                <button class="btn btn-outline-dark mt-3" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+                <button class="btn btn-outline-dark mt-3" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                    INFORMATIONS
+                </button>
 
                 <!-- Button to delete account -->
                 <button class="btn btn-outline-danger mt-3" id="v-pills-delete-tab" data-bs-toggle="pill" data-bs-target="#v-pills-delete" type="button" role="tab" aria-controls="v-pills-delete" aria-selected="false">
@@ -192,14 +207,14 @@ if (isset($_POST["editEMailPhone"])) {
             <!-- <div class="ColorChange col-7 shadow-lg p-3 mb-5 ms-3 bg-body rounded tab-content" id="v-pills-tabContent" style="height: min(100%,250px);"> -->
             <div class="ColorChange col-7 shadow-lg p-3 mb-5 ms-3 bg-body rounded tab-content" id="v-pills-tabContent">
 
-                <!-- Profile Informaions (Result onClick Button profile) -->
+                <!-- Profile (Result onClick Button profile) -->
                 <div class="container-fluid tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <!-- Title Row -->
                     <div class="row mt-3 bg-light">
                         <!-- Col for Username as a Title -->
                         <div class="col-10">
                             <h1 style="text-align: center;">
-                                <? echo $User->Username() ?>'s General Informations
+                                <? echo $User->Username() ?>'s PROFILE
                             </h1>
                         </div>
                         <!-- Col for image icon edit informations -->
@@ -336,10 +351,119 @@ if (isset($_POST["editEMailPhone"])) {
                     </div>
                 </div>
 
-                <!-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">C</div> -->
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">Settings</div>
 
-                <!-- Delete Accout -->
+                <!-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">C</div> -->
+                <!-- Informations (Result onClick Button informations)-->
+                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <!-- Title Row -->
+                    <div class="row mt-3 bg-light">
+                        <!-- Col for Username as a Title -->
+                        <div class="col-10">
+                            <h1 style="text-align: center;">
+                                <? echo $User->Username() ?>'s INFORMATIONS
+                            </h1>
+                        </div>
+                        <!-- Col for image icon edit informations -->
+                        <div class="col-2 mt-1 mb-1">
+                            <img class="float-end" src="/dashboard/AuMoK/Images/iconEdit2.jpg" style="width: 50px;height:50px" />
+                        </div>
+                    </div>
+
+                    <!-- Row User Address, Preferences And Edit Modes -->
+                    <div class="row" id="Address">
+                        <!-- Row for cuurent Address -->
+
+                        <!-- Cols Title & Edit buttons -->
+                        <div class="row mt-4 ms-5 justify-content-center">
+                            <div class="row">
+                                <!-- Address -->
+                                <div class="col-3 m-1 center">
+                                    <h5>
+                                        Address
+                                    </h5>
+                                </div>
+                                <!-- City -->
+                                <div class="col-3 m-1 center">
+                                    <h5>City</h5>
+                                </div>
+                                <!-- Country -->
+                                <div class="col-3 m-1 center">
+                                    <h5>Country</h5>
+                                </div>
+                                <!-- Button for edit and close edition Mode -->
+                                <div class="col-1 m-1">
+                                    <!-- Button edit mode -->
+                                    <img class="pointer" id="editAddressButton" onclick="editAddress()" src="/dashboard/AuMoK/Images/iconEdit.png" style="width: 20px;height:20px" />
+                                    <!-- Button to close edition mode -->
+                                    <img class="pointer" id="closeAddress" onclick="editAddress()" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 20px;height:20px;display:none" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Address -->
+                        <div class="row ms-5 justify-content-center" id="CurrentAddress">
+                            <div class="col-12">
+                                <div class="row">
+                                    <!-- Current address -->
+                                    <div class="col-3 m-1 center">
+                                        <?echo UserAddress($User)->Address()?>
+                                    </div>
+                                    <!-- Current City -->
+                                    <div class="col-3 m-1 center">
+                                        <?echo UserAddress($User)->City()?>
+                                    </div>
+                                    <!-- Current Country -->
+                                    <div class="col-3 center m-1">
+                                        <?echo UserAddress($User)->Country()?>
+                                    </div>
+                                    <div class="col-1 m-1">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edition Mode -->
+                        <div class="row ms-5 justify-content-center" id="editAddress" style="display:none">
+                            <div class="col-12">
+                                <form class="row" action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                    <!-- Edit address -->
+                                    <div class="col-3 m-1 center">
+                                        <div class="row center form-floating" style="height:40px;">
+                                            <input class="form-control" style="text-align: center;" type="text" name="editedAddress" id="editedAddress" placeholder="editedAddress" value="<?echo UserAddress($User)->Address()?>" required>
+                                            <label for="floatingInput" style="text-align:center">ADDRESS</label>
+                                        </div>
+                                    </div>
+                                    <!-- Edit City -->
+                                    <div class="col-3 m-1 center">
+                                        <div class="row center form-floating" style="height:40px;">
+                                            <input class="form-control" style="text-align: center;" type="text" name="editedCity" id="editedCity" placeholder="editedCity" value="<?echo UserAddress($User)->City()?>" required>
+                                            <label for="floatingInput" style="text-align:center">CITY</label>
+                                        </div>
+                                    </div>
+                                    <!-- Edit Country -->
+                                    <div class="col-3 center m-1">
+                                        <div class="row center form-floating" style="height:40px;">
+                                            <input class="form-control" style="text-align: center;" type="text" name="editedCountry" id="editedCountry" placeholder="editedCountry" value="<?echo UserAddress($User)->Country()?>" required>
+                                            <label for="floatingInput" style="text-align:center">COUNTRY</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-1 m-1">
+                                        <button class="btn btn-success" type="submit" name="editAddress">
+                                            <img class="m-2" src="/dashboard/AuMoK/Images/iconSubmit.png" style="width: 20px; height: 20px;" ; />
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Horizontale bar -->
+                        <div class="row mt-3 justify-content-center">
+                            <hr class="ColorChange" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delete Account -->
                 <div class="tab-pane fade" id="v-pills-delete" role="tabpanel" aria-labelledby="v-pills-delete-tab">
                     <h1 style="text-align: center;">
                         Account Deletion
@@ -452,6 +576,47 @@ if (isset($_POST["editEMailPhone"])) {
                 // ajustRows()
             }
             // ajustRows()
+        }
+        /////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+
+
+        //////////////////////////////////////////////////////////////////////////////
+        /////////////////////////// Part for Address edition ////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
+        // Function to edit Address
+        function editAddress() {
+            // Div current address
+            var divAddress = document.getElementById("CurrentAddress");
+            // Div for edition mode
+            var divAddressEdition = document.getElementById("editAddress")
+            // Button close edition mode
+            var btnClose = document.getElementById("closeAddress")
+            // Button edit 
+            var btnEdit = document.getElementById("editAddressButton")
+
+
+            // When function called
+            // Hide div current address and edit button
+            divAddress.style.display = "none"
+            btnEdit.style.display = "none"
+
+            // Display div edition mode and button to close edition mode
+            divAddressEdition.style.display = "block"
+            btnClose.style.display = "block"
+
+            // When click on close button
+            btnClose.onclick = function() {
+                // Hide div edition mode and button to close edition mode
+                divAddressEdition.style.display = "none"
+                btnClose.style.display = "none"
+
+                // Display div information and edit button
+                divAddress.style.display = "block"
+                btnEdit.style.display = "block"
+                // ajustRows()
+            }
         }
         /////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////

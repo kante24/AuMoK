@@ -1,7 +1,7 @@
 <?
 // require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
 // Display popup for Informations every 5 minutes if unFilled
-if (UserAddress($User) == false) {
+if (UserInforsStatus($User) == false) {
     //display every 5 minutes while Infos unFilled
     UserInformations($User);
 };

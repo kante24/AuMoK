@@ -317,4 +317,30 @@ class UsersManager
             echo $ex->getMessage();
         }
     }
+    public function UpdateUserAddress(UsersInformations $userInfos)
+    {
+        try {
+            // Connection
+            $pdo = $this->_db;
+            // SQL Query
+            $query = $pdo->prepare("UPDATE UsersInformations SET Address = :Address WHERE CodeUser = :CodeUser");
+            $us = new Users(array("CodeUser" => $userInfos->CodeUser()));
+            // Check existance User by codeUser
+            // If no return false
+            if ($this->existanceCodeUserDB($us) == false) {
+                return false;
+            } else {
+                $result = $query->execute([
+                    "CodeUser" => $userInfos->CodeUser(),
+                    "Address" => $userInfos->Address()
+                ]);
+                // If execution is successfull, return true, else return false
+                if ($result) {
+                    return true;
+                } else return false;
+            }
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
 }

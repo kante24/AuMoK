@@ -193,36 +193,6 @@ function UpdateUserEMailPhone(Users $User)
     } else return false;
 }
 
-// Function to display popup for user to fill with his informations
-function UserInformations(Users $user)
-{
-    // Get an user's informations
-    $db = connection();
-    $UserManager = new UsersManager($db);
-    $data = $UserManager->UserInformations($user);
-    if ($data != null && $data == true) {
-        $userInformations = new UsersInformations($data[0]);
-
-        if (trim($userInformations->Address()) != "n/a") {
-            //     echo "filled";
-        }
-
-        // In db, n/a for address will means that user's informations are the default
-        // In that case display form for information
-        elseif (trim($userInformations->Address()) == "n/a") {
-            //Display popup every minute
-            $popupInfo =
-                '<script>
-                    window.onload = function(){
-                        setInterval(popupInformations, 60000);
-                   };
-                </script>
-            ';
-            echo $popupInfo;
-        }
-    }
-}
-
 
 // Function to get checked of an user
 function UserChecked(Users $user)
@@ -246,8 +216,54 @@ function StatusCheck($checked)
     }
 }
 
+
+// Function to display popup for user to fill with his informations
+function UserInformations(Users $user)
+{
+    // Get an user's informations
+    $db = connection();
+    $UserManager = new UsersManager($db);
+    $data = $UserManager->UserInformations($user);
+    if ($data != null && $data == true) {
+        $userInformations = new UsersInformations($data[0]);
+
+        if (trim($userInformations->Address()) != "n_a/n_a/n_a") {
+            //     echo "filled";
+        }
+
+        // In db, n_a/n_a/n_a for address will means that user's informations are the default
+        // In that case display form for information
+        elseif (trim($userInformations->Address()) == "n_a/n_a/n_a") {
+            //Display popup every minute
+            $popupInfo =
+                '<script>
+                    window.onload = function(){
+                        setInterval(popupInformations, 60000);
+                   };
+                </script>
+            ';
+            echo $popupInfo;
+        }
+    }
+}
+
 // Get and explode user address
 function UserAddress(Users $user)
+{
+    // Get an user's informations
+    $db = connection();
+    $UserManager = new UsersManager($db);
+    $data = $UserManager->UserInformations($user);
+    if ($data != null && $data == true) {
+        $userInformations = new UsersInformations($data[0]);
+        $CompleteAddress = explode("/", $userInformations->Address());
+        $Address =new UsersAddress(array("Address"=>$CompleteAddress[0], "City"=>$CompleteAddress[1], "Country"=>$CompleteAddress[2]));
+        return $Address;
+    }
+}
+
+// Return status of user information
+function UserInforsStatus(Users $user)
 {
     // Get an user's informations
     $db = connection();
@@ -258,12 +274,6 @@ function UserAddress(Users $user)
         // In db, n/a for address will means that user's informations are the default
         // In that case display form for information
         if (trim($userInformations->Address()) != "n/a") {
-            // echo "Address = " . $userInformations->Address();
-            $CompleteAddress = explode("/", $userInformations->Address());
-            // $address = $CompleteAddress[0];
-            // $city = $CompleteAddress[1];
-            // $country = $CompleteAddress[2];
-            // $coAd = "Address = " . $address .  " - " . " City = " .  $city .  " - " .  " Country = " . $country;
             return true;
         }
         else{
@@ -288,4 +298,17 @@ function UpdateUserInformations(UsersInformations $user)
             </script>
         ';
     }
+}
+
+function UpdateUserAddress(UsersInformations $user)
+{
+    $db = connection();
+    $UserManager = new UsersManager($db);
+    return $UserManager->UpdateUserAddress($user);
+    // if($UserManager->UpdateUserAddress($user) == true){
+    //     return true;
+    // }
+    // else{
+    //     return false;
+    // }
 }

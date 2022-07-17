@@ -1,6 +1,6 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
-var_dump($User)
+var_dump($User);
 ?>
 
 
@@ -13,18 +13,17 @@ var_dump($User)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
     <style>
-        /* div {
+        div {
             border: solid;
-        } */
+        }
     </style>
 </head>
 
 <body>
+
+
+
     <br /><br /><br />
-
-
-
-
 
 
 

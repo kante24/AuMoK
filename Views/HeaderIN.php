@@ -19,6 +19,8 @@ if (!isset($_SESSION['User'])) {
 else if (isset($_SESSION['User'])) {
     $User = new Users($_SESSION['User'][0]);
     $checked = new UsersChecked(UserChecked($User)[0]);
+    // Popup User information
+    UserInformations($User);
 }
 
 ?>
@@ -39,6 +41,10 @@ else if (isset($_SESSION['User'])) {
 
         .dropdown:hover .dropdown-menu {
             display: block;
+        }
+
+        .center{
+            text-align: center;
         }
     </style>
 
@@ -68,13 +74,17 @@ else if (isset($_SESSION['User'])) {
 
         <div class="container-fluid">
 
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <!-- Logo -->
             <a class="navbar-brand" href="/dashboard/AuMoK/Views/Home.php">
                 <img src="/dashboard/AuMoK/Images/K.png" style="width:50; height:50px;"/>
             </a>
 
             <!-- Links & Actions -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarNav">
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
