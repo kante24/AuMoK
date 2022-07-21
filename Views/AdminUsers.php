@@ -56,7 +56,11 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 </head>
 
 <body>
+
+    <!-- Error -->
     <p id="error" style="visibility:hidden"></p>
+
+    <!-- Container to add new user -->
     <div id="addUserModal" class="addUserModal">
 
         <div class="modal-content justify-content-center addUserContent" style="text-align: center;">
@@ -232,7 +236,8 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                     ADD NEW USER
                 </button>
 
-                <button class="btn btn-outline-primary mt-3">
+                <!-- Edit an existant user -->
+                <button class="btn btn-outline-primary mt-3" onclick="editUser()">
                     EDIT AN USER
                 </button>
             </div>
@@ -262,31 +267,23 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
     <?php
     ?>
     <script>
+        // On page load, if an error displayed
         window.onload = function() {
             if(document.getElementById("error").innerHTML != "")
             {
-                addNewUser()
+                if(document.getElementById("error").innerHTML == "add")
+                {
+                    addNewUser()
+                }
             }
         }
-        // if()
+        // funtion to display popup for adding user
         function addNewUser() {
             // Get the modal
             var modal = document.getElementById("addUserModal");
             modal.style.display = "block";
 
-
-            // // Get the button that opens the modal
-            // var btnSignup = document.getElementById("btnSignup");
-
-            // // Get the <span> element that closes the modal
-            // // var btnClose = document.getElementsByClassName("closeSignup")[0];
             var btnClose = document.getElementById("closeAddUser");
-
-            // // When the user clicks the button, open the modal 
-            // btnSignup.onclick = function() {
-            //     modal.style.display = "block";
-            //     modal.scrollTop = modal.scrollHeight;
-            // }
 
             // // When the user clicks on <span> (x), close the modal
             btnClose.onclick = function() {
@@ -300,8 +297,15 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                 }
             }
         }
+        // funtion to display popup for editing user
+        function editUser(){
+            document.getElementById("error").innerHTML = "edit"
+        }
     </script>
+
+
 <?php
+    // If request for add an user
     if (isset($_POST["addUser"])) {
         $rand = rand(0, 99999999999);
         $codeUser = substr($_POST["Name"], 0, 3) .  substr($_POST["Firstname"], 0, 3) . $rand;
@@ -318,7 +322,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                 echo
                 '<script>
                     document.getElementById("errorName").innerHTML = "Only Letters"
-                    document.getElementById("error").innerHTML = "Only Letters"
+                    document.getElementById("error").innerHTML = "add"
                 </script>';
             }
 
@@ -326,7 +330,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                 echo
                 '<script>
                     document.getElementById("errorEMail").innerHTML = "Invalid Address eMail Format"
-                    document.getElementById("error").innerHTML = "Invalid Address eMail Format"
+                    document.getElementById("error").innerHTML = "add"
                 </script>';
             }
 
@@ -334,7 +338,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                 echo
                 '<script>
                     document.getElementById("errorPhone").innerHTML = "Invalid Phone Number Format"
-                    document.getElementById("error").innerHTML = "Invalid Phone Number Format"
+                    document.getElementById("error").innerHTML = "add"
                 </script>';
             }
 
@@ -355,6 +359,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                     echo
                     '<script>
                         document.getElementById("errorPassword").innerHTML = "Something went wrong </br> Retry please"
+                        document.getElementById("error").innerHTML = "add"
                     </script>';
                 }
             }
@@ -366,7 +371,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                 echo
                 '<script>
                     document.getElementById("errorName").innerHTML = "Field empty"
-                    document.getElementById("error").innerHTML = "Field empty"
+                    document.getElementById("error").innerHTML = "add"
                 </script>';
             }
 
@@ -374,7 +379,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                 echo
                 '<script>
                     document.getElementById("errorFirstname").innerHTML = "Field empty"
-                    document.getElementById("error").innerHTML = "Field empty"
+                    document.getElementById("error").innerHTML = "add"
                 </script>';
             }
 
@@ -382,21 +387,21 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                 echo
                 '<script>
                     document.getElementById("errorUsername").innerHTML = "Field empty"
-                    document.getElementById("error").innerHTML = "Field empty"
+                    document.getElementById("error").innerHTML = "add"
                 </script>';
             }
             if (ctype_space($User->eMail()) == true) {
                 echo
                 '<script>
                     document.getElementById("errorEMail").innerHTML = "Field empty"
-                    document.getElementById("error").innerHTML = "Field empty"
+                    document.getElementById("error").innerHTML = "add"
                 </script>';
             }
             if (ctype_space($User->Phone()) == true) {
                 echo
                 '<script>
                     document.getElementById("errorPhone").innerHTML = "Field empty"
-                    document.getElementById("error").innerHTML = "Field empty"
+                    document.getElementById("error").innerHTML = "add"
                 </script>';
             }
         }
