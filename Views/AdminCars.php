@@ -1,6 +1,5 @@
 <?php
-require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
-var_dump($User);
+require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader.php");
 ?>
 
 
@@ -11,7 +10,7 @@ var_dump($User);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>ADMIN USERS PAGE</title>
     <style>
         /* div {
             border: solid;
@@ -20,14 +19,10 @@ var_dump($User);
 </head>
 
 <body>
+Admin  cars nene
+    
 
-
-
-    <br /><br /><br />
-
-    <?
-        $admin = new Admins(array("Name"=>"Kante", "Firstname"=>"David", "Access"=>1));
-        var_dump($admin->Access());
+    <?php
     ?>
 
 

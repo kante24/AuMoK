@@ -343,4 +343,35 @@ class UsersManager
             echo $ex->getMessage();
         }
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    ///////////////////////// Log IN Admin /////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
+    public function logInAdmin(Admins $user)
+    {
+        try {
+            // Conection
+            $pdo = $this->_db;
+            //SLQ Query
+            $query = $pdo->prepare("SELECT * FROM Admins WHERE (Username = :Username or eMail = :eMail) AND Password = :Password AND isAlive = 1");
+            // Fetch query results
+            $query->setFetchMode(PDO::FETCH_ASSOC);
+            $query->execute(array(
+                "Username" => $user->Username(),
+                "eMail" => $user->eMail(),
+                "Password" => $user->Password(),
+            ));
+
+            $data = $query->fetchAll();
+            // If query result is not null, return result 'array', else return false
+            if ($data != null) {
+                return $data;
+            } else {
+                return false;
+            }
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+    }
 }

@@ -312,3 +312,43 @@ function UpdateUserAddress(UsersInformations $user)
     //     return false;
     // }
 }
+
+
+// Function for admin to log in
+function LogInAdmin(Admins $User)
+{
+    // Datebase
+    $db = connection();
+    // UserManager
+    $UserManager = new UsersManager($db);
+
+    // Before log in, must check if address eMail or username already exists in DB
+    // If neither address eMail or username exists display error messages
+    // if ($UserManager->existanceUsernameDB($User) == false && $UserManager->existanceEMailDB($User) == false) {
+    //     echo
+    //     '<script>
+    //         document.getElementById("errorLogin").innerHTML = "Inexistant Username/Address eMail"
+    //     </script>';
+    // }
+    // If Username or address eMail exists in DB
+    // if ($UserManager->existanceUsernameDB($User) == true || $UserManager->existanceEMailDB($User) == true) {
+        // If log IN == successfull
+        if ($UserManager->logInAdmin($User) != false) {
+            // Create a session for admin
+            // Session admin will contains admin's informations
+            $_SESSION["Admin"] = $UserManager->logInAdmin($User);
+            // Return true as success
+            return true;
+        }
+        // If log IN not successfull 
+        else {
+            // Display error message
+            // echo
+            // '<script>
+            //     document.getElementById("errorLogin").innerHTML = "Username or Password Incorrect"
+            // </script>';
+            return false;
+        }
+    // }
+}
+

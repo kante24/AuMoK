@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 15 juil. 2022 à 03:54
+-- Généré le : ven. 22 juil. 2022 à 00:19
 -- Version du serveur :  10.4.19-MariaDB
 -- Version de PHP : 7.3.28
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `AuMoK`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Admins`
+--
+
+CREATE TABLE `Admins` (
+  `CodeUser` varchar(100) NOT NULL DEFAULT 'n/a',
+  `Name` text NOT NULL DEFAULT 'n/a',
+  `Firstname` text NOT NULL DEFAULT 'n/a',
+  `BirthDate` date NOT NULL DEFAULT '0000-00-00',
+  `eMail` varchar(100) NOT NULL DEFAULT 'n/a',
+  `Phone` varchar(100) NOT NULL DEFAULT 'n/a',
+  `Username` text NOT NULL DEFAULT 'n/a',
+  `Password` text NOT NULL DEFAULT 'n/a',
+  `Access` int(11) NOT NULL DEFAULT 3,
+  `isAlive` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `Admins`
+--
+
+INSERT INTO `Admins` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `Access`, `isAlive`) VALUES
+('ssfvf', 'n/a', 'n/a', '0000-00-00', 'n/a', 'n/a', 'David', '123', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -1959,6 +1985,37 @@ INSERT INTO `CarModels` (`idModel`, `ModelName`, `BrandName`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Cars`
+--
+
+CREATE TABLE `Cars` (
+  `IdCar` int(11) NOT NULL,
+  `Brand` varchar(100) NOT NULL DEFAULT 'n/a',
+  `Model` varchar(100) NOT NULL DEFAULT 'n/a',
+  `Year` date NOT NULL DEFAULT '0000-00-00',
+  `Price` double NOT NULL DEFAULT 0,
+  `Type` text NOT NULL DEFAULT 'n/a',
+  `isAvailable` float NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `CarsImages`
+--
+
+CREATE TABLE `CarsImages` (
+  `idImage` int(11) NOT NULL,
+  `IdCar` int(11) NOT NULL,
+  `Name` text NOT NULL,
+  `Size` int(11) NOT NULL,
+  `Type` text NOT NULL,
+  `Bin` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Users`
 --
 
@@ -1971,8 +2028,15 @@ CREATE TABLE `Users` (
   `Phone` varchar(100) NOT NULL DEFAULT 'n/a',
   `Username` text NOT NULL DEFAULT 'n/a',
   `Password` text NOT NULL DEFAULT 'n/a',
-  `isAlive` tinyint(1) NOT NULL DEFAULT 0
+  `isAlive` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `Users`
+--
+
+INSERT INTO `Users` (`CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `isAlive`) VALUES
+('KanDav43237363149', 'Kante', 'David', '2022-07-21', 'aa@gmail.com', '4382336332', 'David', '123', 1);
 
 --
 -- Déclencheurs `Users`
@@ -2003,6 +2067,13 @@ CREATE TABLE `UsersChecked` (
   `UserInformations` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Déchargement des données de la table `UsersChecked`
+--
+
+INSERT INTO `UsersChecked` (`CodeUser`, `PhoneChecked`, `eMailChecked`, `UserInformations`) VALUES
+('KanDav43237363149', 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -2021,8 +2092,22 @@ CREATE TABLE `UsersDeleted` (
   `Password` text DEFAULT 'n/a',
   `deletionDate` date DEFAULT '0000-00-00',
   `SignUpDate` date DEFAULT '0000-00-00',
-  `Address` text DEFAULT 'n/a'
+  `Address` text DEFAULT 'n_a/n_a/n_a'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `UsersDeleted`
+--
+
+INSERT INTO `UsersDeleted` (`IdUserDeleted`, `CodeUser`, `Name`, `Firstname`, `BirthDate`, `eMail`, `Phone`, `Username`, `Password`, `deletionDate`, `SignUpDate`, `Address`) VALUES
+(38, 'KanDav58573952246', 'Kante', 'David', '2022-07-10', 'aa@gmail.com', '4382336332', 'David', '123', '2022-07-17', '2022-07-17', 'n_a/n_a/n_a'),
+(39, 'KanDav84640311607', 'Kante', 'David', '2022-07-11', 'aa@gmail.com', '4382336332', 'David', '123', '2022-07-17', '2022-07-17', 'n_a/n_a/n_a'),
+(40, 'KanDav58746438350', 'Kante', 'David', '2022-07-11', 'aa@gmail.com', '4382336332', 'David', '123', '2022-07-21', '2022-07-17', 'address/city/country'),
+(41, 'KanDav84695213788', 'Kante', 'David', '2022-07-04', 'aa@gmail.com', '4382336332', 'David', '123', '2022-07-21', '2022-07-21', 'n_a/n_a/n_a'),
+(42, 'KanDav86309975165', 'Kante', 'David', '2022-07-21', 'aa@gmail.com', '4382336332', 'David', '123', '2022-07-21', '2022-07-21', 'n_a/n_a/n_a'),
+(43, 'KanDav14721796697', 'Kante', 'David', '2022-07-21', 'aa@gmail.com', '4382336332', 'David', '123', '2022-07-21', '2022-07-21', 'n_a/n_a/n_a'),
+(44, 'KanDav1915159993', 'Kante', 'David', '2022-07-13', 'aa@gmail.com', '4382336332', 'David', '123', '2022-07-21', '2022-07-21', 'n_a/n_a/n_a'),
+(45, 'KanDav62488718669', 'Kante', 'David', '2022-07-13', 'aa@gmail.com', '4382336332', 'David', '123', '2022-07-21', '2022-07-21', 'n_a/n_a/n_a');
 
 -- --------------------------------------------------------
 
@@ -2033,7 +2118,7 @@ CREATE TABLE `UsersDeleted` (
 CREATE TABLE `UsersInformations` (
   `CodeUser` varchar(100) NOT NULL,
   `CodeInformation` int(11) NOT NULL,
-  `Address` text NOT NULL DEFAULT 'n/a',
+  `Address` text NOT NULL DEFAULT 'n_a/n_a/n_a',
   `ContactPreference` text NOT NULL DEFAULT 'Phone',
   `TimePreference` text NOT NULL DEFAULT 'Morning',
   `isFilled` tinyint(1) NOT NULL DEFAULT 0,
@@ -2041,8 +2126,22 @@ CREATE TABLE `UsersInformations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Déchargement des données de la table `UsersInformations`
+--
+
+INSERT INTO `UsersInformations` (`CodeUser`, `CodeInformation`, `Address`, `ContactPreference`, `TimePreference`, `isFilled`, `SignUpDate`) VALUES
+('KanDav43237363149', 46, 'n_a/n_a/n_a', 'Phone', 'Morning', 0, '2022-07-21');
+
+--
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `Admins`
+--
+ALTER TABLE `Admins`
+  ADD PRIMARY KEY (`CodeUser`),
+  ADD UNIQUE KEY `eMail` (`eMail`,`Phone`,`Username`) USING HASH;
 
 --
 -- Index pour la table `CarBrands`
@@ -2058,6 +2157,21 @@ ALTER TABLE `CarModels`
   ADD PRIMARY KEY (`idModel`) USING BTREE,
   ADD UNIQUE KEY `ModelName` (`ModelName`,`BrandName`),
   ADD KEY `carmodels_ibfk_1` (`BrandName`);
+
+--
+-- Index pour la table `Cars`
+--
+ALTER TABLE `Cars`
+  ADD PRIMARY KEY (`IdCar`),
+  ADD KEY `Brand` (`Brand`),
+  ADD KEY `Model` (`Model`);
+
+--
+-- Index pour la table `CarsImages`
+--
+ALTER TABLE `CarsImages`
+  ADD PRIMARY KEY (`idImage`),
+  ADD KEY `IdCar` (`IdCar`);
 
 --
 -- Index pour la table `Users`
@@ -2104,16 +2218,28 @@ ALTER TABLE `CarModels`
   MODIFY `idModel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3569;
 
 --
+-- AUTO_INCREMENT pour la table `Cars`
+--
+ALTER TABLE `Cars`
+  MODIFY `IdCar` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `CarsImages`
+--
+ALTER TABLE `CarsImages`
+  MODIFY `idImage` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `UsersDeleted`
 --
 ALTER TABLE `UsersDeleted`
-  MODIFY `IdUserDeleted` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `IdUserDeleted` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT pour la table `UsersInformations`
 --
 ALTER TABLE `UsersInformations`
-  MODIFY `CodeInformation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `CodeInformation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Contraintes pour les tables déchargées
@@ -2124,6 +2250,19 @@ ALTER TABLE `UsersInformations`
 --
 ALTER TABLE `CarModels`
   ADD CONSTRAINT `carmodels_ibfk_1` FOREIGN KEY (`BrandName`) REFERENCES `CarBrands` (`BrandName`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `Cars`
+--
+ALTER TABLE `Cars`
+  ADD CONSTRAINT `cars_ibfk_1` FOREIGN KEY (`Brand`) REFERENCES `CarModels` (`BrandName`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cars_ibfk_2` FOREIGN KEY (`Model`) REFERENCES `CarModels` (`ModelName`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `CarsImages`
+--
+ALTER TABLE `CarsImages`
+  ADD CONSTRAINT `carsimages_ibfk_1` FOREIGN KEY (`IdCar`) REFERENCES `Cars` (`IdCar`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `UsersChecked`

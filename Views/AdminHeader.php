@@ -6,7 +6,7 @@ require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 
 // If session User does not exist, page relocation to index.php
-if (!isset($_SESSION['User'])) {
+if (!isset($_SESSION['Admin'])) {
     // Header to index.php
     echo
         "<script>
@@ -16,11 +16,9 @@ if (!isset($_SESSION['User'])) {
     exit;
 }
 // Else If session User exists create new Users by with that session
-else if (isset($_SESSION['User'])) {
-    $User = new Users($_SESSION['User'][0]);
-    $checked = new UsersChecked(UserChecked($User)[0]);
-    // Popup User information
-    UserInformations($User);
+else if (isset($_SESSION['Admin'])) {
+    // Create variable adminIN with admin's infos from session admin
+    $AdminIN = new Admins($_SESSION['Admin'][0]);
 }
 
 ?>
@@ -45,6 +43,10 @@ else if (isset($_SESSION['User'])) {
 
         .center{
             text-align: center;
+        }
+        
+        .error {
+            color: red;
         }
     </style>
 
@@ -75,7 +77,7 @@ else if (isset($_SESSION['User'])) {
         <div class="container-fluid">
 
             <!-- Logo -->
-            <a class="navbar-brand" href="/dashboard/AuMoK/Views/Home.php">
+            <a class="navbar-brand" href="/dashboard/AuMoK/Views/AdminHome.php">
                 <img src="/dashboard/AuMoK/Images/K.png" style="width:50; height:50px;"/>
             </a>
 
@@ -90,43 +92,22 @@ else if (isset($_SESSION['User'])) {
 
                     <!-- Link for Home Page -->
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/dashboard/AuMoK/Views/Home.php"> HOME </a>
+                        <a class="nav-link active mt-2" aria-current="page" href="/dashboard/AuMoK/Views/AdminHome.php"> HOME </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- Link for Admin Users Page -->
+                        <a class="nav-link" href="/dashboard/AuMoK/Views/AdminUsers.php">
+                            <img src="/dashboard/AuMoK/Images/iconAdminUser.png" style="width: 40;height: 40px;" />
+                        </a>
                     </li>
 
                     <!-- Link for Brands Page & Direct Search -->
                     <li class="nav-item">
-
-                        <div class="btn-group">
-
-                            <!-- Link for Brands Page -->
-                            <a class="nav-link btn" type="button" href="/dashboard/AuMoK/Views/CarBrands.php" id="navbarDropdown" role="button" aria-expanded="false">
-                                <img src="/dashboard/AuMoK/Images/iconReserachAuto.png" style="width: 30;height: 30px;" />
-                            </a>
-    
-                            <!-- Dropdown for Search -->
-                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="visually-hidden">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <form class="d-flex" action="/dashboard/AuMoK/Views/CarBrands.php" method="POST">
-                                        <input style="width: 700px;text-align:center;" class="form-control me-1 ms-1" list="CarbrandName" type="search" placeholder="SEARCH BY BRAND NAME" aria-label="Search" name="CarbrandName">
-                                        <button class="btn btn-outline-dark me-1" type="submit">Search</button>
-                                        <!-- Data list for cars brand name -->
-                                        <datalist id="CarbrandName">
-                                        <?
-                                            $Brands = CarBrandsList();
-                                            for ($i = 0; $i < count($Brands); $i++) {
-                                                echo '<option value="' . $Brands[$i]["BrandName"] . '">';
-                                            }
-                                        ?>
-                                        </datalist>
-                                    </form>
-                                </li>
-                            </ul>
-
-                        </div>
-
+                        <!-- Link for Admin Cars Page -->
+                        <a class="nav-link mt-1" href="/dashboard/AuMoK/Views/AdminCars.php">
+                            <img src="/dashboard/AuMoK/Images/iconAdminAuto.png" style="width: 30;height: 30px;" />
+                        </a>
                     </li>
 
                 </ul>
@@ -139,7 +120,7 @@ else if (isset($_SESSION['User'])) {
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item pointer" href="/dashboard/AuMoK/Views/Account.php">
+                        <a class="dropdown-item pointer" href="#">
                             ACCOUNT
                         </a>
                         <li>
@@ -151,7 +132,7 @@ else if (isset($_SESSION['User'])) {
                     </ul>
 
                     <!-- Link for Account Page -->
-                    <a class="nav-link btn" type="button" href="/dashboard/AuMoK/Views/Account.php" id="navbarDropdown" role="button" aria-expanded="false">
+                    <a class="nav-link btn" type="button" href="#" id="navbarDropdown" role="button" aria-expanded="false">
                         <img src="/dashboard/AuMoK/Images/iconAccount.png" style="width: 30;height: 30px;" />
                     </a>
 
@@ -164,21 +145,21 @@ else if (isset($_SESSION['User'])) {
     </nav>
 
     <?
-    require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/UserInformations.php");
+    // require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/UserInformations.php");
     ?>
 
     <script>
-        // For cases where error in login popup 
-        if (document.getElementById("errorLogin").innerHTML != "") {
-            var modal = document.getElementById("myLogin");
-            modal.style.display = "block";
-        }
+        // // For cases where error in login popup 
+        // if (document.getElementById("errorLogin").innerHTML != "") {
+        //     var modal = document.getElementById("myLogin");
+        //     modal.style.display = "block";
+        // }
 
-        // For cases where error in signup popup 
-        if (document.getElementById("errorSignUP").innerHTML != "") {
-            var modal = document.getElementById("mySignup");
-            modal.style.display = "block";
-        }
+        // // For cases where error in signup popup 
+        // if (document.getElementById("errorSignUP").innerHTML != "") {
+        //     var modal = document.getElementById("mySignup");
+        //     modal.style.display = "block";
+        // }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>

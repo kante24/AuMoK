@@ -1,12 +1,12 @@
 <?php
-require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/HeaderIN.php");
+session_start();
 
 session_destroy();
 
 // // Header to index.php
 echo
 "<script>
-    Relocation('')
+    window.location.href = '/dashboard/AuMoK/'
 </script>";
 exit;
 ?>
