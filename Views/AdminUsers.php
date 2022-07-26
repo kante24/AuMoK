@@ -1,5 +1,26 @@
 <?php
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader.php");
+
+// If request to search user
+// if(isset($_POST["submitUser"])){
+//     $submitedUser =  $_POST["eUser"];
+//     if(ctype_space($submitedUser) == true){
+//         // echo "nene";
+//         echo'
+//             <script>
+//                 document.getElementById("sUserError").innerHTML = "Empty Field"
+//             </script>
+//         ';
+//     }
+//     else{
+//         // echo $submitedUser;
+//         echo'
+//             <script>
+//                 document.getElementById("sUserError").innerHTML ='. $submitedUser .'
+//             </script>
+//         ';
+//     }
+// }
 ?>
 
 
@@ -15,6 +36,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
         /* div {
             border: solid;
         } */
+
         #closeAddUser:hover {
             cursor: pointer;
             background-color: red;
@@ -57,8 +79,6 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 
 <body>
 
-    <!-- Error -->
-    <p id="error" style="visibility:hidden"></p>
 
     <!-- Container to add new user -->
     <div id="addUserModal" class="addUserModal">
@@ -163,16 +183,16 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                     <!-- Fith row -->
                     <!-- <div class="row mt-5 justify-content-center"> -->
 
-                        <!-- Pwd -->
-                        <!-- <div class="col-3 m-2">
+                    <!-- Pwd -->
+                    <!-- <div class="col-3 m-2">
                             <div class="row form-floating">
                                 <input required class="form-control" id="Password" style="vertical-align:top; width: 200px;height:50px;text-align: center;" type="password" name="Password" placeholder="Password" required>
                                 <label for="floatingInput" style="text-align:center">Password</label>
                             </div>
                         </div> -->
 
-                        <!-- Pwd2 -->
-                        <!-- <div class="col-3 m-2">
+                    <!-- Pwd2 -->
+                    <!-- <div class="col-3 m-2">
                             <div class="row form-floating">
                                 <input required class="form-control" id="Password2" style="vertical-align:top; width: 200px;height:50px;text-align: center;" type="password" name="Password2" placeholder="Password2">
                                 <label for="floatingInput" style="text-align:center">Your Password Again</label>
@@ -224,39 +244,73 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 
     </div>
 
-    <div class="container-fluid">
 
-        <div class="row m-5 justify-content-center">
+    <!-- Container general -->
+    <div class="container">
+        <div class="row mt-5">
+            <!-- Left Col -->
+            <div class="col-3" style="height:800px;border-right: solid 02px;">
+                <!-- Container for Options -->
+                <div class="container-fluid">
+                    <div class="row m-1 justify-content-center">
 
-            <!-- Left col-->
-            <div class="col-5 shadow-lg p-4 m-3 rounded nav flex-column" style="border-right: solid;">
+                        <!-- Option to Add new User -->
+                        <button class="btn btn-outline-success mt-3" id="addUser" onclick="addNewUser()">
+                            ADD NEW USER
+                        </button>
 
-                <!-- Option to Add new User -->
-                <button class="btn btn-outline-success mt-1" id="addUser" onclick="addNewUser()">
-                    ADD NEW USER
-                </button>
+                        <!-- Edit an existant user -->
+                        <button class="btn btn-outline-primary mt-3" onclick="editUser()">
+                            EDIT AN USER
+                        </button>
 
-                <!-- Edit an existant user -->
-                <button class="btn btn-outline-primary mt-3" onclick="editUser()">
-                    EDIT AN USER
-                </button>
+                        <!-- Option to Add new User -->
+                        <button class="btn btn-outline-danger mt-3">
+                            DELETE AN USER
+                        </button>
+
+                        <button class="btn btn-outline-warning mt-3">
+                            DISABLE AN USER
+                        </button>
+
+                    </div>
+                </div>
             </div>
 
-            <!-- Right col-->
-            <div class="col-5 shadow-lg p-4 m-3 rounded nav flex-column" style="border-left: solid;">
+            <!-- Right Col -->
+            <div class="col-7">
 
-                <!-- Option to Add new User -->
-                <button class="btn btn-outline-danger mt-1">
-                    DELETE AN USER
-                </button>
+                <!-- Search User -->
+                <div class="container-fluid">
 
-                <button class="btn btn-outline-warning mt-3">
-                    DISABLE AN USER
-                </button>
+                    <!-- Form to get user -->
+                    <form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                        <div class="row justify-content-center">
+                            <div class="col-8 center form-floating mt-3 ms-2">
+                                <input class="form-control" id="eUser" style="width:500px;height:60px;text-align: center;" type="text" name="eUser" placeholder="eUser" required>
+                                <label for="floatingInput" style="text-align:center">&nbsp;&nbsp; CodeUser &nbsp;&nbsp; || &nbsp;&nbsp; Username &nbsp;&nbsp; || &nbsp;&nbsp; Phone &nbsp;&nbsp; || &nbsp;&nbsp; eMail</label>
+
+                            </div>
+                            <div class="col-1">
+                                <button class="btn btn-light ms-4 mt-4" type="submit" name="submitUser" style="height: 45px;">
+                                    <img class="m-2" src="/dashboard/AuMoK/Images/iconReserach.png" style="width: 15px; height: 15px;" ; />
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <p class="row mt-2 justify-content-center error" id="sUserError"></p>
+                    </form>
+                </div>
             </div>
-
         </div>
     </div>
+
+    <!-- Error -->
+    <!-- <p id="error" style="visibility:hidden"></p> -->
+    <p id="error"></p>
+    <p id="mode"></p>
+
 
     <h4 class="mt-4" style="text-align: center;" id="result"></h4>
 
@@ -265,20 +319,40 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 
 
     <?php
+    if (isset($_POST["submitUser"])) {
+        $submitedUser =  $_POST["eUser"];
+
+        if (ctype_space($submitedUser) == true) {
+            echo '
+            <script>
+                document.getElementById("sUserError").innerHTML = "Empty Field"
+            </script>
+        ';
+        }
+        if (ctype_space($submitedUser) == false) {
+            echo '
+            <script>
+                document.getElementById("sUserError").innerHTML = "not Empty Field"
+            </script>
+        ';
+        }
+    }
     ?>
-    <script>
+
+    <!-- <script>
         // On page load, if an error displayed
         window.onload = function() {
-            if(document.getElementById("error").innerHTML != "")
-            {
-                if(document.getElementById("error").innerHTML == "add")
-                {
+            // document.getElementById("sUserError").innerHTML = "Empty Field"
+            if (document.getElementById("error").innerHTML != "") {
+                if (document.getElementById("error").innerHTML == "add") {
                     addNewUser()
                 }
             }
         }
         // funtion to display popup for adding user
         function addNewUser() {
+            // Set mode
+            document.getElementById("mode").innerHTML = "add"
             // Get the modal
             var modal = document.getElementById("addUserModal");
             modal.style.display = "block";
@@ -297,14 +371,10 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                 }
             }
         }
-        // funtion to display popup for editing user
-        function editUser(){
-            document.getElementById("error").innerHTML = "edit"
-        }
-    </script>
+    </script> -->
 
 
-<?php
+    <?php
     // If request for add an user
     if (isset($_POST["addUser"])) {
         $rand = rand(0, 99999999999);
@@ -350,10 +420,10 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                         document.getElementById("error").innerHTML = ""
                         document.getElementById("result").innerHTML = "User added successfully"
                     </script>';
-                    // echo
-                    //     "<script>
-                    //         window.location.href = '/dashboard/AuMoK/Views/Home.php';
-                    //     </script>"
+                        // echo
+                        //     "<script>
+                        //         window.location.href = '/dashboard/AuMoK/Views/Home.php';
+                        //     </script>"
                     ;
                 } else {
                     echo
@@ -406,7 +476,8 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
             }
         }
     }
-?>
+
+    ?>
 
 
 
