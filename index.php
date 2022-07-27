@@ -27,13 +27,13 @@ $data = CarBrandsList();
 
 <body>
 
-Temporary log station for admin
+    <!-- Temporary log station for admin
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-<input type="text" name="username" />
-<input type="password" name="pwd" />
-<input type="submit" name="log" value="Log Admin"/>
-</form>
+    <form action="<?php // echo $_SERVER['PHP_SELF']; ?>" method="POST">
+        <input type="text" name="username" />
+        <input type="password" name="pwd" />
+        <input type="submit" name="log" value="Log Admin" />
+    </form> -->
 
 
 
@@ -48,10 +48,9 @@ Temporary log station for admin
 <?
 if (isset($_POST["log"])) {
     // echo "nene";
-    $ad = new Admins(array("Username"=>$_POST["username"], "Password"=>$_POST["pwd"]));
+    $ad = new Admins(array("Username" => $_POST["username"], "Password" => $_POST["pwd"]));
     // var_dump(LogInAdmin($ad));
-    if(LogInAdmin($ad) == true)
-    {
+    if (LogInAdmin($ad) == true) {
         echo
         "<script>
             window.location.href = '/dashboard/AuMoK/Views/AdminHome.php'

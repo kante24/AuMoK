@@ -3,6 +3,7 @@
 require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/Functions.class.php");
 require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/CarFunctions.class.php");
 require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/UsersFunctions.class.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/AdminsFunctions.class.php");
 require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php");
 
 // If session User does not exist, page relocation to index.php
@@ -44,7 +45,7 @@ else if (isset($_SESSION['Admin'])) {
         .center{
             text-align: center;
         }
-        
+
         .error {
             color: red;
         }

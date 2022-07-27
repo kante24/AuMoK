@@ -292,7 +292,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 
                             </div>
                             <div class="col-1">
-                                <button class="btn btn-light ms-4 mt-4" type="submit" name="submitUser" style="height: 45px;">
+                                <button class="btn btn-outline-light btn-light ms-4 mt-4" type="submit" name="submitUser" style="height: 45px;">
                                     <img class="m-2" src="/dashboard/AuMoK/Images/iconReserach.png" style="width: 15px; height: 15px;" ; />
                                 </button>
                             </div>
@@ -319,6 +319,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 
 
     <?php
+    // If request to search an user 
     if (isset($_POST["submitUser"])) {
         $submitedUser =  $_POST["eUser"];
 
@@ -330,9 +331,11 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
         ';
         }
         if (ctype_space($submitedUser) == false) {
+            $sUser = new Users(array("CodeUser"=>$submitedUser, "eMail"=>$submitedUser,  "Phone"=>$submitedUser,  "Username"=>$submitedUser ));
+            // var_dump(userSearch($sUser));
             echo '
             <script>
-                document.getElementById("sUserError").innerHTML = "not Empty Field"
+                document.getElementById("sUserError").innerHTML = "'. userSearch($sUser) .'"
             </script>
         ';
         }
