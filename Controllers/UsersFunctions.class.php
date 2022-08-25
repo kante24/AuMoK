@@ -12,10 +12,11 @@
 
 
 
-//Validate eMail format
+
 
 use FTP\Connection;
 
+//Validate eMail format
 function validateEmail($email)
 {
     // Return true if format correct, else return false
@@ -39,7 +40,7 @@ function validatePhone($phone)
 }
 
 
-//Validate phone format
+//Validate name format
 function validateName($name)
 {
     // Return true if format correct, else return false
@@ -51,7 +52,7 @@ function validateName($name)
 }
 
 
-//Validate passwords
+//Match password and confirmation of password
 function validatePasswords($pwd1, $pwd2)
 {
     // Return true if both passwords match, else return false
@@ -63,27 +64,27 @@ function validatePasswords($pwd1, $pwd2)
 }
 
 
-
-
-
 //Sign UP Function
 function SignUP(Users $User)
 {
     // Database
     $db = connection();
+    // New user manager
     $UserManager = new UsersManager($db);
 
     // Before sign up, must check if address eMail, phone number or username already exists in DB
     // If already exists display error messages
 
+    // For  every error , set a text in an hidden text field to keep pop up sign up
+
     // Existence of address eMail
-    if ($UserManager->existanceEMailDB($User) == true) {
-        echo
-        '<script>
-            document.getElementById("errorEMail").innerHTML = "Existant eMail address </br> Choose another one"
-            document.getElementById("errorSignUP").innerHTML = "Existant eMail address </br> Choose another one"
-         </script>';
-    }
+    // if ($UserManager->existanceEMailDB($User) == true) {
+    //     echo
+    //     '<script>
+    //         document.getElementById("errorEMail").innerHTML = "Existant eMail address </br> Choose another one"
+    //         document.getElementById("errorSignUP").innerHTML = "Existant eMail address </br> Choose another one"
+    //      </script>';
+    // }
 
     // Existence username
     if ($UserManager->existanceUsernameDB($User) == true) {
@@ -104,7 +105,8 @@ function SignUP(Users $User)
     }
 
     // If address eMail, username and phone number does not exist already
-    if ($UserManager->existanceEMailDB($User) == false && $UserManager->existanceUsernameDB($User) == false && $UserManager->existancePhoneDB($User) == false) {
+    // if ($UserManager->existanceEMailDB($User) == false && $UserManager->existanceUsernameDB($User) == false && $UserManager->existancePhoneDB($User) == false) {
+    if ($UserManager->existanceUsernameDB($User) == false && $UserManager->existancePhoneDB($User) == false) {
         // If sign up of user successfull
         if ($UserManager->signUP($User) == true) {
             // Create a session for user

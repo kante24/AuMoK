@@ -39,10 +39,6 @@ else if (isset($_SESSION['User'])) {
             cursor: pointer;
         }
 
-        /* .dropdown:hover .dropdown-menu {
-            display: block;
-        } */
-
         .center{
             text-align: center;
         }

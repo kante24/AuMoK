@@ -75,13 +75,13 @@
 
         /* Login Content */
         .signupContent {
-            background-color: #fefefe;
-            border: 1px solid #888;
-            width: 0px;
-            height: 0px;
-            margin: auto;
-            margin-left: 350px;
-            margin-top: 250px;
+            /* background-color: #fefefe; */
+            /* border: 1px solid #888; */
+            /* width: 0px; */
+            height: 100px;
+            /* margin: auto; */
+            /* margin-left: 350px; */
+            margin-top: 100px;
         }
 
 
@@ -102,34 +102,35 @@
         <div class="modal-content justify-content-center signupContent" style="text-align: center;">
 
             <!-- <div class="container backColorChange" style="border-radius: 50%;margin-top: 30px; text-align: center; width: 800px ; background-color: antiquewhite;"> -->
-            <div class="container shadow-lg" style="width: 800px;background-color:white">
+            <div class="container shadow-lg" style="width: 400px;margin-top: 150px;background-color:white">
 
                 <p id="errorSignUP" style="visibility: hidden;"></p>
 
                 <form action=" <?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
                     <div class="row">
-                        <div class="col-11">
+                        <div class="col-9">
                             <h1 style="text-shadow: 2px 2px black">SIGN UP</h1>
                         </div>
 
                         <!-- Button to close SignIN popup -->
-                        <div class="col-1 center float-end">
+                        <div class="col-3 center float-end">
                             <div class="mt-1 col-3 float-end justify-content-center closeSignup" id="closeSignup" style="width: 60px;height: 50px;float:right" onclick="popupSignUP()">
                                 <img class="mt-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 40px; height: 40px;" ; />
                             </div>
                         </div>
                     </div>
+                    
 
-                    <!-- First row -->
+                    <!-- Row for name and firstname -->
                     <div class="row center justify-content-center">
 
                         <!--  Name -->
                         <div class="col-3 center m-2">
 
                             <div class="row center form-floating">
-                                <input class="form-control" id="Name" style="vertical-align:top; width: 200px;height:50px;text-align: center;" type="text" name="Name" placeholder="Name" required>
-                                <label for="floatingInput" style="text-align:center">Last Name</label>
+                                <input class="form-control" id="Name" style="vertical-align:top; width: 100%;height:50px;text-align: center;" type="text" name="Name" placeholder="Name" required>
+                                <label for="floatingInput" style="text-align:center">Name</label>
                             </div>
 
                             <div class="row justify-content-center error">
@@ -140,7 +141,7 @@
                         <!--  Firstname -->
                         <div class="col-3 m-2">
                             <div class="row form-floating">
-                                <input class="form-control" id="Firstname" style="vertical-align:top; width: 200px;height:50px;text-align: center;" type="text" name="Firstname" placeholder="Firstname" required>
+                                <input class="form-control" id="Firstname" style="vertical-align:top; width: 100%;height:50px;text-align: center;" type="text" name="Firstname" placeholder="Firstname" required>
                                 <label for="floatingInput" style="text-align:center">Firstname</label>
                             </div>
                             <div class="row error justify-content-center">
@@ -149,22 +150,23 @@
                         </div>
 
                         <!-- BirthDate -->
-                        <div class="col-3 m-2">
+                        <!-- <div class="col-3 m-2">
                             <div class="row justify-content-center">
                                 <input id="birthDate" type="date" name="birthDate" style="vertical-align:top; width: 200px;height:50px;text-align: center;" required />
                             </div>
                             <div class="row error justify-content-center">
                                 <p id="errorBirthDate"></p>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
 
-                    <!-- Thirth row -->
+
+                    <!-- Row for Phone and Username-->
                     <div class="row mt-5 justify-content-center">
 
                         <!-- Mail -->
-                        <div class="col-3 m-2">
+                        <!-- <div class="col-3 m-2">
                             <div class="row form-floating">
                                 <input required class="form-control" id="eMail" style="vertical-align:top; width: 200px;height:50px;text-align: center;" type="text" name="eMail" placeholder="eMail">
                                 <label for="floatingInput" style="text-align:center">@_Adress eMail_@</label>
@@ -172,13 +174,13 @@
                             <div class="row error justify-content-center">
                                 <p id="errorEMail"></p>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- Phone -->
                         <div class="col-3 m-2">
                             <div class="row form-floating">
-                                <input class="form-control" id="Phone" style="vertical-align:top; width: 200px;height:50px;text-align: center;" type="text" name="Phone" placeholder="Phone" required>
-                                <label for="floatingInput" style="text-align:center">Phone Number</label>
+                                <input class="form-control" id="Phone" style="vertical-align:top; width: 100%;height:50px;text-align: center;" type="text" name="Phone" placeholder="Phone" required>
+                                <label for="floatingInput" style="text-align:center">Phone</label>
                             </div>
                             <div class="row error justify-content-center">
                                 <p id="errorPhone"></p>
@@ -188,7 +190,7 @@
                         <!-- Username -->
                         <div class="col-3 m-2">
                             <div class="row form-floating  justify-content-center">
-                                <input class="form-control" id="Username" style="width: 200px;height:50px;text-align:center" type="text" name="Username" placeholder="Username" required>
+                                <input class="form-control" id="Username" style="width: 100%;height:50px;text-align:center" type="text" name="Username" placeholder="Username" required>
                                 <label for="floatingInput">Username</label>
                             </div>
                             <div class="row error  justify-content-center">
@@ -199,13 +201,14 @@
                     </div>
 
 
-                    <!-- Fith row -->
+
+                    <!-- Passwords row-->
                     <div class="row mt-5 justify-content-center">
 
                         <!-- Pwd -->
                         <div class="col-3 m-2">
                             <div class="row form-floating">
-                                <input required class="form-control" id="Password" style="vertical-align:top; width: 200px;height:50px;text-align: center;" type="password" name="Password" placeholder="Password" required>
+                                <input required class="form-control" id="Password" style="vertical-align:top; width: 100%;height:50px;text-align: center;" type="password" name="Password" placeholder="Password" required>
                                 <label for="floatingInput" style="text-align:center">Password</label>
                             </div>
                         </div>
@@ -213,15 +216,15 @@
                         <!-- Pwd2 -->
                         <div class="col-3 m-2">
                             <div class="row form-floating">
-                                <input required class="form-control" id="Password2" style="vertical-align:top; width: 200px;height:50px;text-align: center;" type="password" name="Password2" placeholder="Password2">
-                                <label for="floatingInput" style="text-align:center">Your Password Again</label>
+                                <input required class="form-control" id="Password2" style="vertical-align:top; width: 100%;height:50px;text-align: center;" type="password" name="Password2" placeholder="Password2">
+                                <label for="floatingInput" style="text-align:center">P. Again</label>
                             </div>
                         </div>
 
                     </div>
 
 
-                    <!-- Sixth row -->
+                    <!-- Text field for password error -->
                     <div class="row mt-2 justify-content-center">
 
                         <!-- Erreur Pwd -->
@@ -231,19 +234,6 @@
 
                     </div>
 
-                    <!-- Seventh row -->
-                    <div class="row mt-3 justify-content-center">
-
-                        <!-- Erreur Pwd -->
-                        <div class="col-6">
-                            <!--  Hidden to match up pwds -->
-                            <!-- <input id="isSame" /> -->
-                            <input type="hidden" id="isSame" />
-                        </div>
-
-                    </div>
-
-                    <!-- Eigth row -->
                     <!-- Button Add to confirm informations -->
                     <div class="row mt-3 justify-content-center">
 
@@ -269,6 +259,7 @@
 
 
     <script>
+
         function popupSignUP() {
             // Get the modal
             var modal = document.getElementById("mySignup");
@@ -301,6 +292,7 @@
                 }
             }
         }
+
     </script>
 
 </body>
@@ -315,7 +307,7 @@ if (isset($_POST["addUser"])) {
     $codeUser = substr($_POST["Name"], 0, 3) .  substr($_POST["Firstname"], 0, 3) . $rand;
 
     //Create user with informations
-    $User = new Users(array("CodeUser" => $codeUser, "Name" => $_POST["Name"], "Firstname" => $_POST["Firstname"], "BirthDate" => $_POST["birthDate"], "eMail" => $_POST["eMail"], "Phone" => $_POST["Phone"], "Username" => $_POST["Username"], "Password" => $_POST["Password"], "isAlive" => true));
+    $User = new Users(array("CodeUser" => $codeUser, "Name" => $_POST["Name"], "Firstname" => $_POST["Firstname"], "BirthDate" => "0000-00-00", "eMail" => "n/a", "Phone" => $_POST["Phone"], "Username" => $_POST["Username"], "Password" => $_POST["Password"], "isAlive" => true));
 
     //Tests for some formats
     //If any attribute is white spaced
@@ -330,13 +322,13 @@ if (isset($_POST["addUser"])) {
              </script>';
         }
 
-        if (validateEmail($User->eMail()) == false) {
-            echo
-            '<script>
-                document.getElementById("errorEMail").innerHTML = "Invalid Address eMail Format"
-                document.getElementById("errorSignUP").innerHTML = "Invalid Address eMail Format"
-             </script>';
-        }
+        // if (validateEmail($User->eMail()) == false) {
+        //     echo
+        //     '<script>
+        //         document.getElementById("errorEMail").innerHTML = "Invalid Address eMail Format"
+        //         document.getElementById("errorSignUP").innerHTML = "Invalid Address eMail Format"
+        //      </script>';
+        // }
 
         if (validatePhone($User->Phone()) == false) {
             echo
@@ -354,7 +346,8 @@ if (isset($_POST["addUser"])) {
              </script>';
         }
 
-        if (validateName($User->Name()) == true && validateEmail($User->eMail()) == true && validatePhone($User->Phone()) == true && validatePasswords($User->Password(), $_POST["Password2"]) == true) {
+        // if (validateName($User->Name()) == true && validateEmail($User->eMail()) == true && validatePhone($User->Phone()) == true && validatePasswords($User->Password(), $_POST["Password2"]) == true) {
+            if (validateName($User->Name()) == true && validatePhone($User->Phone()) == true && validatePasswords($User->Password(), $_POST["Password2"]) == true) {
 
             if (SignUP($User) == true) {
                 // echo

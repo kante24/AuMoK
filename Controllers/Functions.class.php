@@ -1,5 +1,5 @@
 <?php
-// session_start();
+
 // If no session, start one
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Setting internal encoding for string functions
 mb_internal_encoding("UTF-8");
 
-//connection pdo to database
+// Connection pdo to database
 function connection()
 {
     try {
@@ -19,13 +19,17 @@ function connection()
     }
 }
 
-// Chargement automatique des fonctions controlleurs et modèles
+// Automatic loading of controller and model functions
 function autoChargeFonction($class)
 {
+    // Path of file
     $filename = '/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/' . $class . '.class.php';
+    // If file exists in controllers folder
     if (file_exists($filename)) {
         require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Controllers/" . $class . ".class.php");
-    } else {
+    } 
+    // Else if file exists in models folder
+    else {
         require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Models/" . $class . ".class.php");
     }
 }

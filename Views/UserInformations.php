@@ -42,11 +42,11 @@ if (UserInforsStatus($User) == false) {
 
     /* Info Content */
     .infosContent {
-        width: 0px;
+        /* width: 0px; */
         height: 0px;
         margin: auto;
         margin-top: 100px;
-        margin-left: 400px;
+        /* margin-left: 400px; */
     }
 </style>
 <!-- <input type="button" value="Display" onclick="popupInformations()" />
@@ -57,7 +57,7 @@ if (UserInforsStatus($User) == false) {
     <!-- Informations content -->
     <div class="modal-content infosContent justify-content-center" style="text-align: center;">
 
-        <div class="container justify-content-center shadow-lg" style="width: 600px;margin-top: 150px;background-color:white">
+        <div class="container justify-content-center shadow-lg" style="width: 500px;margin-top: 150px;background-color:white">
 
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
