@@ -35,6 +35,12 @@ $data = CarBrandsList();
         <input type="submit" name="log" value="Log Admin" />
     </form> -->
 
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">1</div>
+            <div class="col d-none d-sm-block">2</div>
+        </div>
+    </div>
 
 
 

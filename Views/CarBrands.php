@@ -218,6 +218,11 @@ if (isset($_POST["CarbrandName"])) {
     <!-- All Car Brands List -->
     <div class="container-fluid">
 
+        <div class="row mt-4">
+            <h3 style="text-align: center;">ALL &#160;&#160; BRANDS</h3>
+            
+        </div>
+
         <div class="row mt-3">
             <?
             // Initialize _col as number of columns in one row
@@ -232,12 +237,12 @@ if (isset($_POST["CarbrandName"])) {
                         <!-- In each Column -->
                         <div class="row">
                             <!-- Band Logo Div -->
-                            <div class="col-3 p-2">
+                            <div class="col-lg-3 p-2">
                                 <img style="width: 100%; height: 100%;" src="<? echo $data[$i]["BrandLogo"] ?>" />
 
                             </div>
                             <!-- Brand Name Div -->
-                            <div class="col-9 p-2" style="text-align: center;" translate="no">
+                            <div class="col-lg-9 p-2" style="text-align: center;" translate="no">
                                 <b><? echo $data[$i]["BrandName"] ?></b>
                             </div>
                         </div>

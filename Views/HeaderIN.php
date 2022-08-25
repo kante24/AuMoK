@@ -39,9 +39,9 @@ else if (isset($_SESSION['User'])) {
             cursor: pointer;
         }
 
-        .dropdown:hover .dropdown-menu {
+        /* .dropdown:hover .dropdown-menu {
             display: block;
-        }
+        } */
 
         .center{
             text-align: center;
@@ -103,8 +103,8 @@ else if (isset($_SESSION['User'])) {
                                 <img src="/dashboard/AuMoK/Images/iconReserachAuto.png" style="width: 30;height: 30px;" />
                             </a>
     
-                            <!-- Dropdown for Search -->
-                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- Dropdown for Search only displayed on large screens -->
+                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split d-none d-lg-block" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="visually-hidden">Toggle Dropdown</span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -131,31 +131,61 @@ else if (isset($_SESSION['User'])) {
 
                 </ul>
 
-                <!-- dropdown list for actions = Sign UP & Log IN -->
-                <div class="btn-group dropstart">
+                <!-- dropstrart list for actions = Sign UP & Log IN -->
+                <!-- Displayed only on large screens -->
+                <div class="d-none d-lg-block">
+                    <div class="btn-group dropstart">
 
-                    <!-- Dropdown for LOG OUT -->
-                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="visually-hidden">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item pointer" href="/dashboard/AuMoK/Views/Account.php">
-                            ACCOUNT
+                        <!-- Dropdown for LOG OUT -->
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item pointer" href="/dashboard/AuMoK/Views/Account.php">
+                                ACCOUNT
+                            </a>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <a class="dropdown-item pointer" href="/dashboard/AuMoK/Views/LogOUT.php">
+                                LOG OUT
+                            </a>
+                        </ul>
+
+                        <!-- Link for Account Page -->
+                        <a class="nav-link btn" type="button" href="/dashboard/AuMoK/Views/Account.php" id="navbarDropdown" role="button" aria-expanded="false">
+                            <img src="/dashboard/AuMoK/Images/iconAccount.png" style="width: 30;height: 30px;" />
                         </a>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <a class="dropdown-item pointer" href="/dashboard/AuMoK/Views/LogOUT.php">
-                            LOG OUT
-                        </a>
-                    </ul>
 
-                    <!-- Link for Account Page -->
-                    <a class="nav-link btn" type="button" href="/dashboard/AuMoK/Views/Account.php" id="navbarDropdown" role="button" aria-expanded="false">
-                        <img src="/dashboard/AuMoK/Images/iconAccount.png" style="width: 30;height: 30px;" />
-                    </a>
-
+                    </div>
                 </div>
+                <!-- dropdown list for actions = Sign UP & Log IN -->
+                <!-- Displayed only on small and medium screens -->
+                <div class="d-block d-lg-none">
+                    <div class="btn-group dropdown">
+
+                        <!-- Dropdown for LOG OUT -->
+                        <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="visually-hidden">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item pointer" href="/dashboard/AuMoK/Views/Account.php">
+                                ACCOUNT
+                            </a>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <a class="dropdown-item pointer" href="/dashboard/AuMoK/Views/LogOUT.php">
+                                LOG OUT
+                            </a>
+                        </ul>
+
+                        <!-- Link for Account Page -->
+                        <a class="nav-link btn" type="button" href="/dashboard/AuMoK/Views/Account.php" id="navbarDropdown" role="button" aria-expanded="false">
+                            <img src="/dashboard/AuMoK/Images/iconAccount.png" style="width: 30;height: 30px;" />
+                        </a>
+
+                    </div>
 
             </div>
 

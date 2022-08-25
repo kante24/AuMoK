@@ -42,11 +42,11 @@
 
     /* Login Content */
     .loginContent {
-        width: 0px;
-        height: 0px;
-        margin: auto;
-        margin-top: 200px;
-        margin-left: 650px;
+        /* width: 0px; */
+        height: 100px;
+        /* margin: auto; */
+        margin-top: 100px;
+        /* margin-left: 650px; */
     }
     
 </style>

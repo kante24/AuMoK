@@ -79,13 +79,14 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                                 <img src="/dashboard/AuMoK/Images/iconReserachAuto.png" style="width: 30;height: 30px;" />
                             </a>
     
-                            
-                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- Button to display quick search for autos by brand name -->
+                            <!-- Button is displayed only on large screen -->
+                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split d-none d-lg-block" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="visually-hidden">Toggle Dropdown</span>
                             </button>
+                            <!-- Dropdown content -->
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <!-- <form class="d-flex" action="/dashboard/KAMW/Views/Recherche.php"> -->
                                     <form class="d-flex" action="/dashboard/AuMoK/Views/CarBrands.php" method="POST">
                                         <input style="width: 700px;text-align:center;" class="form-control me-1 ms-1" list="CarbrandName" type="search" placeholder="SEARCH BY BRAND NAME" aria-label="Search" name="CarbrandName">
                                         <button class="btn btn-outline-dark me-1" type="submit">Search</button>
@@ -107,8 +108,13 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
 
                 </ul>
 
-                <!-- dropdown list for actions = Sign UP & Log IN -->
-                <div class="nav-item dropstart">
+                <!-- /////////////////////////////////////////////////////////////////////// -->
+                <!-- ////////////////////// Start control profil /////////////////////////// -->
+                <!-- /////////////////////////////////////////////////////////////////////// -->
+                <!-- Dropdown list for actions = Sign UP & Log IN -->
+                
+                <!-- Dropstart for large and extra large screens only -->
+                <div class="nav-item dropstart d-none d-lg-block">
 
                     <!-- Text to display -->
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -128,6 +134,32 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/Footer.php"
                     </ul>
 
                 </div>
+
+                <!-- Dropdown for small and medium large screens only -->
+                <div class="nav-item dropdown d-block d-lg-none">
+
+                    <!-- Text to display -->
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="/dashboard/AuMoK/Images/iconAccount.png" style="width: 30;height: 30px;" />
+                    </a>
+                    <!-- Dropdown list -->
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li class="dropdown-item pointer" id="btnLogin" onclick="popupLogin()">
+                            LOG IN
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-item pointer" id="btnSignup" onclick="popupSignUP()">
+                            SIGN UP
+                        </li>
+                    </ul>
+
+                </div>
+                
+                <!-- /////////////////////////////////////////////////////////////////////// -->
+                <!-- /////////////////////// End control profil //////////////////////////// -->
+                <!-- /////////////////////////////////////////////////////////////////////// -->
 
             </div>
 
