@@ -70,14 +70,14 @@ else if (isset($_SESSION['User'])) {
 
         <div class="container-fluid">
 
+            <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <!-- Logo -->
             <a class="navbar-brand" href="/dashboard/AuMoK/Views/Home.php">
                 <img src="/dashboard/AuMoK/Images/K.png" style="width:50; height:50px;"/>
             </a>
-
-            <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
             <!-- Links & Actions -->
             <div class="collapse navbar-collapse" id="navbarNav">
