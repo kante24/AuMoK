@@ -48,6 +48,23 @@
         margin-top: 100px;
         /* margin-left: 650px; */
     }
+
+
+    /* Pour les ecran de moin de 500px de largeur */
+    @media (max-width : 500px)
+    {
+        .LoginForm {
+            width: 250px;
+        }
+    }
+    
+    /* Pour les ecran de plus de 500px de largeur */
+    @media (min-width : 501px)
+    {
+        .LoginForm {
+            width: 300px;
+        }
+    }
     
 </style>
 
@@ -57,7 +74,7 @@
     <!-- Login content -->
     <div class="modal-content loginContent justify-content-center" style="text-align: center;">
 
-        <div class="container justify-content-center shadow-lg" style="width: 300px;margin-top: 150px;background-color:white">
+        <div class="container justify-content-center shadow-lg LoginForm" id="" style="margin-top: 150px;background-color:white">
 
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 
@@ -70,7 +87,7 @@
                     </div>
 
                     <!-- Button to close Login popup -->
-                    <div class="mt-1 col-3 justify-content-center close closeLogin" id="closeLogin" style="width: 60px;height: 50px" onclick="popupLogin()">
+                    <div class="col-3 justify-content-center close closeLogin" id="closeLogin" style="width: 60px;height: 50px" onclick="popupLogin()">
                         <img class="mt-1" src="/dashboard/AuMoK/Images/iconClose.png" style="width: 40px; height: 40px;" />
                     </div>
 
@@ -81,7 +98,7 @@
 
                     <!-- Input Username -->
                     <div class="col-12 form-floating">
-                        <input class="form-control" id="Login" style="width: 250px;height:60px;" type="text" name="Login" placeholder="Login" required>
+                        <input class="form-control" id="Login" style="width: 200px;height:60px;" type="text" name="Login" placeholder="Login" required>
                         <label for="floatingInput">Username or eMail</label>
                     </div>
 
@@ -92,7 +109,7 @@
 
                     <!-- Input Password -->
                     <div class="col-12 form-floating">
-                        <input class="form-control" style="width: 250px;height:60px;" type="password" name="Password" placeholder="Password" required>
+                        <input class="form-control" style="width: 200px;height:60px;" type="password" name="Password" placeholder="Password" required>
                         <label for="floatingInput">Password</label>
                     </div>
 

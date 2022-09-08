@@ -19,7 +19,7 @@ var_dump($User);
 
         #btn{ width: 100px;}
 
-        @media all and (max-width : 480px)
+        @media all and (max-width : 300px)
         {
             #btn{ width: 50px;}
         }
