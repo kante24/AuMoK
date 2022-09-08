@@ -79,6 +79,9 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 
 <body>
 
+<p id="error">p Error : </p>
+    <p id="mode">p Mode : </p>
+
 
     <!-- Container to add new user -->
     <div id="addUserModal" class="addUserModal">
@@ -255,9 +258,9 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                     <div class="row m-1 justify-content-center">
 
                         <!-- Option to Add new User -->
-                        <button class="btn btn-outline-success mt-3" id="addUser" onclick="addNewUser()">
+                        <!-- <button class="btn btn-outline-success mt-3" id="addUser" onclick="addNewUser()">
                             ADD NEW USER
-                        </button>
+                        </button> -->
 
                         <!-- Edit an existant user -->
                         <button class="btn btn-outline-primary mt-3" onclick="editUser()">
@@ -265,11 +268,11 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
                         </button>
 
                         <!-- Option to Add new User -->
-                        <button class="btn btn-outline-danger mt-3">
+                        <button class="btn btn-outline-danger mt-3" onclick="deleteUser()">
                             DELETE AN USER
                         </button>
 
-                        <button class="btn btn-outline-warning mt-3">
+                        <button class="btn btn-outline-warning mt-3" onclick="disableUser()">
                             DISABLE AN USER
                         </button>
 
@@ -299,7 +302,7 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 
                         </div>
 
-                        <p class="row mt-2 justify-content-center error" id="sUserError"></p>
+                        <p class="row mt-2 justify-content-center error" id="sUserError">__: </p>
                     </form>
                 </div>
             </div>
@@ -308,8 +311,9 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
 
     <!-- Error -->
     <!-- <p id="error" style="visibility:hidden"></p> -->
-    <p id="error"></p>
-    <p id="mode"></p>
+    <p id="nene"></p>
+    <p id="error">p Error : </p>
+    <p id="mode">p Mode : </p>
 
 
     <h4 class="mt-4" style="text-align: center;" id="result"></h4>
@@ -334,47 +338,59 @@ require("/Applications/XAMPP/xamppfiles/htdocs/dashboard/AuMoK/Views/AdminHeader
             $sUser = new Users(array("CodeUser"=>$submitedUser, "eMail"=>$submitedUser,  "Phone"=>$submitedUser,  "Username"=>$submitedUser ));
             // var_dump(userSearch($sUser));
             echo '
-            <script>
-                document.getElementById("sUserError").innerHTML = "'. userSearch($sUser) .'"
-            </script>
-        ';
+                <script>
+                    document.getElementById("sUserError").innerHTML = "'. userSearch($sUser) .'"
+                </script>
+            ';
         }
     }
     ?>
 
-    <!-- <script>
+    <script>
         // On page load, if an error displayed
-        window.onload = function() {
-            // document.getElementById("sUserError").innerHTML = "Empty Field"
-            if (document.getElementById("error").innerHTML != "") {
-                if (document.getElementById("error").innerHTML == "add") {
-                    addNewUser()
-                }
-            }
-        }
+        // window.onload = function() {
+        //     // document.getElementById("sUserError").innerHTML = "Empty Field"
+        //     if (document.getElementById("error").innerHTML != "") {
+        //         if (document.getElementById("error").innerHTML == "add") {
+        //             addNewUser()
+        //         }
+        //     }
+        // }
         // funtion to display popup for adding user
-        function addNewUser() {
-            // Set mode
-            document.getElementById("mode").innerHTML = "add"
-            // Get the modal
-            var modal = document.getElementById("addUserModal");
-            modal.style.display = "block";
+        // function addNewUser() {
+        //     // Set mode
+        //     document.getElementById("mode").innerHTML = "add"
+        //     // Get the modal
+        //     var modal = document.getElementById("addUserModal");
+        //     modal.style.display = "block";
 
-            var btnClose = document.getElementById("closeAddUser");
+        //     var btnClose = document.getElementById("closeAddUser");
 
-            // // When the user clicks on <span> (x), close the modal
-            btnClose.onclick = function() {
-                modal.style.display = "none";
-            }
+        //     // // When the user clicks on <span> (x), close the modal
+        //     btnClose.onclick = function() {
+        //         modal.style.display = "none";
+        //     }
 
-            // // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+        //     // // When the user clicks anywhere outside of the modal, close it
+        //     window.onclick = function(event) {
+        //         if (event.target == modal) {
+        //             modal.style.display = "none";
+        //         }
+        //     }
+        // }
+
+        function editUser(){
+            document.getElementById("mode").innerHTML = "edit"
         }
-    </script> -->
+
+        function deleteUser(){
+            document.getElementById("mode").innerHTML = "delete"
+        }
+
+        function disableUser(){
+            document.getElementById("mode").innerHTML = "disable"
+        }
+    </script>
 
 
     <?php

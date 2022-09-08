@@ -27,20 +27,13 @@ $data = CarBrandsList();
 
 <body>
 
-    <!-- Temporary log station for admin
+    Temporary log station for admin
 
     <form action="<?php // echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <input type="text" name="username" />
         <input type="password" name="pwd" />
         <input type="submit" name="log" value="Log Admin" />
-    </form> -->
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col">1</div>
-            <div class="col d-none d-sm-block">2</div>
-        </div>
-    </div>
+    </form>
 
 
 
